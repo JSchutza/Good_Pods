@@ -29,6 +29,8 @@ stories={
   "tagsB": ["Add a tag to a podcast", "find all podcasts with that tag"],
   "tagsC": ["make the subject or interest more clear", "find the best pods for me"]
 }
+
+
 rep=-1
 for feature in features:
   rep=rep+1
@@ -41,7 +43,9 @@ for feature in features:
   stringFeature+="* Given that I am a Logged in user I want to interact with {} \r".format(feature)
   for n in range(len(stories[feature +'A'])-1):
     stringFeature+="\t* As a {} I want to be able to {} so that I can {} \r".format(stories[feature+"A"][n],stories[feature+"B"][n],stories[feature+"C"][n])
-  
+
+
+
 ##This code writes the code from this file to a markdown file in this folder. It will be called userStories.md.
 userStories= open('userStories.md','wt')
 userStories.write(stringFeature)

@@ -141,13 +141,10 @@ As a logged-in user, I want to be able to see my own personalized list of favori
 
   * ### Questions
 
-  Will
 
 
 * ### Acceptance Criteria
-Given
-When
-Then
+
 
 
 
@@ -157,13 +154,19 @@ Then
 As a logged-in user, I want to be able to keep track of and view my currently filiterd podcasts so that I can be organized.
 
   * ### Questions
-
-  Will
+* Will the users need to sign in to view their shelf?
+	 	 * Yes, in order to view their podcasts the user must log in.
+ * Will we allow users to view other users shelves?
+	 	 * Yes, you can view other user's shelves to discover new podcasts
 
 * ### Acceptance Criteria
-Given
-When
-Then
+
+* Given that I am a Logged in user I want to interact with shelves
+	* As a logged-in user I want to be able to view all the podcasts I have, sorted by genre so that I can click on the podcasts to be redirected to that podcast's (podcasts/:id) page
+	* As a User I want to be able to click on every podcast on my shelf to be redirected to the podcast page so that I can Review that podcast, favorite or change that podcast's reviews
+	* As a User I want to be able to view all the podcasts that I have reviewed so that I can can edit or review them
+	* As a User I want to be able to View all the podcasts that I have added a status onto  so that I can Change that podcasts status
+
 
 
 
@@ -176,13 +179,17 @@ As a logged-in user, I want to be able to track my media consumption so that I c
 
   * ### Questions
 
-  Will
+* Question about the next feature?
+	 	 * Answer about the next feature.
 
 
 * ### Acceptance Criteria
-Given
-When
-Then
+
+* Given that I am a Logged in user I want to interact with status
+	* As a User I want to be able to See an icon next to a podcast name that references a status so that I can review the podcasts that I favorited, go back to the ones I am interested in or add a review if I have not already
+	* As a User I want to be able to See all of the podcasts with that I have given that status to so that I can look back on the podcasts that I either liked or was interested in in the past
+
+
 
 
 
@@ -193,13 +200,22 @@ As a logged-in user, I want to be able to view/post reviews on the hottest podca
 
   * ### Questions
 
-  Will
+
 
 * ### Acceptance Criteria
-Given
-When
-Then
 
+
+
+
+
+## Genres
+### Questions:
+ * Question about the next feature?
+	 	 * Answer about the next feature.
+### Acceptance Criteria:
+* Given that I am a Logged in user I want to interact with genres
+	* As a User I want to be able to see all the podcasts in that genre so that I can Discover new podcasts by genre
+	* As a User I want to be able to favorite a particular genre so that I can Check out only the genres I like
 
 
 
@@ -213,13 +229,16 @@ Then
 As a logged-in user, I want to be able to search all the pods by genre so that I can be an efficient podcast consumer.
 
   * ### Questions
+ * Question about the next feature?
+	 	 * Answer about the next feature.
 
-  Will
 
 * ### Acceptance Criteria
-Given
-When
-Then
+
+* Given that I am a Logged in user I want to interact with search
+	* As a User I want to be able to Search podcast by name so that I can find podcasts that I have heard of
+	* As a User I want to be able to search for all the podcasts of a genre so that I can Just find podcasts that I am interested in
+
 
 
 
@@ -231,9 +250,10 @@ As a logged-in user, I want to be able to tag podcasts so that I can come back t
 
   * ### Questions
 
-  Will
+    * Question about the next feature?
+	 	 * Answer about the next feature.
 
 * ### Acceptance Criteria
-Given
-When
-Then
+
+* Given that I am a Logged in user I want to interact with tags
+	* As a User I want to be able to Add a tag to a podcast so that I can make the subject or interest more clear
