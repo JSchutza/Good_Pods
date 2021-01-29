@@ -92,17 +92,17 @@
 
 * When I try to fill out the form with an email or username that already exists with a valid password and press Enter or press the "Sign Up" button
 
-    - Then at the top of the form, I will see a red message User with that email or username already exists.
+    - Then at the top of the form, I will see a red message that tells the user that the email or username already exists.
 
 
 * When I try to fill out the form with a password shorter than 6 characters and press Enter or press the "Sign Up" button
 
-    - Then at the top of the form, I will see a red message Password must be at least 6 characters long.
+    - Then at the top of the form, I will see a red message that tells the user that the password must be at least 6 characters long.
 
 
 * When I try to fill out the form with a valid email, username, and password and press Enter or press the "Sign Up" button
 
-    - Then I will be redirected to the homepage at the / route.
+    - Then I will be redirected to the users profile page at the /profile route.
 
 
 * Given that I am a user that just signed up when I refresh the homepage at the / route
@@ -137,9 +137,7 @@ Then
 
 
 # Pod Feed
-As a
-I want to
-  so that I can
+As a logged-in user, I want to be able to see my own personalized list of favorite / followed podcasts so that I can keep up with my pesonal pod adventures.
 
   * ### Questions
 
@@ -156,9 +154,7 @@ Then
 
 
 # Your Podcasts
-As a
-I want to
-  so that I can
+As a logged-in user, I want to be able to keep track of and view my currently filiterd podcasts so that I can be organized.
 
   * ### Questions
 
@@ -176,9 +172,7 @@ Then
 
 
 # Pod Status
-As a
-I want to
-  so that I can
+As a logged-in user, I want to be able to track my media consumption so that I can continue to grow my podcast libary.
 
   * ### Questions
 
@@ -195,9 +189,7 @@ Then
 
 
 # Pod Reviews
-As a
-I want to
-  so that I can
+As a logged-in user, I want to be able to view/post reviews on the hottest podcasts so that I can feel amazing.
 
   * ### Questions
 
@@ -218,9 +210,7 @@ Then
 
 
 # Bonus --- search by genre
-As a
-I want to
-  so that I can
+As a logged-in user, I want to be able to search all the pods by genre so that I can be an efficient podcast consumer.
 
   * ### Questions
 
@@ -232,10 +222,12 @@ When
 Then
 
 
+
+
+
+
 # Bonus --- Tags
-As a
-I want to
-  so that I can
+As a logged-in user, I want to be able to tag podcasts so that I can come back to them later.
 
   * ### Questions
 
