@@ -4,7 +4,17 @@ Good_Pods is a Goodreads clone but better... (more to come)
 
 
 # [Feature List](https://github.com/JSchutza/Good_Pods/wiki/MVP-Feature-List)
-  * List of features for the minimum viable product, MVP.
+
+  * Features for the minimum viable product include:
+    - Hosting on Heroku
+    - New Account Creation, Login and Logout
+    - Pod Feed
+    - Your Podcasts
+    - Pod Status
+    - Pod Reviews
+    - Search by Genre
+    - Tags
+
 
 
 # [User Stories and Acceptance Criteria](https://github.com/JSchutza/Good_Pods/wiki/User-Stories)
