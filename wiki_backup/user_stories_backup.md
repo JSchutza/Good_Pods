@@ -144,8 +144,7 @@ I want to
   * ### Questions
 
   Will
-  I want to
-  so that I can
+
 
 * ### Acceptance Criteria
 Given
@@ -164,8 +163,6 @@ I want to
   * ### Questions
 
   Will
-  I want to
-  so that I can
 
 * ### Acceptance Criteria
 Given
@@ -186,8 +183,7 @@ I want to
   * ### Questions
 
   Will
-  I want to
-  so that I can
+
 
 * ### Acceptance Criteria
 Given
@@ -206,8 +202,6 @@ I want to
   * ### Questions
 
   Will
-  I want to
-  so that I can
 
 * ### Acceptance Criteria
 Given
@@ -231,8 +225,6 @@ I want to
   * ### Questions
 
   Will
-  I want to
-  so that I can
 
 * ### Acceptance Criteria
 Given
@@ -248,8 +240,6 @@ I want to
   * ### Questions
 
   Will
-  I want to
-  so that I can
 
 * ### Acceptance Criteria
 Given
