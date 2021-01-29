@@ -1,5 +1,17 @@
+#Because I hate busy work
+# This is an "array" of "arrays" of questions in strings
+# The questions in the array have to match up with the answers in the corresponding answers array
+
+
+questions=[["Will the users need to sign in to view their shelf?", "Will we allow users to view other users shelves?" ],["Question about the next feature?"],["Question about the next feature?"],["Question about the next feature?"],["Question about the next feature?"],["Question about the next feature?"]]
+answers=[["Yes, in order to view their podcasts the user must log in.", "Yes, you can view other user's shelves to discover new podcasts"], ["Answer about the next feature."], ["Answer about the next feature."],["Answer about the next feature."],["Answer about the next feature."],["Answer about the next feature."]]
 stringFeature=''
+#replace these features with your features you want to highlight
 features = ['shelves', 'status', 'genres', 'search','tags']
+#featureA is what word you are calling the user,
+#featureB is the action or ability the user needs to have
+#featureC is why you want them to have that ability
+#all three of these have to be the same length
 stories={
   "shelvesA":["logged-in user", 'User', "User", "User", "User"],
   "shelvesB":["view all the podcasts I have, sorted by genre", 'click on every podcast on my shelf to be redirected to the podcast page', 'view all the podcasts that I have reviewed', 'View all the podcasts that I have added a status onto '],
@@ -17,11 +29,20 @@ stories={
   "tagsB": ["Add a tag to a podcast", "find all podcasts with that tag"],
   "tagsC": ["make the subject or interest more clear", "find the best pods for me"]
 }
+rep=-1
 for feature in features:
-  stringFeature+="## {} \n".format(feature.capitalize())
+  rep=rep+1
+  stringFeature+="## {} \r".format(feature.capitalize())
+  stringFeature+="### Questions: \r"
+  for i in range(len(questions[rep])):
+    stringFeature+=" * {} \r".format(questions[rep][i])
+    stringFeature+="\t \t * {} \r".format(answers[rep][i])
+  stringFeature+="### Acceptance Criteria: \r"
+  stringFeature+="* Given that I am a Logged in user I want to interact with {} \r".format(feature)
   for n in range(len(stories[feature +'A'])-1):
     stringFeature+="\t* As a {} I want to be able to {} so that I can {} \r".format(stories[feature+"A"][n],stories[feature+"B"][n],stories[feature+"C"][n])
-
+  
+##This code writes the code from this file to a markdown file in this folder. It will be called userStories.md.
 userStories= open('userStories.md','wt')
 userStories.write(stringFeature)
 userStories.close()
