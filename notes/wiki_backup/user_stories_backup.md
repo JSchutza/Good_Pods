@@ -146,7 +146,10 @@ As a logged-in user, I want to be able to see my own personalized list of favori
     - Yes, the Pod Feed will be orginized by genre
 * How many podcasts will the Pod Feed display?
     - The Pod Feed will display ten podcasts at a time.
-    
+* Will the Pod Feed include small snippets of reviews that users submited?
+    - Yes, the currently loged in user will be able to view a small portion of users reviews.
+* Will the Pod Feed include each displayed podcasts status?
+    - Yes, the currently loged in user will be able to view the status of a podcast in the Pod Feed.
 
 
 * ### Acceptance Criteria
@@ -191,7 +194,7 @@ As a logged-in user, I want to be able to track my media consumption so that I c
 
 * ### Acceptance Criteria
 
-* Given that I am a Logged in user I want to interact with status
+* Given that I am a Logged in user I want to interact with the status
 	- As a User I want to be able to See an icon next to a podcast name that references a status so that I can review the podcasts that I favorited, go back to the ones I am interested in or add a review if I have not already
 	- As a User I want to be able to See all of the podcasts with that I have given that status to so that I can look back on the podcasts that I either liked or was interested in in the past
 
