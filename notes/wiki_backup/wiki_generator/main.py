@@ -38,7 +38,7 @@ def initWiki():
     if num_result == 1:
         print('New wiki initialzed...\n')
         # run the function that will create all of the data for each wiki page
-
+    
     elif num_result == 2:
         print('partial wiki initialzed...\n')
         print('What section of the wiki do you need?\n')
@@ -69,7 +69,7 @@ def main():
 
     # gets the features that they want to implement
     # all_features = getFeatures()
-    
+
     print('Is this for a Feature List or a User Stories Page?')
     decision = prompt('Enter 1 for a Feature List:\n Enter 2 for a User Stories Page:')
     num_decision = int(decision)
