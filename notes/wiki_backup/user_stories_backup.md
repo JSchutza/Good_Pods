@@ -218,14 +218,59 @@ As a logged-in user, I want to be able to view/post reviews on the hottest podca
 
 
 ## Genres
-### Questions:
- * Question about the next feature?
-	 	 - Answer about the next feature.
-### Acceptance Criteria:
+* ### Questions:
+
+* Will the podcasts on a user's profile page be organized by genre?
+    - Yes, the podcasts on a user's profile page will be organized by genre.
+
+* Will the podcasts on the pod feed be organized by genre?
+    - Yes, the podcasts on the pod feed will be organized by genre.
+
+* Will a user be able to search for podcasts by genre?
+    - Yes, a user will be able to search for podcasts by genre.
+
+* Will there be a separate page for each genre of podcast?
+    - A user will be able to view all podcasts of a specific genre, but each genre will not have it's own separate page.
+
+* Will a user be able to choose a favorite genre?
+    - A user will have podcasts suggested to them based on podcasts they have rated and reviewed.
+
+* Will podcasts be suggested for a user based on their favorite genre's?
+
+
+
+
+
+
+* ### Acceptance Criteria:
 * Given that I am a Logged in user I want to interact with genres
 	- As a User I want to be able to see all the podcasts in that genre so that I can Discover new podcasts by genre
 	- As a User I want to be able to favorite a particular genre so that I can Check out only the genres I like
 
+
+
+
+## Shelves
+* ### Questions:
+ * What is included in the user's pod page?
+	- User's shelf is the podcasts that they have chosen.
+ * Do all podcasts on a user's podcast page have a status?
+	- All podcasts have a status when they are in a user's pod page.
+ * Can a user add or delete podcasts from the podcast page?
+	- Yes, you can add and delete podcasts from your podcast page
+ * Is there an api for a user's shelf?
+	- Yes it can be accessed through /api/shelves/:id
+ * How is the user's podcast page organized?
+	- It will be organized by the status that the user assigns to the podcast and through genre.
+ * Can you view other user's shelves?
+	- Not at this time.
+* ### Acceptance Criteria:
+* Given that I am a Logged in user I want to interact with shelves
+	* As a logged-in user I want to be able to view all the podcasts I have, sorted by genre so that I can click on the podcasts to be redirected to that podcast's (podcasts/:id) page
+	* As a User I want to be able to click on every podcast on my shelf to be redirected to the podcast page so that I can Review that podcast, favorite or change that podcast's reviews
+	* As a User I want to be able to view all the podcasts that I have reviewed so that I can can edit or review them
+	* As a User I want to be able to View all the podcasts that I have added a status onto  so that I can Change that podcasts status
+	* As a User I want to be able to click on the icon/link on my profile page to be redirected to my shelf so that I can So that I can view my shelf
 
 
 

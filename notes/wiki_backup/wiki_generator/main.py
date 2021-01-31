@@ -3,7 +3,7 @@
 
 
 # imports here:
-from helperfunc import prompt, giveType, list_to_string
+from helperfunc import *
 
 
 # global variables here for now:
@@ -59,116 +59,92 @@ def initHome():
 
 
 
+
 # function to get and create the API doc page info
-# NEED to figure a way to get path info / Query Parameters if the user wants to input it
 def initAPIDocPage():
-    title = prompt('Enter a title for the API Documentation page: \n')
-    amount_of_resources = prompt('How many resources will you have? \n')
-    num_of_resources = int(amount_of_resources)
 
-    resorce_links = []
-    resorce_titles = []
-    while (num_of_resources > 0):
-        resorce_name = prompt('What is the name of the resource? \n')
-        resorce_links.append(f'- [{resorce_name}](https://github.com/{git_hub_username}/{repo_name}/wiki/API-Documentation#{resorce_name})')
-        resorce_titles.append(f'# {resorce_name}')
-        num_of_resources = num_of_resources - 1
+    title_resources_info = get_title_and_resources_info(git_hub_username, repo_name)
 
+    resorce_titles = get_property("resorce_titles", title_resources_info)
 
+    endpoint_info = get_endpoint_info([], [], resorce_titles, git_hub_username, repo_name)
 
-    endpont_links = []
-    endpont_restful_api_description = []
-    for each in resorce_titles:
-        link_title = prompt('Enter the name of the enpont action: \n')
-        endpont_links.append(f' - [{link_title}](https://github.com/{git_hub_username}/{repo_name}/wiki/API-Documentation#{link_title})')
-        http_verb = prompt('What http verb will be used? \n')
-        api_path = prompt('Enter the path that this http verb will use:\n')
-        endpont_restful_api_description.append(f'{http_verb}  /api/{api_path}')
+    endpont_links = get_property("endpont_links", endpoint_info)
 
-
-    endpont_links_descriptions = []
-    endpont_links_return_description = []
-    body_parameters = []
     for each in endpont_links:
-        description = prompt(f'Enter a description for the current endpoint: \n {each}')
-        endpont_links_descriptions.append(description)
-        return_description = prompt('What will the current endpoint return? \n')
-        endpont_links_return_description.append(return_description)
+
+        link_and_return_description = get_endpoint_descriptions([], [], each)
+
+        table_info = get_table_info()
 
 
-        amount_of_params = prompt('How many parameters will there be in the body of the request?\n')
-        num_of_params = int(amount_of_params)
-
-        while (num_of_params > 0):
-            each_params = prompt('What will the name of the parameter be? \n')
-            type_of_param = prompt('What type of parameter will it be?\n')
-            param_description = prompt('Enter a description of the current parameter: \n')
-            param_notes = prompt('Enter any other notes about the current parameter: \n')
-
-            param_data = {
-                "name": each_params,
-                "type": type_of_param,
-                "description": param_description,
-                "notes": param_notes
-            }
-
-            body_parameters.append(param_data)
-            num_of_params = num_of_params - 1
-
-
-
-    # for the objects on the api page if any exist
+    # for the code examples on the API documentation page
     print('Will there be code examples on the API documentation page? \n')
     decision = prompt('Enter (1) for yes OR (2) for no.\n')
     to_number_decision = int(decision)
-
-    code_title = ''
     if to_number_decision == 1:
         # do stuff if it is a yes
         print('What data type will be displayed in the wiki?\n')
         code_title = prompt('Enter (1) for an object: \n Enter (2) for an array: \n')
-        to_number_code_title = int(code_title)
-        if to_number_code_title == 1:
-            # code for objects
-        elif to_number_code_title == 2:
-            # code for arrays
-                                                                                    #  STOPPED HERE**
+        code_data = decide_on_code_type(int(code_title))
 
     elif to_number_decision == 2:
-        # do stuff if it is a no
-
-
-
-
+        code_data = None
+        return {
+            "all_api_data": {
+                "title_resources_info": title_resources_info,
+                "endpoint_info" : endpoint_info,
+                "link_and_return_description" : link_and_return_description,
+                "table_info" : table_info,
+                "code_data" : code_data
+            }
+        };
 
     return {
         "all_api_data": {
-            "api_title": title,
-            "resorce_links": resorce_links,
-            "resorce_titles": resorce_titles,
-            "endpont_links": endpont_links,
-            "endpont_restful_api_description": endpont_restful_api_description,
-            "endpont_links_descriptions": endpont_links_descriptions,
-            "body_parameters": body_parameters
+            "title_resources_info": title_resources_info,
+            "endpoint_info" : endpoint_info,
+            "link_and_return_description" : link_and_return_description,
+            "table_info" : table_info,
+            "code_data" : code_data
         }
+    };
+
+
+
+# function to get and create the Database Schema page info
+def initDBSchemaPage():
+    db_title = prompt('Enter a title for the Database Schema page: \n')
+
+    db_type = prompt('What database are you using? \n')
+    print('Are you using an ORM?\n')
+    ORM_result = prompt('Enter (1) for yes. Enter (2) for no. \n')
+
+    if int(ORM_result) == 1:
+        ORM_name = prompt('What is the name of your ORM?\n')
+    elif int(ORM_result) == 2:
+        ORM_name = None
+
+    tables_amount = prompt('How many tables are in the Data Base?\n')
+    num_of_tables = int(tables_amount)
+    table_instance = 0
+    table_data = ''
+    while (num_of_tables > 0):
+        table_instance = table_instance + 1
+        table_name = prompt(f'What is the name of your {table_instance} table? \n')
+        amount_of_rows = prompt(f'How many rows does the {table_instance} table have? \n')
+        table_data = construct_table_data(int(amount_of_rows), table_name)
+        num_of_tables = num_of_tables - 1
+
+
+    return {
+        "db_title": db_title,
+        "db_type" : db_type,
+        "ORM_name" : ORM_name,
+        "table_instance" : table_instance,
+        "table_data" : table_data
     }
 
-
-
-
-
-
-# function to get the nessesary features
-def getFeatures():
-    features_array = []
-
-    features = prompt('How many feature items do you need?')
-    num_of_features = int(features)
-    while (num_of_features > 0):
-        the_feature = prompt('Enter your feature:')
-        features_array.append(the_feature)
-        num_of_features = num_of_features - 1
-    return features_array
 
 
 
@@ -187,12 +163,14 @@ def initWiki():
     if num_result == 1:
         print('New wiki initialzed...\n')
         # run the function that will create all of the data for each wiki page
-        home_data = initHome()
-        wiki_data.append(home_data)
-        api_data = initAPIDocPage()
+        # home_data = initHome()
+        # wiki_data.append(home_data)
+        # api_data = initAPIDocPage()
+        # wiki_data.append(api_data)
 
+        DB_data = initDBSchemaPage()
 
-        print(api_data)
+        print(DB_data)
 
 
         # used later in the main function to make a decision
