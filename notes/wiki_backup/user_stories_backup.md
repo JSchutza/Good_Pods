@@ -60,19 +60,19 @@
 
 
 # Sign up
- As an unauthorized user, I want to be able to sign up for the website via a signup form, so that I can access Good_Pods.
+ As an unauthorized user, I want to be able to sign up for the website via a sign up form, so that I can access Good_Pods.
 
   * ### Questions
-* Will the user enter a username and an email address to signup?
+* Will the user enter a username and an email address to sign up?
     - Yes a user will login with an email but will be displayed by a username
 
-* Will we confirm their password during signup?
+* Will we confirm their password during sign up?
     - Yes
 
-* What routes should we use for signup?
-    - We will use /signup for the route
+* What routes should we use for sign up?
+    - We will use /sign up for the route
 
-* Where should the user be redirected after signup?
+* Where should the user be redirected after sign up?
     - User will be redirected to their new profile page
 
 
@@ -86,8 +86,8 @@
 
 * ### Acceptance Criteria
 
-* Given that I'm a user who has not signed up yet and when I'm on the /signup route
-    - Then there will be a signup form with an email, username, and password field and a "Sign Up" button to submit the form.
+* Given that I'm a user who has not signed up yet and when I'm on the /sign up route
+    - Then there will be a sign up form with an email, username, and password field and a "Sign Up" button to submit the form.
 
 
 * When I try to fill out the form with an email or username that already exists with a valid password and press Enter or press the "Sign Up" button
@@ -121,14 +121,20 @@
 As a logged-in user, I want to logout via a button on the navigation bar, so that I can hide my account information to the rest of the users on this device.
 
   * ### Questions
+    * What page will the user be sent to after being logged out?
+	- The user will be redirected to the login page so the next user can seamlessly access their profile.
+ * Where will the logout button be located?
+	- The logout button will be located in the navbar for ease of access.
+ * Will there be a feature that will log an inactive user out of the application?
+	- We will not be implementing an auto logout feature for inactive users at this time.
 
-  Will
 
 
 * ### Acceptance Criteria
-Given
-When
-Then
+* Given that I am a Logged in user when I attempt to log out
+	* Then I will be redirected to the log in page as a logged out user
+
+
 
 
 
@@ -142,11 +148,11 @@ As a logged-in user, I want to be able to see my own personalized list of favori
   * ### Questions
 * Will the users need to sign in to view the Pod Feed?
     - Yes, in order to view the Pod Feed the user must log in.
-* Will the Pod Feed be orginized by genre?
-    - Yes, the Pod Feed will be orginized by genre
+* Will the Pod Feed be organized by genre?
+    - Yes, the Pod Feed will be organized by genre
 * How many podcasts will the Pod Feed display?
     - The Pod Feed will display ten podcasts at a time.
-* Will the Pod Feed include small snippets of reviews that users submited?
+* Will the Pod Feed include small snippets of reviews that users submitted?
     - Yes, the currently loged in user will be able to view a small portion of users reviews.
 * Will the Pod Feed include each displayed podcasts status?
     - Yes, the currently loged in user will be able to view the status of a podcast in the Pod Feed.
@@ -154,6 +160,10 @@ As a logged-in user, I want to be able to see my own personalized list of favori
 
 * ### Acceptance Criteria
 
+* Given that I am a Logged in user I want to interact with the list that are not already on the users shelf
+    * I want the feed to update with new podcasts
+    * I want to be able to filter the podcasts by genre
+    * I want to be able to see the reviews associated with each podcast in the feed
 
 
 
@@ -170,7 +180,6 @@ As a logged-in user, I want to be able to keep track of and view my currently fi
 
 * ### Acceptance Criteria
 
-
 * Given that I am a Logged in user I want to interact with shelves
 	* As a logged-in user I want to be able to view all the podcasts I have, sorted by genre so that I can click on the podcasts to be redirected to that podcast's (podcasts/:id) page
 	* As a User I want to be able to click on every podcast on my shelf to be redirected to the podcast page so that I can Review that podcast, favorite or change that podcast's reviews
@@ -184,10 +193,22 @@ As a logged-in user, I want to be able to keep track of and view my currently fi
 
 
 
-# Pod Status
+# Type
 As a logged-in user, I want to be able to track my media consumption so that I can continue to grow my podcast libary.
 
   * ### Questions
+
+* Can users add more types to their shelf?
+    - No, each shelf will have one type
+
+* How many types will a user have?
+    - A user will have four types called:
+        * listened
+        * interested in
+        * hated
+        * loved
+
+
 
 
 
@@ -209,43 +230,39 @@ As a logged-in user, I want to be able to view/post reviews on the hottest podca
 
   * ### Questions
 
+* Where will users be able to view reviews?
+    - Users will be able to review their reviews on their shelf
+
+* Can users create reviews?
+    - Yes
+
+* Can users delete reviews?
+    - Yes
+
+* Can users leave a rating without having to make a review?
+    - Yes
+
+
+* Will there be a max length on the review text?
+    - Yes there will not be a minimum length but there will be a max length
+
+* Can a user leave multiple reviews for a single podcast?
+    - Yes
+
+
+* In what order will reviews be displayed on the podcasts
+    - The reviews will be ordered from higest rating to lowest rating
 
 
 * ### Acceptance Criteria
+* Given that I am a Logged in user I want to interact with podcast reviews
+    * I want to be able to view reviews
+    * I want to be able to create new reviews
+    * I want to be able to delete my old reviews
+    * When a review is at max length any additional characters will not be entered and the user is given an error message letting them know
 
 
 
-
-
-## Genres
-* ### Questions:
-
-* Will the podcasts on a user's profile page be organized by genre?
-    - Yes, the podcasts on a user's profile page will be organized by genre.
-
-* Will the podcasts on the pod feed be organized by genre?
-    - Yes, the podcasts on the pod feed will be organized by genre.
-
-* Will a user be able to search for podcasts by genre?
-    - Yes, a user will be able to search for podcasts by genre.
-
-* Will there be a separate page for each genre of podcast?
-    - A user will be able to view all podcasts of a specific genre, but each genre will not have it's own separate page.
-
-* Will a user be able to choose a favorite genre?
-    - A user will have podcasts suggested to them based on podcasts they have rated and reviewed.
-
-* Will podcasts be suggested for a user based on their favorite genre's?
-
-
-
-
-
-
-* ### Acceptance Criteria:
-* Given that I am a Logged in user I want to interact with genres
-	- As a User I want to be able to see all the podcasts in that genre so that I can Discover new podcasts by genre
-	- As a User I want to be able to favorite a particular genre so that I can Check out only the genres I like
 
 
 
@@ -253,15 +270,15 @@ As a logged-in user, I want to be able to view/post reviews on the hottest podca
 ## Shelves
 * ### Questions:
  * What is included in the user's pod page?
-	- User's shelf is the podcasts that they have chosen.
- * Do all podcasts on a user's podcast page have a status?
-	- All podcasts have a status when they are in a user's pod page.
+	- User's shelfs are the podcasts that they have chosen.
+ * Do all podcasts on a user's podcast page have a type?
+	- All podcasts have a type when they are in a user's pod page.
  * Can a user add or delete podcasts from the podcast page?
 	- Yes, you can add and delete podcasts from your podcast page
  * Is there an api for a user's shelf?
 	- Yes it can be accessed through /api/shelves/:id
  * How is the user's podcast page organized?
-	- It will be organized by the status that the user assigns to the podcast and through genre.
+	- It will be organized by the type that the user assigns to the podcast and through genre.
  * Can you view other user's shelves?
 	- Not at this time.
 * ### Acceptance Criteria:
@@ -284,6 +301,23 @@ As a logged-in user, I want to be able to search all the pods by genre so that I
 
   * ### Questions
 
+* Will the podcasts on a user's profile page be organized by genre?
+    - Yes, the podcasts on a user's profile page will be organized by genre.
+
+* Will the podcasts on the pod feed be organized by genre?
+    - Yes, the podcasts on the pod feed will be organized by genre.
+
+* Will a user be able to search for podcasts by genre?
+    - Yes, a user will be able to search for podcasts by genre.
+
+* Will there be a separate page for each genre of podcast?
+    - A user will be able to view all podcasts of a specific genre, but each genre will not have it's own separate page.
+
+* Will a user be able to choose a favorite genre?
+    - A user will have podcasts suggested to them based on podcasts they have rated and reviewed.
+
+* Will podcasts be suggested for a user based on their favorite genre's?
+
 
 
 * ### Acceptance Criteria
@@ -291,6 +325,10 @@ As a logged-in user, I want to be able to search all the pods by genre so that I
 * Given that I am a Logged in user I want to interact with search
 	* As a User I want to be able to Search podcast by name so that I can find podcasts that I have heard of
 	* As a User I want to be able to search for all the podcasts of a genre so that I can Just find podcasts that I am interested in
+
+* Given that I am a Logged in user I want to interact with genres
+	- As a User I want to be able to see all the podcasts in that genre so that I can Discover new podcasts by genre
+	- As a User I want to be able to favorite a particular genre so that I can Check out only the genres I like
 
 
 
@@ -302,9 +340,27 @@ As a logged-in user, I want to be able to search all the pods by genre so that I
 As a logged-in user, I want to be able to tag podcasts so that I can come back to them later.
 
   * ### Questions
-
+* What is the purpose of Tags?
+	- Tags allow users to add an extra level of specificity to the Podcast.
+ * Who adds tags?
+	- The users add a tag to the podcast
+ * How many tags could a podcast have?
+	- Any number of tags.
+ * Can we search by tag?
+	- Not at this time but maybe in a later version.
+ * How are the tags stored?
+	- Tags are stored in the podcast database
+ * Can user's see other users tags?
+	- Yes, this allows users to quickly see what kind of podcast it is and how other users would characterize it.
 
 * ### Acceptance Criteria
 
 * Given that I am a Logged in user I want to interact with tags
 	* As a User I want to be able to Add a tag to a podcast so that I can make the subject or interest more clear
+
+* Given that I am a Logged in user I want to interact with tags
+	* As a User I want to be able to add a tag to a podcast so that I can So that I can provide a greater level of specificity to a podcast, past the general genre
+	* As a User I want to be able to Create a new tag to add to a podcast so that I can If a tag has not been used yet you can create one to tag a podcast
+	* As a user I want to be able to Look through other tags that have been added before so that I can look through a list of tags that have been used to tag a podcast
+	* As a User I want to be able to Untag a podcast that I added that tag to so that I can **This might come in a later version** to change a tag that they have added or update it
+	* As a user I want to be able to See the tags other users added to a podcast so that I can to see how other people characterize the podcast

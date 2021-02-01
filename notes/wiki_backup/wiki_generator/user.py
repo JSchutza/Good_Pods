@@ -4,11 +4,11 @@
 
 
 
-qestions_input = ["What is included in the user's pod page?", "Do all podcasts on a user's podcast page have a status?", "Can a user add or delete podcasts from the podcast page?", "Is there an api for a user's shelf?", "How is the user's podcast page organized?", "Can you view other user's shelves?"]
-answers_input = ["User's shelf is the podcasts that they have chosen.", "All podcasts have a status when they are in a user's pod page.", "Yes, you can add and delete podcasts from your podcast page", "Yes it can be accessed through /api/shelves/:id", "It will be organized by the status that the user assigns to the podcast and through genre.", "Not at this time."]
-shelvesA_input = ["logged-in user", 'User', "User", "User", "User", "user"]
-shelvesB_input = ["view all the podcasts I have, sorted by genre", 'click on every podcast on my shelf to be redirected to the podcast page', 'view all the podcasts that I have reviewed', 'View all the podcasts that I have added a status onto ', "click on the icon/link on my profile page to be redirected to my shelf", "Click on the podcast genre to be redirected to the genre page"]
-shelvesC_input = ["click on the podcasts to be redirected to that podcast's (podcasts/:id) page", "Review that podcast, favorite or change that podcast's reviews", "can edit or review them", "Change that podcasts status", "So that I can view my shelf", "discover new podcasts with that genre"]
+qestions_input = ["What page will the user be sent to after being logged out?", "Where will the logout button be located?", "Will there be a feature that will log an inactive user out of the application?" ]
+answers_input = ["The user will be redirected to the login page so the next user can seamlessly access their profile.", "The logout button will be located in the navbar for ease of access. ", "We will not be implementing an auto logout feature for inactive users at this time." ]
+shelvesA_input = ["User", "User", 'user', "User", "user", "User"]
+shelvesB_input = ["add a tag to a podcast", "Create a new tag to add to a podcast", "Look through other tags that have been added before", "Untag a podcast that I added that tag to", "See the tags other users added to a podcast"]
+shelvesC_input = ["So that I can provide a greater level of specificity to a podcast, past the general genre", "If a tag has not been used yet you can create one to tag a podcast", "look through a list of tags that have been used to tag a podcast", "**This might come in a later version** to change a tag that they have added or update it", "to see how other people characterize the podcast"]
 
 
 
