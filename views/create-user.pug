@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    if(errors)
+        div
+            each error in errors
+                ul
+                    li= error
+    form(method='post', action='/users')
+        div
+            label Email
+            input(type='email', name='email')
+        div
+            label Name
+            input(type='text', name='name')
+        div
+            label Password
+            input(type='password', name='password')
+        div
+            label Confirm Password
+            input(type='password', name='confirmPassword')
+            input(type='hidden', name='_csrf', value=csrfToken)
+        div
+            button(type='submit') Sign Up
