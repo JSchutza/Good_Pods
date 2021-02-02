@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const { User } = require("../db/models")
-const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler } = require("../lib/util")
-
+const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler} = require("../lib/util")
+const {loginUser, logoutUser} = require("../auth")
 const loginValidators = [
   check('email')
     .exists({ checkFalsy: true })
@@ -61,8 +61,7 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ email, name, hashedPassword });
-    req.session.user = user;
-
+    loginUser(req, res, user)
     return req.session.save(() => {
       res.render('profile');
     })
@@ -82,13 +81,14 @@ router.get("/login", csrfProtection, (req, res) => {
 router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const { email, password } = req.body
   const user = await User.findOne({ where: { email } })
-  req.session.user = user;
+  
   const RealPassword = user.hashedPassword.toString()
 
   const passwordMatch = await bcrypt.compare(password, RealPassword)
   const validatorErrors = validationResult(req);
   const errors = validatorErrors.array().map((error) => error.msg);
   if (passwordMatch && validatorErrors.isEmpty()) {
+    loginUser(req, res, user)
     return req.session.save(() => {
       res.render("profile")
     })
@@ -96,6 +96,11 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     res.render('login', { errors, csrfToken: req.csrfToken(), email })
   }
 }))
+
+router.post('/logout', (req, res) => {
+  logoutUser(req, res);
+  res.redirect("/")
+})
 
 /* GET home page. */
 // router.get('/', function (req, res, next) {
