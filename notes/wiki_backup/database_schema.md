@@ -6,13 +6,10 @@
 | email          | varcharacter | not null, unique      |
 | hashedPassword | varbinary    | not null              |
 
+
 * unique index on email
-* Sequelize hasMany shelves association
-* Sequelize hasMany reviews association
-
-
-
-
+* Sequelize `hasMany` shelves association
+* Sequelize `hasMany` reviews association
 
 
 # Shelves
@@ -23,11 +20,9 @@
 | userId      | int       | not null, foreignKey  |
 
 
-* userId references User's table
-* Sequelize belongsTo Users association
-* Sequelize hasMany PodShelf association
-
-
+* userId references Users table
+* Sequelize `belongsTo` Users association
+* Sequelize `belongsToMany` PodShelf association
 
 
 
@@ -39,13 +34,10 @@
 | podcastId   | int       | not null, foreignKey  |
 
 
-* shelfId references Shelve's table
-* podcastId references Podcast's table
-* Sequelize belongsTo Shelves association
-* Sequelize hasMany Podcasts association
-
-
-
+* shelfId references Shelves table
+* podcastId references Podcasts table
+* Sequelize `hasMany` Shelves association
+* Sequelize `hasMany` Podcasts association
 
 
 
@@ -58,13 +50,10 @@
 | genreId      | int       | not null, foreignKey  |
 
 
-* genreId references Genre's
-* Sequelize belongsTo PodShelf association
+* genreId references Genres
+* Sequelize `belongsTo` PodShelf association
 * unique index on name
-* Sequelize hasOne Genres association
-
-
-
+* Sequelize `hasOne` Genres association
 
 
 
@@ -76,25 +65,21 @@
 
 
 * unique index on name
-* Sequelize hasOne Podcast's association
-
-
-
+* Sequelize `hasMany` Podcasts association
 
 
 
 # Reviews
-
 | column name | data type | details               |
 |-------------|-----------|-----------------------|
 | id          | int       | not null, primary key |
 | userId      | int       | not null, foreignKey  |
-| PodShelfId  | int       | not null, foreignKey  |
+| podCastId   | int       | not null, foreignKey  |
 | rating      | int       | not null              |
 | reviewText  | text      |                       |
 
 
-* userId references User's table
-* podshelfId references Podcast's table
-* Sequelize belongsTo Podcast's association
-* Sequelize belongsTo Users's association
+* userId references Users table
+* podCastId references Podcasts table
+* Sequelize `belongsTo` Podcasts association
+* Sequelize `belongsTo` Users association
