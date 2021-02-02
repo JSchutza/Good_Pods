@@ -1,16 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const csrf = require('csurf');
-const csrfProtection = csrf({ cookie: true });
-const bcrypt = require('bcryptjs');
-const { check, validationResult } = require('express-validator')
 const { User } = require('../db/models');
-const asyncHandler = (handler) => {
-  return (req, res, next) => {
-    handler(req, res, next).catch(next);
-  }
-}
-
+const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler} = require("../lib/util")
 const formValidator = [
   check('email')
     .custom(async email => {
@@ -49,8 +40,14 @@ router.post('/', formValidator, csrfProtection, asyncHandler(async (req, res) =>
   const validatorErrors = validationResult(req);
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    await User.create({ email, name, hashedPassword });
-    res.render('profile');
+    const user = await User.create({ email, name, hashedPassword });
+    req.session.user=user;
+
+    return req.session.save(() => {
+      res.render('profile');
+    })
+   
+    
   }
   else {
     const errors = validatorErrors.array().map((error) => error.msg)
