@@ -9,5 +9,22 @@ html
       nav
         ul
           li
-            img(src="../assets/Podzz.PNG")
+            a(href="/")
+              img(src="/Podzz.PNG")
+
+          li
+            a(href="/") Pod Feed
+
+              //- search bar here:
+
+        if  user
+          li
+            a(href="/") Log Out
+        
+          li
+            a(href="/") Sign In
+
+
+
+
     block content
