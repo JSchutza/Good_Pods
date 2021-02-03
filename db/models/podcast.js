@@ -6,7 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     genreId: DataTypes.INTEGER
   }, {});
   Podcast.associate = function(models) {
-    // associations can be defined here
+    Podcast.belongsTo(models.Genre, {foreignKey: "genreId"})
+    const columnMapping = {
+      through: "PodShelf",
+      foreignKey: "podcastId",
+      otherKey: "shelfId"
+    }
+    Podcast.belongsToMany(models.Shelf, columnMapping)
   };
   return Podcast;
 };

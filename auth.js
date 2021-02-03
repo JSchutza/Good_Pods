@@ -5,9 +5,7 @@ const loginUser = (req, res, user) => {
 
 
 const logoutUser = (req, res) => {
-  console.log(req.session)
   delete req.session.auth;
-  console.log(req.session)
 }
 const restoreUser = async (req, res, next) => {
  
