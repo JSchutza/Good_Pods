@@ -82,7 +82,7 @@ router.get("/login", csrfProtection, (req, res) => {
 router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const { email, password } = req.body
   const user = await User.findOne({ where: { email } })
-  
+
   const RealPassword = user.hashedPassword.toString()
 
   const passwordMatch = await bcrypt.compare(password, RealPassword)
@@ -104,9 +104,10 @@ router.post('/logout', (req, res) => {
 })
 
 /* GET home page. */
-// router.get('/', function (req, res, next) {
-//   res.render('index', { title: 'Welcome to Podemic!' });
-// });
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Welcome to Podemic!' });
+});
+
 
 
 

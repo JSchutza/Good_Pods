@@ -1,11 +1,13 @@
-extends layout
+extends layout.pug
 
-append head
-  //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
-  //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
+
 
 block content
   h1= title
-  include create-user.pug
+
+
+  if authenticated
+    h1 test
+
+  else
+    include create-user.pug

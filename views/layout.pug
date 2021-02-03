@@ -1,28 +1,35 @@
 doctype html
 html
   head
-      block head
-        title="Express Starter App"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
-        link(rel='stylesheet' href='/stylesheets/index.css')
-  body
+  block head
+    title="Express Starter App"
+    link(rel='stylesheet' href='/stylesheets/reset.css')
+    link(rel='stylesheet' href='/stylesheets/index.css')
+    script(src="/javascripts/index.js" type="module" defer)
+
+
+
+
+  block navbar
+  nav
     div.navBar
       div.logoImg__navBar
         a(href="/")
-         img.navBar__logo(src="/images/logo.PNG")
+          img.navBar__logo(src="/images/logo.PNG")
       div.listContainer
-        div.navBar__list
-          div.navBar__pod-feed
-            a(href="/") Pod Feed
-              //- search bar here:
-          if  authenticated
-            div.navBar__sign-out
-              a(href="/login") Log Out
-          else
-            div.navBar__sign-in
-              a(href="/login") Sign In
+        a(href="/") Pod Feed
+      div.navBar__list
+        div.navBar__search-bar-container
+          div.navBar__search-bar
+            label(for="search") Search
+              input(type="text" name="search")
 
+      if  authenticated
+        div.navBar__sign-out
+            a(href="/login") Log Out
+      else
+        div.navBar__sign-in
+            a(href="/login") Sign In
 
-
-
-    block content
+  body
+  block content
