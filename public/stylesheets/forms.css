@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+body{
+  background-color: #0D1b2a;
+  position: relative;
+  color: #e0e1dd;
+  font-family: 'Overpass', sans-serif; 
+}
+
+.form-container {
+  display: flex;
+  border: 3px solid #415a77;
+  border-radius: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: rgba(65, 90, 119, .4);
+  margin: 0 auto;
+}
+
+input {
+  border-radius: 8px;
+  padding: 7px;
+  margin: 8px;
+  font-family: 'Overpass', sans-serif;
+  width: 300px;
+  box-sizing: border-box; 
+}
+
+label {
+  display: none;
+}
+
+.submit-btn {
+font-family: 'Overpass', sans-serif; 
+border-radius: 8px;
+padding: 7px;
+margin: 7px 7px 9px 7px;
+background-color: #778da9;
+}
+
+
+@media screen and (min-width: 769px) {
+  .form-container {
+    max-width: 400px;
+  }
+}

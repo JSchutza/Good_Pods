@@ -6,13 +6,15 @@ block content
       each error in errors
         ul
           li= error
-  form(action="/login" method="post")
-    div
-      label Email
-      input(type="email" name="email")
-    div
-      label Password
-      input(type="password" name="password")
-      input(type="hidden" name="_csrf" value=csrfToken)
-    div
-      button(type="submit") Log in
+  div(class= "form-container")
+    h4 Login
+    form(class = "login-Form form" action="/login" method="post")
+      div(class="input")
+        label Email
+        input(type="email" name="email", placeholder='Email')
+      div(class="input")
+        label Password
+        input(type="password" name="password", placeholder='Password')
+        input(type="hidden" name="_csrf" value=csrfToken)
+      div(class="submit-button")
+        button(type="submit" class='submit-btn btn') Log in
