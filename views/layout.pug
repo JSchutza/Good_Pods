@@ -7,23 +7,20 @@ html
         link(rel='stylesheet' href='/stylesheets/index.css')
   body
     div.navBar
-      nav
-        ul.navBar__list
-          li.navBar__logo
-            a(href="/")
-              img(src="/images/logo.PNG")
-
-          li.navBar__pod-feed
+      div.logoImg__navBar
+        a(href="/")
+         img.navBar__logo(src="/images/logo.PNG")
+      div.listContainer
+        div.navBar__list
+          div.navBar__pod-feed
             a(href="/") Pod Feed
-
               //- search bar here:
-
-        if  authenticated
-          li.navBar__sign-out
-            a(href="/login") Log Out
-        else
-          li.navBar__sign-in
-            a(href="/login") Sign In
+          if  authenticated
+            div.navBar__sign-out
+              a(href="/login") Log Out
+          else
+            div.navBar__sign-in
+              a(href="/login") Sign In
 
 
 
