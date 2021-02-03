@@ -4,25 +4,26 @@ html
       block head
         title="Express Starter App"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/index.css')
   body
     div.navBar
       nav
-        ul
-          li
+        ul.navBar__list
+          li.navBar__logo
             a(href="/")
-              img(src="/Podzz.PNG")
+              img(src="/images/Podzz.PNG")
 
-          li
+          li.navBar__pod-feed
             a(href="/") Pod Feed
 
               //- search bar here:
 
-        if  user
-          li
-            a(href="/") Log Out
-        
-          li
-            a(href="/") Sign In
+        if  authenticated
+          li.navBar__sign-out
+            a(href="/login") Log Out
+        else
+          li.navBar__sign-in
+            a(href="/login") Sign In
 
 
 

@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
