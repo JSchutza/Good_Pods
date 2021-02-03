@@ -6,19 +6,21 @@ block content
             each error in errors
                 ul
                     li= error
-    form(method='post', action='/')
-        div
-            label Email
-            input(type='email', name='email')
-        div
-            label Name
-            input(type='text', name='name')
-        div
-            label Password
-            input(type='password', name='password')
-        div
-            label Confirm Password
-            input(type='password', name='confirmPassword')
-            input(type='hidden', name='_csrf', value=csrfToken)
-        div
-            button(type='submit') Sign Up
+    div(class='form-container')
+        h4 Signup                
+        form(class = "signup-Form form", method='post', action='/me')
+            div(class="input")
+                label Email
+                input(type='email', name='email', placeholder='Email')
+            div(class="input")
+                label Name
+                input(type='text', name='name', placeholder='Name')
+            div(class="input")
+                label Password
+                input(type='password', name='password', placeholder='Password')
+            div(class="input")
+                label Confirm Password
+                input(type='password', name='confirmPassword', placeholder='Confirm Password')
+                input(type='hidden', name='_csrf', value=csrfToken)
+            div(class="submit-button")
+                button(type='submit', class='submit-btn btn') Sign Up
