@@ -50,6 +50,11 @@ const signUpValidator = [
         .withMessage('Password confimation does not match password')
 ];
 
+router.get('/', csrfProtection, (req, res) => {
+    res.render('index', { csrfToken: req.csrfToken() });
+});
+
+
 
 router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) => {
     const { email, name, password, confirmPassword } = req.body;
@@ -59,8 +64,12 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
         const user = await User.create({ email, name, hashedPassword });
         createShelves(user)
         loginUser(req, res, user)
-        return req.session.save(() => {
-            res.render('profile');
+        return req.session.save((err) => {
+            if (err) {
+                next(err)
+            } else {
+                res.redirect('/me');
+            }
         })
     }
     else {
@@ -85,8 +94,12 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     const errors = validatorErrors.array().map((error) => error.msg);
     if (passwordMatch && validatorErrors.isEmpty()) {
         loginUser(req, res, user)
-        return req.session.save(() => {
-            res.render("profile")
+        return req.session.save((err) => {
+            if (err) {
+                next(err);
+            } else {
+                res.redirect("/me")
+            }
         })
     } else {
         res.render('login', { errors, csrfToken: req.csrfToken(), email })
@@ -95,7 +108,11 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
 
 router.post('/logout', (req, res) => {
     logoutUser(req, res);
-    res.redirect("/")
+    if (error) {
+        next(error)
+    } else {
+        res.redirect("/")
+    }
 })
 
 
