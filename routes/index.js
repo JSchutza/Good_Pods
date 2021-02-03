@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { User } = require("../db/models")
-const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler} = require("../lib/util")
+const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves} = require("../lib/util")
 const {loginUser, logoutUser} = require("../auth")
 const loginValidators = [
   check('email')
@@ -61,6 +61,7 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ email, name, hashedPassword });
+    createShelves(user)
     loginUser(req, res, user)
     return req.session.save(() => {
       res.render('profile');
