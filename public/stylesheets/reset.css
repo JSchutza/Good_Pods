@@ -1,7 +1,12 @@
 /* @import url('forms.css') */
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #0d1b2a;
+  font: 14px "Overpass", sans-serif;
+  color: #e0e1dd;
 }
 
 a {
@@ -25,4 +30,5 @@ body, header, nav {
 
 h1 {
   font-size: 2rem;
+  font-family: "Electrolize", sans-serif;
 }
