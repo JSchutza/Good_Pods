@@ -1,8 +1,12 @@
 extends layout.pug
 
+append head
+    script(src="/javascripts/shelves.js" type="module" defer)
+
 block content
     h1 profile page
-    div
-        //- form(action="/me/logout" method="post")
-        //-     input(type="hidden" name="_csrf" value=csrfToken)
-        //-     button(type="submit" id="logout-button btn") Logout
+
+    .shelvesContainer
+        .shelves
+            h1 Your Shelf
+            

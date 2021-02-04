@@ -3,6 +3,12 @@ const router = express.Router();
 const { User } = require('../db/models');
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
+
+
+
+
+
+
 const loginValidators = [
     check('email')
         .exists({ checkFalsy: true })
@@ -50,9 +56,12 @@ const signUpValidator = [
         .withMessage('Password confimation does not match password')
 ];
 
-router.get('/', csrfProtection, (req, res) => {
-    res.render('profile', { csrfToken: req.csrfToken() });
-});
+
+router.get('/', csrfProtection, asyncHandler(async(req, res) => {
+
+    res.render('profile', { csrfToken: req.csrfToken()});
+}));
+
 
 
 
