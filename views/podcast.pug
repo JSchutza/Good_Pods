@@ -1,0 +1,29 @@
+extends layout.pug
+
+block content
+    div(class='main-content-container')
+        div(class='left-bar')
+            div
+                img(src='/images/logo.png')
+            div
+                h2 Review this Pod
+                p * * * * * 
+                form(type=submit)
+        div(class='center-content')
+            h1= podcast.name
+            p= podcast.description
+            p= podcast.Genre.name
+            div(class='shelf-btns')
+                h3 Add To My Shelf
+                button(type='button' title='Current') 🎧
+                button(type='button' title='Thumbs Up') 👍
+                button(type='button' title='On My Radar') 👀
+                button(type='button' title='Meh') 😑
+                button(type='button' title='Thumbs Down') 👎
+
+        div(class='right-bar')
+            h2 Other Podcasts in this Genre
+            each podcast in otherPodcasts.Podcasts
+                div
+                    a(href=`/podcasts/${podcast.id}`)= podcast.name
+
