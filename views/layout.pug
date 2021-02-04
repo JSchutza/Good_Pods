@@ -14,17 +14,19 @@ html
     .navBar
       .navBar__logo
         a(href="/")
+
           img(src="/images/logo.PNG")
       ul.navBar__ul
         li.navBar__ul-podFeed
-          a(href="/") Pod Feed
+          a(href="/feed") Pod Feed
         li.navBar_ul-name Podemic
         if authenticated
           li.navBar__ul-signIn
-            a(href="/me/signout") Sign Out
+            a(href="/me/logout") Sign Out
         else
           li.navBar__ul-signIn
             a(href="/me/login") Sign In
+
 
 
 
