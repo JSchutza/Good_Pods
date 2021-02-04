@@ -6,7 +6,7 @@ const { loginUser, logoutUser } = require("../auth")
 
 // for the home page
 router.get('/', csrfProtection, (req, res) => {
-  res.render('index', { csrfToken: req.csrfToken(), title: 'Welcome to Podemic!' })
+  res.render('index', { csrfToken: req.csrfToken() })
 });
 
 

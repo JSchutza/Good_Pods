@@ -1,0 +1,21 @@
+.main-content-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: 'left center right';
+}
+
+.left-bar {
+    grid-area: left;
+    border: 4px solid white;
+}
+
+.right-bar {
+    grid-area: right;
+    border: 4px solid white;
+}
+
+.center-content {
+    grid-area: center;
+    border: 4px solid white;
+}
+
