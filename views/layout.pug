@@ -11,25 +11,21 @@ html
 
 
   block navbar
-  nav
-    div.navBar
-      div.logoImg__navBar
+    .navBar
+      .navBar__logo
         a(href="/")
-          img.navBar__logo(src="/images/logo.PNG")
-      div.listContainer
-        a(href="/") Pod Feed
-      div.navBar__list
-        div.navBar__search-bar-container
-          div.navBar__search-bar
-            label(for="search") Search
-              input(type="text" name="search")
+          img(src="/images/logo.PNG")
+      ul.navBar__ul
+        li.navBar__ul-podFeed
+          a(href="/") Pod Feed
+        li.navBar_ul-name Podemic
+        if authenticated
+          li.navBar__ul-signIn
+            a(href="/me/signout") Sign Out
+        else
+          li.navBar__ul-signIn
+            a(href="/me/login") Sign In
 
-      if  authenticated
-        div.navBar__sign-out
-            a(href="/login") Log Out
-      else
-        div.navBar__sign-in
-            a(href="/login") Sign In
 
   body
   block content
