@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // bring in the podcasts model here:
-const { Podcast, Genre, Shelf } = require("../db/models")
+const { Podcast, Genre, Shelf, Review } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
 
 
@@ -26,6 +26,29 @@ router.get('/shelves', asyncHandler(async(req, res) => {
 
     res.json(users_shelf);
 }));
+
+// api for the genres
+router.get('/genres', asyncHandler(async(req, res)=>{
+    const genres = await Genre.findAll()
+
+    res.json(genres)
+}))
+
+router.get('/podcasts/:id(\\d+)', asyncHandler(async(req, res)=>{
+    const id = req.params.id;
+    const podcast = await Podcast.findByPk(id)
+
+    res.json(podcast)
+}))
+
+router.get('/reviews/:id(\\d+)', asyncHandler(async(req,res)=>{
+    const id = req.params.id;
+    const reviews = await Review.findAll({ where:{
+        podcastId: id
+    }})
+    res.json(reviews)
+}))
+
 
 
 
