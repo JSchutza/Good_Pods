@@ -1,6 +1,6 @@
 .main-content-container {
     display: grid;
-    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-columns:1fr 2.5fr 1fr;
     grid-template-areas: 'left center right';
 }
 
