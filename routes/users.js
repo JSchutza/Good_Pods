@@ -51,7 +51,7 @@ const signUpValidator = [
 ];
 
 router.get('/', csrfProtection, (req, res) => {
-    res.render('index', { csrfToken: req.csrfToken() });
+    res.render('profile', { csrfToken: req.csrfToken() });
 });
 
 

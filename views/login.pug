@@ -2,13 +2,13 @@ extends layout.pug
 
 block content
   if (errors)
-    div
+    div(class="error_div")
       each error in errors
         ul
-          li= error
+          li(class="error")= error
   div(class= "form-container")
-    h4 Login
-    form(class = "login-Form form" action="/login" method="post")
+    h1 Login
+    form(class = "login-Form form" action="/me/login" method="post")
       div(class="input")
         label Email
         input(type="email" name="email", placeholder='Email')
@@ -17,4 +17,4 @@ block content
         input(type="password" name="password", placeholder='Password')
         input(type="hidden" name="_csrf" value=csrfToken)
       div(class="submit-button")
-        button(type="submit" class='submit-btn btn') Log in
+        button(type="submit" class='submit-btn btn') Log In
