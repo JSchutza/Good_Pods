@@ -1,7 +1,7 @@
 .main-content-container {
   display: grid;
   grid-template-columns:4fr 1fr;
-  grid-template-areas: 'center right';
+  grid-template-areas: 'left center right';
 }
 
 .right-bar {
@@ -12,7 +12,7 @@
 }
 
 .center-content {
-  grid-area: center;
+  grid-area: center left;
   padding: 10px;
   border: none;
   margin-left: 10px;

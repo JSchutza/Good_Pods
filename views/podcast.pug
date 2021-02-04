@@ -24,6 +24,6 @@ block content
         div(class='right-bar')
             h2 Other Podcasts in this Genre
             each podcast in otherPodcasts.Podcasts
-                div
+                div(class='')
                     a(href=`/podcasts/${podcast.id}`)= podcast.name
 
