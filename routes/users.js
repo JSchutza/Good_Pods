@@ -51,7 +51,7 @@ const signUpValidator = [
 ];
 
 router.get('/', csrfProtection, (req, res) => {
-    res.render('index', { csrfToken: req.csrfToken() });
+    res.render('profile', { csrfToken: req.csrfToken() });
 });
 
 
@@ -107,13 +107,11 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
 }))
 
 
-router.post('/logout', (req, res) => {
+router.post('/logout', (req, res, next) => {
     logoutUser(req, res);
-    if (error) {
-        next(error)
-    } else {
+   
+        next()
         res.redirect("/")
-    }
 })
 
 
