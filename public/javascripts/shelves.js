@@ -1,7 +1,7 @@
 
 // functions here:
-const shelfData = async () => {
-    const the_response = await fetch("http://localhost:8080/api/shelves");
+const shelfData = async (id) => {
+    const the_response = await fetch(`http://localhost:8080/api/shelves/${id}/podcasts`);
     const data = await the_response.json();
     return data;
 }
@@ -17,8 +17,11 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     result.forEach(eachObj => {
         const nestedDiv = document.createElement("div");
         nestedDiv.innerHTML = eachObj.type;
+        nestedDiv.setAttribute('id', `${eachObj.type}`)
         shelfContainer.appendChild(nestedDiv);
     });
+
+    const podShelfResult
 
 
 });

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // bring in the podcasts model here:
-const { Podcast, Genre, Shelf, Review } = require("../db/models")
+const { Podcast, Genre, Shelf, Review, PodShelf } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
 
 
@@ -17,12 +17,13 @@ router.get('/podcasts', asyncHandler(async(req, res) => {
 
 
 // api for the users shelf
-router.get('/shelves', asyncHandler(async(req, res) => {
+router.get('/shelves/:id(\\d+)/podcasts', asyncHandler(async(req, res) => {
     const user_id = req.session.auth.userId;
 
-    const users_shelf = await Shelf.findAll({ where: {
-        userId: user_id
-    }});
+    const users_shelf = await Shelf.findAll({
+        where: { userId: user_id},
+        include:{ model: Podcast}
+    });
 
     res.json(users_shelf);
 }));
@@ -33,14 +34,14 @@ router.get('/genres', asyncHandler(async(req, res)=>{
 
     res.json(genres)
 }))
-
+// api to grab specific podcast
 router.get('/podcasts/:id(\\d+)', asyncHandler(async(req, res)=>{
     const id = req.params.id;
     const podcast = await Podcast.findByPk(id)
 
     res.json(podcast)
 }))
-
+// api for reviews by podcast ID
 router.get('/reviews/:id(\\d+)', asyncHandler(async(req,res)=>{
     const id = req.params.id;
     const reviews = await Review.findAll({ where:{
@@ -48,7 +49,15 @@ router.get('/reviews/:id(\\d+)', asyncHandler(async(req,res)=>{
     }})
     res.json(reviews)
 }))
-
+// api to grab all podshevles by user
+// router.get('/podshelves', asyncHandler(async(req,res)=>{
+//     const user_id = req.session.auth.userId;
+//     console.log(user_id)
+//     const shelves = await PodShelf.findAll({ where: {
+//         shelfId : 1
+//     }});
+//     res.json(shelves)
+// }))
 
 
 
