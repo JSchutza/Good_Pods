@@ -1,13 +1,12 @@
 
-
 block content
     if(errors)
-        div
+        div(class="error_div")
             each error in errors
                 ul
-                    li= error
+                    li(class="error")= error
     div(class='form-container')
-        h4 Signup                
+        h1 Sign Up                
         form(class = "signup-Form form", method='post', action='/me')
             div(class="input")
                 label Email
