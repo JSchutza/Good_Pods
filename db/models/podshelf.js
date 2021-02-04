@@ -5,8 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     podcastId: DataTypes.INTEGER
   }, {});
   PodShelf.associate = function(models) {
-    PodShelf.hasMany(models.Shelf, {foreignKey: "shelfId"})
-    PodShelf.hasMany(models.Podcast, {foreignKey: "podcastId"})
+    // PodShelf.hasMany(models.Shelf, {foreignKey: "shelfId"})
+    // PodShelf.hasMany(models.Podcast, {foreignKey: "podcastId"})
+
   };
   return PodShelf;
 };

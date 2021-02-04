@@ -17,7 +17,7 @@ html
         a(href="/")
           img.navBar__logo(src="/images/logo.PNG")
       div.listContainer
-        a(href="/") Pod Feed
+        a(href="/feed") Pod Feed
       div.navBar__list
         div.navBar__search-bar-container
           div.navBar__search-bar
@@ -26,7 +26,7 @@ html
 
       if  authenticated
         div.navBar__sign-out
-            a(href="/login") Log Out
+            a(href="/me/logout") Log Out
       else
         div.navBar__sign-in
             a(href="/login") Sign In
