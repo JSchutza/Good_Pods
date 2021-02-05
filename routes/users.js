@@ -147,11 +147,11 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
 }))
 
 
-router.post("/demo", asyncHandler(async(req,res)=>{
+router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
     const email = "test@test.com"
     const user = await User.findOne({ where: { email } })
     loginUser(req, res, user)
-    res.redirect('/me')
+    res.render('profile', {csrfToken: req.csrfToken()})
 }))
 
 
