@@ -1,0 +1,47 @@
+extends layout.pug
+
+block content
+    div(class='main-content-container')
+        div(class='left-bar')
+            div(class="img_holder")
+                img(src='/images/logo.png')
+            div(class="pod_review_container")
+                h2 Review this Pod
+                form(action=`/podcasts/${podcast.id}` method="post")
+                    div(class="stars")
+                        input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
+                        label(for="star5") &#9734; 
+                        input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
+                        label(for="star4") &#9734; 
+                        input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
+                        label(for="star3") &#9734; 
+                        input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
+                        label(for="star2") &#9734; 
+                        input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
+                        label(for="star1") &#9734; 
+                    div(class="review")
+                        textarea(class="review" placeholder="Add your review to this podcast" cols="30", rows="10")
+                        input(type="hidden" name="_csrf" value=csrfToken)
+                    div
+                        button(type="submit") Add Your review
+        div(class='center-content')
+            h1= podcast.name
+            p Description: #{podcast.description}
+            p Genre: #{podcast.Genre.name}
+            div(class='shelf-btns')
+                h3 Add To My Shelf
+                button(type='button' title='Current') 🎧
+                button(type='button' title='Thumbs Up') 👍
+                button(type='button' title='On My Radar') 👀
+                button(type='button' title='Meh') 😑
+                button(type='button' title='Thumbs Down') 👎
+            div(class="reviews")
+                h2 What Other People are Saying About #{podcast.name}
+                div(id="ReviewDiv")
+                    
+        div(class='right-bar')
+            h2 Other Podcasts in this Genre
+            each podcast in otherPodcasts.Podcasts
+                div(class='Genre_Pods')
+                    a(href=`/podcasts/${podcast.id}`)= podcast.name
+

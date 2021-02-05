@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 // bring in the podcasts model here:
-const { Podcast, Genre, Shelf, Review, PodShelf } = require("../db/models")
+
+const { Podcast, Genre, Shelf, Review, Podshelf} = require("../db/models")
 const { asyncHandler } = require("../lib/util")
 
 
@@ -44,6 +45,12 @@ router.get('/shelves', asyncHandler(async(req, res) => {
     res.json(result);
 }));
 
+// router.get("/podcasts/:id/reviews", asyncHandler(async (req, res)=> {
+//     const reviews = await Review.findAll({where: {
+//         podcastId: req.params.id
+//     }});
+//     res.json(reviews)
+// }))
 
 
 
