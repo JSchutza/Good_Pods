@@ -49,16 +49,33 @@ font-weight: bold;
 .form {
   margin: 10px 0 15px 0;
 }
-
+.error_div{
+  display: flex;
+  flex-direction: column;
+  background-color:rgba(158, 47, 43, 0.4);
+  margin: 0 auto;
+  margin-top: 40px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 2px solid rgb(59, 14, 14);
+  text-emphasis: bold;
+}
 
 @media screen and (min-width: 769px) {
   .form-container {
+    max-width: 400px;
+  }
+  .error_div{
     max-width: 400px;
   }
 }
 
 @media all and (max-width: 768px) {
   .form-container {
+    max-width: 100%;
+  }
+  .error_div{
     max-width: 100%;
   }
 }

@@ -57,8 +57,8 @@ router.get('/', csrfProtection, (req, res) => {
 
 
 router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) => {
-    const { email, name, password, confirmPassword } = req.body;
     const validatorErrors = validationResult(req);
+    const { email, name, password, confirmPassword } = req.body;
     if (validatorErrors.isEmpty()) {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ email, name, hashedPassword });
@@ -85,23 +85,24 @@ router.get("/login", csrfProtection, (req, res) => {
 
 router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, res) => {
     const { email, password } = req.body
-    const user = await User.findOne({ where: { email } })
-
-    const RealPassword = user.hashedPassword.toString()
-
-    const passwordMatch = await bcrypt.compare(password, RealPassword)
     const validatorErrors = validationResult(req);
     const errors = validatorErrors.array().map((error) => error.msg);
-    if (passwordMatch && validatorErrors.isEmpty()) {
-        loginUser(req, res, user)
-        return req.session.save((err) => {
-            if (err) {
-                next(err);
-            } else {
-                res.redirect("/me")
-            }
-        })
-    } else {
+    if (validatorErrors.isEmpty()){
+    const user = await User.findOne({ where: { email } });
+    const RealPassword = user.hashedPassword.toString();
+    const passwordMatch = await bcrypt.compare(password, RealPassword);
+    
+        if (passwordMatch ) {
+            loginUser(req, res, user)
+            return req.session.save((err) => {
+                if (err) {
+                    next(err);
+                } else {
+                    res.redirect("/me")
+                }
+            })
+    } }
+    else {
         res.render('login', { errors, csrfToken: req.csrfToken(), email })
     }
 }))

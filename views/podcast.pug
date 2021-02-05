@@ -3,22 +3,22 @@ extends layout.pug
 block content
     div(class='main-content-container')
         div(class='left-bar')
-            div
+            div(class="img_holder")
                 img(src='/images/logo.png')
-            div
+            div(class="pod_review_container")
                 h2 Review this Pod
                 form(action=`/podcasts/${podcast.id}` method="post")
                     div(class="stars")
                         input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
-                        label(for="star5") ☆
+                        label(for="star5") &#9734; 
                         input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
-                        label(for="star4") ☆
+                        label(for="star4") &#9734; 
                         input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
-                        label(for="star3") ☆
+                        label(for="star3") &#9734; 
                         input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
-                        label(for="star2") ☆
+                        label(for="star2") &#9734; 
                         input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
-                        label(for="star1") ☆
+                        label(for="star1") &#9734; 
                     div(class="review")
                         textarea(class="review" placeholder="Add your review to this podcast" cols="30", rows="10")
                         input(type="hidden" name="_csrf" value=csrfToken)
@@ -26,8 +26,8 @@ block content
                         button(type="submit") Add Your review
         div(class='center-content')
             h1= podcast.name
-            p= podcast.description
-            p= podcast.Genre.name
+            p Description: #{podcast.description}
+            p Genre: #{podcast.Genre.name}
             div(class='shelf-btns')
                 h3 Add To My Shelf
                 button(type='button' title='Current') 🎧
@@ -42,6 +42,6 @@ block content
         div(class='right-bar')
             h2 Other Podcasts in this Genre
             each podcast in otherPodcasts.Podcasts
-                div(class='')
+                div(class='Genre_Pods')
                     a(href=`/podcasts/${podcast.id}`)= podcast.name
 

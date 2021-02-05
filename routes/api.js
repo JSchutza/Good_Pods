@@ -27,12 +27,12 @@ router.get('/shelves', asyncHandler(async(req, res) => {
     res.json(users_shelf);
 }));
 
-router.get("/podcasts/:id/reviews", asyncHandler(async (req, res)=> {
-    const reviews = await Review.findAll({where: {
-        podcastId: req.params.id
-    }});
-    res.json(reviews)
-}))
+// router.get("/podcasts/:id/reviews", asyncHandler(async (req, res)=> {
+//     const reviews = await Review.findAll({where: {
+//         podcastId: req.params.id
+//     }});
+//     res.json(reviews)
+// }))
 
 
 module.exports = router;

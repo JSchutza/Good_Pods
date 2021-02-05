@@ -1,0 +1,69 @@
+.stars {
+  width: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.stars > label {
+  position: relative;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  width: 5px;
+  cursor: pointer;
+  color: rgb(236, 221, 221);
+}
+
+.stars > label:hover,
+.stars > label:hover ~ label,
+.stars > input.radio-btn:checked ~ label {
+  color: transparent;
+}
+
+.stars > label:hover:before,
+.stars > label:hover ~ label:before,
+.stars > input.radio-btn:checked ~ label:before,
+.stars > input.radio-btn:checked ~ label:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+}
+.pod_review_container{
+  margin: 10px;
+  padding: 5px;
+}
+.pod_review_container > h2{
+  font-size: 20px;
+  align-self: center;
+}
+.shelf-btns button{
+  background-color: #0D1b2a;
+  border-radius: 3px;
+}
+.reviews h2 {
+  font-size: x-large;
+  padding: 10px;
+  margin: 10px;
+}
+.right-bar{
+  margin: 20px;
+
+}
+
+.right-bar h2{
+  font-size: x-large;
+  margin: 10px;
+}
+
+.Genre_Pods{
+  margin: 10px;
+  padding: 10px;
+}
+.img_holder{
+  margin: 10px;
+  width: fit-content;
+  background-color:  rgba(21, 21, 21, .8);
+}

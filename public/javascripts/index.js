@@ -4,16 +4,16 @@ window.addEventListener("load", (event)=>{
 
 
 
-  const popReviews = async (id) => {
-    const res = await fetch(`api/podcasts/${id}/reviews`)
-    const json = await res.json()
-    console.log(json)
-    // reviews.forEach(review => {
-    //  const newReview= document.createElement("div")
+  // const popReviews = async (id) => {
+  //   const res = await fetch(`api/podcasts/${id}/reviews`)
+  //   const json = await res.json()
+  //   console.log(json)
+  //   // reviews.forEach(review => {
+  //   //  const newReview= document.createElement("div")
       
-    //  const reviewText = document.createElement("p")
+  //   //  const reviewText = document.createElement("p")
       
-    // })
-  }
-  popReviews(1)
+  //   // })
+  // }
+  // popReviews(1)
 })
