@@ -53,7 +53,7 @@ const signUpValidator = [
             }
             return true;
         })
-        .withMessage('Password confimation does not match password')
+        .withMessage('Password confirmation does not match password')
 ];
 
 
@@ -113,7 +113,7 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
     }
     else {
         const errors = validatorErrors.array().map((error) => error.msg)
-        res.render('create-user', { email, name, errors, csrfToken: req.csrfToken() })
+        res.render('index', { email, name, errors, csrfToken: req.csrfToken() })
     }
 }))
 
@@ -130,7 +130,7 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     const user = await User.findOne({ where: { email } });
     const RealPassword = user.hashedPassword.toString();
     const passwordMatch = await bcrypt.compare(password, RealPassword);
-    
+
         if (passwordMatch ) {
             loginUser(req, res, user)
             return req.session.save((err) => {
@@ -146,6 +146,13 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     }
 }))
 
+
+router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
+    const email = "test@test.com"
+    const user = await User.findOne({ where: { email } })
+    loginUser(req, res, user)
+    res.render('profile', {csrfToken: req.csrfToken()})
+}))
 
 
 

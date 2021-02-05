@@ -6,7 +6,7 @@ block content
                 ul
                     li(class="error")= error
     div(class='form-container')
-        h1 Sign Up                
+        h1 Sign Up
         form(class = "signup-Form form", method='post', action='/me')
             div(class="input")
                 label Email
@@ -23,3 +23,7 @@ block content
                 input(type='hidden', name='_csrf', value=csrfToken)
             div(class="submit-button")
                 button(type='submit', class='submit-btn btn') Sign Up
+        form(class="login-demo-form" action="/me/demo" method="post")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            div(class="demo-button")
+                button(type="submit" class="demo-btn btn") Demo
