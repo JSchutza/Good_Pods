@@ -22,23 +22,18 @@ router.get('/podcasts', asyncHandler(async(req, res) => {
 router.get('/shelves', asyncHandler(async(req, res) => {
     const user_id = req.session.auth.userId;
 
-
     const users_shelf = await Shelf.findAll({
         where: { userId: user_id },
         include: { model: Podcast }
     });
 
-
-
     let result = {}
-
 
     let current_shelf = users_shelf[0]
     let thumbs_up = users_shelf[1]
     let radar = users_shelf[2]
     let meh = users_shelf[3]
     let thumbs_down = users_shelf[4]
-
 
     result.current_shelf = current_shelf;
     result.thumbs_up = thumbs_up;
@@ -47,8 +42,13 @@ router.get('/shelves', asyncHandler(async(req, res) => {
     result.thumbs_down = thumbs_down;
 
     res.json(result);
-
 }));
+
+
+
+
+
+
 
 // api for the genres
 router.get('/genres', asyncHandler(async(req, res)=>{
