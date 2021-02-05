@@ -21,6 +21,9 @@
 .stars > input.radio-btn:checked ~ label {
   color: transparent;
 }
+.stars > input {
+  opacity: 0;
+}
 
 .stars > label:hover:before,
 .stars > label:hover ~ label:before,
