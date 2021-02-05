@@ -1,4 +1,5 @@
-// NEED TO FIX
+// imports here:
+
 
 
 // functions here:
@@ -12,7 +13,7 @@ const shelfData = async () => {
 
 // checks if a type has any podcasts in its array of podcasts
 const checkArray = (the_array) => {
-    if (the_array.length === 0){
+    if (the_array.length === 0) {
         return 'There are no podcasts in this shelf.'
     }
 }
@@ -20,14 +21,20 @@ const checkArray = (the_array) => {
 
 // checks if what is passed in is undefined
 const makeDecision = (checked_thing, the_array, type_div) => {
-    if (checked_thing === undefined){
+    if (checked_thing === undefined) {
         // if it is undefined then loop through the array and put each items content to html
         const unordered_list = document.createElement('ul');
 
         the_array.forEach(eachItem => {
-            const list_item = document.createElement('li');
-            list_item.innerText = eachItem.name;
-            unordered_list.appendChild(list_item);
+            const item = document.createElement('li');
+            const link_item = document.createElement('a');
+            const removeButton = document.createElement('button');
+            removeButton.innerText = `Remove`;
+            link_item.href = `/podcasts/${eachItem.id}`;
+            link_item.innerHTML = `<img alt=${eachItem.name} src=/images/catalog/${eachItem.id}.jpeg> <span>${eachItem.name}</span>`;
+            item.appendChild(link_item);
+            item.appendChild(removeButton);
+            unordered_list.appendChild(item);
         });
 
         type_div.appendChild(unordered_list)
@@ -35,6 +42,9 @@ const makeDecision = (checked_thing, the_array, type_div) => {
 
     } else {
         // put the checked_thing in html
+        const message = document.createElement('p');
+        message.innerHTML = checked_thing;
+        type_div.appendChild(message);
 
     }
 }
@@ -55,7 +65,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
 
     const result = await shelfData();
-    console.log(result);
+    // console.log(result);
 
     // can I wrap all of this in a function???
     const currentDiv = document.createElement("div");
@@ -63,6 +73,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     const radarDiv = document.createElement("div");
     const thumbsDownDiv = document.createElement("div");
     const thumbsUpDiv = document.createElement("div");
+
+    // need to give each of the above divs an class and an id
+
 
     // the types here:
     const current_type = result.current_shelf.type;
@@ -94,13 +107,19 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     let upThumb_result = checkArray(upThumb_podcasts_array);
 
     // pass results to makeDecision to return the nessasary info
+    makeDecision(current_result, current_podcasts_array, currentDiv);
+    makeDecision(meh_result, meh_podcasts_array, mehDiv);
+    makeDecision(radar_result, radar_podcasts_array, radarDiv);
+    makeDecision(downThumb_result, downThumb_podcasts_array, thumbsDownDiv);
+    makeDecision(upThumb_result, upThumb_podcasts_array, thumbsUpDiv);
 
 
-        // shelfContainer.appendChild(currentDiv);
-        // shelfContainer.appendChild(mehDiv);
-        // shelfContainer.appendChild(radarDiv);
-        // shelfContainer.appendChild(thumbsDownDiv);
-        // shelfContainer.appendChild(thumbsUpDiv);
+    shelfContainer.appendChild(currentDiv);
+    shelfContainer.appendChild(mehDiv);
+    shelfContainer.appendChild(radarDiv);
+    shelfContainer.appendChild(thumbsDownDiv);
+    shelfContainer.appendChild(thumbsUpDiv);
+
 
 
 });
