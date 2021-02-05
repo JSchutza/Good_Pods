@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, Shelf, Podcast } = require('../db/models');
-const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves } = require("../lib/util")
+const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves, populateShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
 
 
@@ -101,8 +101,8 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
     if (validatorErrors.isEmpty()) {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ email, name, hashedPassword });
-        createShelves(user)
-        loginUser(req, res, user)
+        const userShelves = createShelves(user)
+        loginUser(req, res, user, userShelves)
         return req.session.save((err) => {
             if (err) {
                 next(err)
@@ -113,7 +113,7 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
     }
     else {
         const errors = validatorErrors.array().map((error) => error.msg)
-        res.render('create-user', { email, name, errors, csrfToken: req.csrfToken() })
+        res.render('index', { email, name, errors, csrfToken: req.csrfToken() })
     }
 }))
 
@@ -132,7 +132,9 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     const passwordMatch = await bcrypt.compare(password, RealPassword);
     
         if (passwordMatch ) {
-            loginUser(req, res, user)
+            const userShelves = await populateShelves(user)
+            
+            loginUser(req, res, user, userShelves)
             return req.session.save((err) => {
                 if (err) {
                     next(err);
