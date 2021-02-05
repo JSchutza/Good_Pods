@@ -113,7 +113,7 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
     }
     else {
         const errors = validatorErrors.array().map((error) => error.msg)
-        res.render('create-user', { email, name, errors, csrfToken: req.csrfToken() })
+        res.render('index', { email, name, errors, csrfToken: req.csrfToken() })
     }
 }))
 
