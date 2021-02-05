@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 // bring in the podcasts model here:
 
-const { Podcast, Genre, Shelf, Review, Podshelf } = require("../db/models")
+const { Podcast, Genre, Shelf, Review, Podshelf, User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
 
 
@@ -61,24 +61,41 @@ router.get('/genres', asyncHandler(async (req, res) => {
 
     res.json(genres)
 }))
+
 // api to grab specific podcast
 router.get('/podcasts/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = req.params.id;
-    const podcast = await Podcast.findByPk(id)
-
-    res.json(podcast)
+    let podcast = await Podcast.findByPk(id)
+    const reviews = await Review.findAll({
+        where: { podcastId: id }
+    })
+    let final = {}
+    const scores = []
+    let total = 0
+    let average
+    reviews.forEach(review => {
+        scores.push(review.rating)
+    });
+    scores.forEach(score => {
+        total += score
+    })
+    average = total / reviews.length
+    final.podcast = podcast
+    final.averageScore = average
+    res.json(final)
 }))
+
 // api for reviews by podcast ID
 router.get('/reviews/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = req.params.id;
     const reviews = await Review.findAll({
         where: {
             podcastId: id
-        }
+        },
+        include: [User]
     })
     res.json(reviews)
 }))
-
 
 
 
