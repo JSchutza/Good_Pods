@@ -7,7 +7,7 @@ block content
                 img(src='/images/logo.png')
             div(class="pod_review_container")
                 h2 Review this Pod
-                form(action=`/podcasts/${podcast.id}` method="post")
+                form(action=`/podcasts/${podcast.id}` method="post" id='review-form')
                     div(class="stars")
                         input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
                         label(for="star5") &#9734; 
@@ -20,7 +20,7 @@ block content
                         input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
                         label(for="star1") &#9734; 
                     div(class="review")
-                        textarea(class="review" placeholder="Add your review to this podcast" cols="30", rows="10")
+                        textarea(class="review" name="reviewText" placeholder="Add your review to this podcast" cols="30", rows="10")
                         input(type="hidden" name="_csrf" value=csrfToken)
                     div
                         button(type="submit") Add Your review
