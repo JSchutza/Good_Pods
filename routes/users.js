@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../db/models');
+const { User, Shelf, Podcast } = require('../db/models');
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
 
@@ -58,8 +58,37 @@ const signUpValidator = [
 
 
 router.get('/', csrfProtection, asyncHandler(async(req, res) => {
+    const user_id = req.session.auth.userId;
 
-    res.render('profile', { csrfToken: req.csrfToken()});
+
+    const users_shelf = await Shelf.findAll({
+        where: { userId: user_id },
+        include: { model: Podcast }
+    });
+
+
+
+    let result = {}
+
+
+
+    let current_shelf = users_shelf[0]
+    let thumbs_up = users_shelf[1]
+    let radar = users_shelf[2]
+    let meh = users_shelf[3]
+    let thumbs_down = users_shelf[4]
+
+
+
+    result.current_shelf = current_shelf;
+    result.thumbs_up = thumbs_up;
+    result.radar = radar;
+    result.meh = meh;
+    result.thumbs_down = thumbs_down;
+
+
+    res.render('profile', { csrfToken: req.csrfToken(), result });
+
 }));
 
 
@@ -137,6 +166,10 @@ router.get('/logout', (req, res) => {
         res.redirect("/")
     // }
 })
+
+
+
+
 
 
 

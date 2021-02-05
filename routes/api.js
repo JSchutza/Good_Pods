@@ -16,16 +16,38 @@ router.get('/podcasts', asyncHandler(async(req, res) => {
 }));
 
 
+
+
 // api for the users shelf
-router.get('/shelves/:id(\\d+)/podcasts', asyncHandler(async(req, res) => {
+router.get('/shelves', asyncHandler(async(req, res) => {
     const user_id = req.session.auth.userId;
 
+
     const users_shelf = await Shelf.findAll({
-        where: { userId: user_id},
-        include:{ model: Podcast}
+        where: { userId: user_id },
+        include: { model: Podcast }
     });
 
-    res.json(users_shelf);
+
+
+    let result = {}
+
+
+    let current_shelf = users_shelf[0]
+    let thumbs_up = users_shelf[1]
+    let radar = users_shelf[2]
+    let meh = users_shelf[3]
+    let thumbs_down = users_shelf[4]
+
+
+    result.current_shelf = current_shelf;
+    result.thumbs_up = thumbs_up;
+    result.radar = radar;
+    result.meh = meh;
+    result.thumbs_down = thumbs_down;
+
+    res.json(result);
+
 }));
 
 // api for the genres
@@ -49,6 +71,10 @@ router.get('/reviews/:id(\\d+)', asyncHandler(async(req,res)=>{
     }})
     res.json(reviews)
 }))
+
+
+
+
 // api to grab all podshevles by user
 // router.get('/podshelves', asyncHandler(async(req,res)=>{
 //     const user_id = req.session.auth.userId;

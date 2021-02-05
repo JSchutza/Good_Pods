@@ -9,4 +9,7 @@ block content
     .shelvesContainer
         .shelves
             h1 Your Shelf
-            
+
+            div #{result.current_shelf.type}
+                for info in result.current_shelf.Podcasts
+                    div #{info.name}
