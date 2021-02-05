@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
   const reviewArea = document.getElementById('ReviewDiv')
-  const id = document.querySelectorAll('.idgrabber').id;
 
   const popReviews = async (podcastId) => {
     const res = await fetch(`/api/reviews/${podcastId}`)
@@ -39,7 +38,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  popReviews(id)
+
+  const podcastId = document.querySelector('.idgrabber').id;
+  console.log(podcastId);
+  popReviews(podcastId)
 
 
   const deleteReview = async (podcastId) => {

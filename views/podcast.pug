@@ -22,7 +22,6 @@ block content
                     div(class="review")
                         textarea(class="review" name="reviewText" placeholder="Add your review to this podcast" cols="30", rows="10")
                         input(type="hidden" name="_csrf" value=csrfToken)
-                        input(type='hidden' class='idgrabber' id=podcast.id)
                     div
                         button(type="submit") Add Your review
         div(class='center-content')
@@ -37,7 +36,7 @@ block content
                 button(type='button' title='Meh') 😑
                 button(type='button' title='Thumbs Down') 👎
             div(class="reviews")
-                h2 What Other People are Saying About #{podcast.name}
+                h2(class='idgrabber' id=podcast.id) What Other People are Saying About #{podcast.name}
                 div(id="ReviewDiv")
                     
         div(class='right-bar')
