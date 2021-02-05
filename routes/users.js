@@ -53,35 +53,19 @@ const signUpValidator = [
             }
             return true;
         })
-        .withMessage('Password confimation does not match password')
+        .withMessage('Password confirmation does not match password')
 ];
 
 
 router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     const user_id = req.session.auth.userId;
+    const user_info = await User.findByPk(user_id);
 
 
-    // const users_shelf = await Shelf.findAll({
-    //     where: { userId: user_id },
-    //     include: { model: Podcast }
-    // });
+    const genre_info = await Genre.findAll();
+    console.log(genre_info);
 
-    // let result = {}
-
-    // let current_shelf = users_shelf[0]
-    // let thumbs_up = users_shelf[1]
-    // let radar = users_shelf[2]
-    // let meh = users_shelf[3]
-    // let thumbs_down = users_shelf[4]
-
-    // result.current_shelf = current_shelf;
-    // result.thumbs_up = thumbs_up;
-    // result.radar = radar;
-    // result.meh = meh;
-    // result.thumbs_down = thumbs_down;
-
-
-    res.render('profile', { csrfToken: req.csrfToken()});
+    res.render('profile', { csrfToken: req.csrfToken(), name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
 }));
 
 
@@ -130,7 +114,7 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     const user = await User.findOne({ where: { email } });
     const RealPassword = user.hashedPassword.toString();
     const passwordMatch = await bcrypt.compare(password, RealPassword);
-    
+
         if (passwordMatch ) {
             const userShelves = await populateShelves(user)
             
@@ -148,6 +132,13 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     }
 }))
 
+
+router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
+    const email = "test@test.com"
+    const user = await User.findOne({ where: { email } })
+    loginUser(req, res, user)
+    res.render('profile', {csrfToken: req.csrfToken()})
+}))
 
 
 

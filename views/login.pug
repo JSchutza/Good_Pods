@@ -18,3 +18,8 @@ block content
         input(type="hidden" name="_csrf" value=csrfToken)
       div(class="submit-button")
         button(type="submit" class='submit-btn btn') Log In
+
+    form(class="login-demo-form" action="/me/demo" method="post")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      div(class="demo-button")
+        button(type="submit" class="demo-btn btn") Demo
