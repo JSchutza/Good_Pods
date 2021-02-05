@@ -28,13 +28,13 @@ block content
             h1= podcast.name
             p Description: #{podcast.description}
             p Genre: #{podcast.Genre.name}
-            div(class='shelf-btns')
+            div(id=`${podcast.id}`)
                 h3 Add To My Shelf
-                button(type='button' title='Current') 🎧
-                button(type='button' title='Thumbs Up') 👍
-                button(type='button' title='On My Radar') 👀
-                button(type='button' title='Meh') 😑
-                button(type='button' title='Thumbs Down') 👎
+                button(class="shelf_btn" id="Current" type='button' title='Current') 🎧
+                button(class="shelf_btn" id="Thumbs_Up" type='button' title='Thumbs Up') 👍
+                button(class="shelf_btn" id= "On_My_Radar" type='button' title='On My Radar') 👀
+                button(class="shelf_btn" id="Meh" type='button' title='Meh') 😑
+                button(class="shelf_btn" id="Thumbs_Down" type='button' title='Thumbs Down') 👎
             div(class="reviews")
                 h2(class='idgrabber' id=podcast.id) What Other People are Saying About #{podcast.name}
                 div(id="ReviewDiv")
@@ -44,4 +44,4 @@ block content
             each podcast in otherPodcasts.Podcasts
                 div(class='Genre_Pods')
                     a(href=`/podcasts/${podcast.id}`)= podcast.name
-
+        script(src="/javascripts/index.js" type="module" defer)
