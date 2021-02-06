@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Shelf, Podcast } = require('../db/models');
+const { User, Shelf, Podcast, Genre } = require('../db/models');
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves, populateShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
 
@@ -117,7 +117,7 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
 
         if (passwordMatch ) {
             const userShelves = await populateShelves(user)
-            
+
             loginUser(req, res, user, userShelves)
             return req.session.save((err) => {
                 if (err) {
@@ -137,8 +137,16 @@ router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
     const email = "test@test.com"
     const user = await User.findOne({ where: { email } })
     loginUser(req, res, user)
-    res.render('profile', {csrfToken: req.csrfToken()})
+    return req.session.save((err) => {
+        if (err) {
+            next(err);
+        } else {
+            res.redirect("/me")
+        }
+    });
+
 }))
+
 
 
 
