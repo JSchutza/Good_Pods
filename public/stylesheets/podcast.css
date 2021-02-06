@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 62px;
 }
 
 .stars > label {
@@ -35,16 +38,40 @@
   color: #FFD700;
 }
 .pod_review_container{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   margin: 10px;
   padding: 5px;
+}
+.pod_review_container textarea{
+  background-color: #e0e1dd;
+  border: 3px solid #415a77;
+}
+.pod_review_container button{
+font-family: 'Overpass', sans-serif;
+border-radius: 5px;
+padding: 7px;
+margin: 15px 7px 20px 7px;
+background-color:#415a77;
+font-weight: bold;
+border: none;
 }
 .pod_review_container > h2{
   font-size: 20px;
   align-self: center;
+
 }
-.shelf-btns button{
-  background-color: #0D1b2a;
-  border-radius: 3px;
+.shelf_btn_container h3{
+  font-size: 30px;
+  
+}
+.shelf_btn{
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  margin-left: 10px;
 }
 .reviews h2 {
   font-size: x-large;
@@ -66,7 +93,41 @@
   padding: 10px;
 }
 .img_holder{
-  margin: 10px;
+  margin: 30px;
+
   width: fit-content;
-  background-color:  rgba(21, 21, 21, .8);
+  height: fit-content;
+  background-color:  rgba(21, 21, 21, .6);
 }
+.Avg_Stars{
+  color: #FFD700;
+  opacity: 1;
+}
+.left-bar{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.img_holder img{
+  height: 200px;
+  width: 200px;
+}
+.center-content{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.innerHeader{
+  margin: 20px;
+}
+.pod_description h4{
+  font-size: large;
+  font-weight: bold;
+}
+@media (max-width:{
+  
+}
+/* .stars > label:hover:before,
+.stars > label:hover ~ label:before,
+.stars > input.radio-btn:checked ~ label:before, */
+/* .stars > input.radio-btn:checked ~ label:before { */
