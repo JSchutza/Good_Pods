@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const podcastId = document.querySelector('.idgrabber').id;
+  const podcastId = document.querySelector('.idgrabber')
   popReviews(podcastId)
 
 

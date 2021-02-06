@@ -85,7 +85,7 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
     if (validatorErrors.isEmpty()) {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ email, name, hashedPassword });
-        const userShelves = createShelves(user)
+        const userShelves = await createShelves(user)
         loginUser(req, res, user, userShelves)
         return req.session.save((err) => {
             if (err) {
@@ -137,7 +137,9 @@ router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
     const email = "test@test.com"
     const user = await User.findOne({ where: { email } })
     const userShelves = await populateShelves(user)
+
     loginUser(req, res, user, userShelves)
+
     return req.session.save((err) => {
         if (err) {
             next(err);
