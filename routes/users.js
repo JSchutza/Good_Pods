@@ -137,7 +137,9 @@ router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
     const email = "test@test.com"
     const user = await User.findOne({ where: { email } })
     const userShelves = await populateShelves(user)
-    loginUser(req, res, user)
+
+    loginUser(req, res, user, userShelves)
+
     return req.session.save((err) => {
         if (err) {
             next(err);
