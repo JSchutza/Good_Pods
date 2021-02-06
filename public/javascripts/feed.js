@@ -1,20 +1,27 @@
 window.addEventListener('DOMContentLoaded', ()=> {
-  const reviewArea = document.getElementById('ReviewDiv')
-
-
-
-  const popReviews = async (id) => {
-    const res = await fetch(`api/podcasts/${id}/reviews`)
-    const json = await res.json()
-    console.log(json)
-    // reviews.forEach(review => {
-    //  const newReview= document.createElement("div")
-      
-    //  const reviewText = document.createElement("p")
-      
-    // })
-  }
-  popReviews(1)
+  let newFeatures = document.getElementById('newPods')
+  
+  const featuredPodList = featuredPods()
+  const header = document.createElement("h2")
+  featuredPodList.forEach( pod => {
+    const featPodDiv = document.createElement('div')
+    const featPodimg = document.createElement("img")
+    const featPod= document.createElement('a')
+    featPodimg.setAttribute('src', `images/catalog/${pod.id}.jpeg`)
+    featPod.setAttribute('href', `/podcasts/${pod.id}`)
+    featPodDiv
+  })
 
   
 })
+const featuredPods = async() => {
+  const res = await fetch('/api/podcasts')
+  const resJson = await res.json()
+  if (res.ok) {
+    const featuredPods = []
+    for (let i =0; i < 5, i++){
+      featuredPods.push(resJson[Math.floor(Math.random()* resJson.length)])
+    }
+  }
+  return resJson
+}

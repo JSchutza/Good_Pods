@@ -10,7 +10,6 @@ window.addEventListener("load", (event)=>{
         let shelfId = shelfButton.id
         shelfId = shelfId.split("_").join(" ")
         const podcastId = shelfButton.parentElement.id
-        console.log(podcastId)
        const res = await fetch("/api/shelves", {
           method: "POST",
           credentials: 'same-origin',
