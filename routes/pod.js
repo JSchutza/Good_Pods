@@ -12,8 +12,9 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
         include: Podcast,
         limit: 5
     })
+    const userId = req.session.auth.userId;
     // const otherPods = otherPodcasts.Podcasts;
-    res.render('podcast', { podcast, otherPodcasts, csrfToken: req.csrfToken() });
+    res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken() });
 }))
 
 
