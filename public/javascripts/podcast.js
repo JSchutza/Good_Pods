@@ -5,24 +5,25 @@ window.addEventListener('DOMContentLoaded', () => {
   const popReviews = async (podcastId) => {
     const res = await fetch(`/api/podcasts/${podcastId}/reviews`)
     const json = await res.json()
-    console.log(json)
+
 
     if (res.ok) {
       json.forEach(review => {
 
+
         let newReview = document.createElement("div")
-        newReview.setAttribute('class', `user-${review.User.userId} pod-${review.podcastId}`);
+        newReview.setAttribute('class', `user-${review.userId} pod-${review.podcastId}`);
         newReview.setAttribute('id', `review-${review.id}`)
 
         let userName = document.createElement('p');
-        userName.setAttribute('class', `reviewer user-${review.User.userId} pod-${review.podcastId}`)
-        userName.innerHTML = review.User.name;
+        userName.setAttribute('class', `reviewer user-${review.userId} pod-${review.podcastId}`)
+        userName.innerHTML = review.name;      // re-write
 
         let reviewText = document.createElement("p")
-        reviewText.setAttribute('class', `review-text user-${review.User.userId} pod-${review.podcastId}`);
+        reviewText.setAttribute('class', `review-text user-${review.userId} pod-${review.podcastId}`);
 
         let rating = document.createElement('p')
-        rating.setAttribute('class', `rating user-${review.User.userId} pod-${review.podcastId}`);
+        rating.setAttribute('class', `rating user-${review.userId} pod-${review.podcastId}`);
         rating.innerHTML = 'Rating: ';
         for (let i = 0; i < review.rating; i++) {
           rating.innerHTML += '☆';
@@ -33,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
         newReview.appendChild(rating);
         newReview.appendChild(reviewText);
 
-        if (review.User.userId === currentUserId) {
+        if (review.userId === currentUserId) {
           let deleteButton = document.createElement('button');
           deleteButton.setAttribute('class', `delete-button`);
           deleteButton.setAttribute('id', `${review.id}`)
@@ -49,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const podcastId = document.querySelector('.idgrabber')
+  const podcastId = document.querySelector('.idgrabber').id;
   popReviews(podcastId)
 
 
@@ -88,5 +89,3 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 
 })
-
-
