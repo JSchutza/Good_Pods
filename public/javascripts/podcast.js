@@ -28,17 +28,18 @@ window.addEventListener('DOMContentLoaded', () => {
           rating.innerHTML += '☆';
         }
 
-        if (review.User.userId === currentUserId) {
-          let deleteButton = document.createElement('button');
-          deleteButton.setAttribute('class', `delete-button user-${review.User.userId} pod-${review.podcastId}`);
-          deleteButton.setAttribute('id', `${review.id}`)
-          newReview.appendChild(deleteButton);
-        }
-
         reviewText.innerHTML = review.reviewText;
         newReview.appendChild(userName);
         newReview.appendChild(rating);
         newReview.appendChild(reviewText);
+
+        if (review.User.userId === currentUserId) {
+          let deleteButton = document.createElement('button');
+          deleteButton.setAttribute('class', `delete-button`);
+          deleteButton.setAttribute('id', `${review.id}`)
+          newReview.appendChild(deleteButton);
+        }
+
         reviewArea.appendChild(newReview);
       })
 
@@ -51,16 +52,31 @@ window.addEventListener('DOMContentLoaded', () => {
   const podcastId = document.querySelector('.idgrabber').id;
   popReviews(podcastId)
 
+
+
+  const displayReviews = (reviews) => {
+
+  }
+
   //trying to delete a single review
   async function deleteReview(reviewId) {
     const res = await fetch(`/api/podcasts/${podcastId}/reviews/${reviewId}`, {
       method: 'DELETE'
     })
-    const json = await res.json();
-    const review = document.getElementById(`review-${reviewId}`)
-    review.innerHTML = '';
-    // json.forEach(review => {
-    //   popReviews(podcastId)
+    if (res.ok) {
+      const review = document.getElementById(`review-${reviewId}`)
+      review.innerHTML = '';
+    } else {
+      throw new Error('Unable to delete review at this time.')
+    }
+
+    // const reviews = reviewArea.childNodes;
+    // const remaining = reviews.filter((el, i) => {
+    //   return (i != reviewId)
+    // })
+
+    // remaining.forEach(review => {
+    //   popReviews()
     // })
   }
 

@@ -104,7 +104,7 @@ router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler
     const review = await Review.findByPk(id, {
         include: [User]
     })
-    const updatedReviews = podcasts.podcastId.reviews.filter((_, i) => i !== reviewId);
+    const updatedReviews = podcasts.podcastId.reviews.filter(el => el.id !== id);
     podcast.podcastId.reviews = updatedReviews;
     res.json(reviews)
 }))
