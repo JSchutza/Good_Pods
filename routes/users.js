@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { User, Shelf, Podcast } = require('../db/models');
-const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves } = require("../lib/util")
+const { User, Shelf, Podcast, Genre } = require('../db/models');
+const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves, populateShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
 
 
@@ -59,29 +59,13 @@ const signUpValidator = [
 
 router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     const user_id = req.session.auth.userId;
+    const user_info = await User.findByPk(user_id);
 
 
-    // const users_shelf = await Shelf.findAll({
-    //     where: { userId: user_id },
-    //     include: { model: Podcast }
-    // });
+    const genre_info = await Genre.findAll();
+    console.log(genre_info);
 
-    // let result = {}
-
-    // let current_shelf = users_shelf[0]
-    // let thumbs_up = users_shelf[1]
-    // let radar = users_shelf[2]
-    // let meh = users_shelf[3]
-    // let thumbs_down = users_shelf[4]
-
-    // result.current_shelf = current_shelf;
-    // result.thumbs_up = thumbs_up;
-    // result.radar = radar;
-    // result.meh = meh;
-    // result.thumbs_down = thumbs_down;
-
-
-    res.render('profile', { csrfToken: req.csrfToken()});
+    res.render('profile', { csrfToken: req.csrfToken(), name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
 }));
 
 
@@ -101,8 +85,8 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
     if (validatorErrors.isEmpty()) {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({ email, name, hashedPassword });
-        createShelves(user)
-        loginUser(req, res, user)
+        const userShelves = createShelves(user)
+        loginUser(req, res, user, userShelves)
         return req.session.save((err) => {
             if (err) {
                 next(err)
@@ -132,7 +116,9 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     const passwordMatch = await bcrypt.compare(password, RealPassword);
 
         if (passwordMatch ) {
-            loginUser(req, res, user)
+            const userShelves = await populateShelves(user)
+
+            loginUser(req, res, user, userShelves)
             return req.session.save((err) => {
                 if (err) {
                     next(err);
@@ -151,8 +137,16 @@ router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
     const email = "test@test.com"
     const user = await User.findOne({ where: { email } })
     loginUser(req, res, user)
-    res.render('profile', {csrfToken: req.csrfToken()})
+    return req.session.save((err) => {
+        if (err) {
+            next(err);
+        } else {
+            res.redirect("/me")
+        }
+    });
+
 }))
+
 
 
 

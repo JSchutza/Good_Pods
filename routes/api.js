@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 // bring in the podcasts model here:
 
-const { Podcast, Genre, Shelf, Review, Podshelf, User } = require("../db/models")
+
+const { Podcast, Genre, Shelf, Review, PodShelf, User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
 
 
@@ -43,6 +44,15 @@ router.get('/shelves', asyncHandler(async (req, res) => {
     res.json(result);
 }));
 
+router.post("/shelves", asyncHandler (async (req, res) => {
+    const shelfId = req.session.auth.userShelves[req.body.shelfType]
+    console.log(shelfId)
+    const podcastId = req.body.podcastId;
+    console.log(podcastId)
+    await PodShelf.create({shelfId, podcastId})
+    res.json({"this is a response":"just Checking"})
+})
+)
 // router.get("/podcasts/:id/reviews", asyncHandler(async (req, res)=> {
 //     const reviews = await Review.findAll({where: {
 //         podcastId: req.params.id
@@ -120,6 +130,21 @@ router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler
 //     }});
 //     res.json(shelves)
 // }))
+
+
+
+router.delete('/shelves/:shelfId(\\d+)/:podcastId(\\d+)', asyncHandler(async (req, res) => {
+    const shelf_id = req.params.shelfId;
+    const podcast_id = req.params.podcastId;
+
+    const pod_shelf = await PodShelf.destroy({
+        where: { shelfId: shelf_id, podcastId: podcast_id }
+    });
+
+    res.json(pod_shelf)
+}));
+
+
 
 
 

@@ -13,14 +13,20 @@ html
 
   block navbar
     .navBar
-      .navBar__logo
-        a(href="/")
+      if authenticated
+        .navBar__logo
+          a(href="/me")
+            img(src="/images/logo.png")
+      else
+        .navBar__logo
+          a(href="/")
+            img(src="/images/logo.png")
 
-          img(src="/images/logo.png")
       ul.navBar__ul
         li.navBar__ul-podFeed
           a(href="/feed") Pod Feed
         li.navBar_ul-name Podemic
+
         if authenticated
           li.navBar__ul-signIn
             a(href="/me/logout") Sign Out

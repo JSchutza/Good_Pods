@@ -80,6 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // })
   }
 
+
   reviewArea.addEventListener('click', e => {
     if (e.target.className === 'delete-button') {
       deleteReview(e.target.id)
@@ -87,4 +88,5 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 
 })
+
 
