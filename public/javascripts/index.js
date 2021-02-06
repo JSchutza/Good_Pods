@@ -1,10 +1,10 @@
-window.addEventListener("load", (event)=>{
+window.addEventListener("DOMContentLoaded", (event)=>{
     console.log("hello from javascript!")
     const reviewArea = document.getElementById('ReviewDiv')
 
     const shelfButtons = document.querySelectorAll(".shelf_btn")
     shelfButtons.forEach(shelfButton => {
-      
+
       shelfButton.addEventListener("click", async (event) => {
         let shelfButton = event.target
         let shelfId = shelfButton.id
@@ -17,11 +17,17 @@ window.addEventListener("load", (event)=>{
             "Content-Type" : "application/json"
           },
           body: JSON.stringify({"podcastId": podcastId, "shelfType": shelfId})
-      
-        })
-      })
-    })
-    
+
+        });
+
+        const data = await res.json();
+        const messageDiv = document.querySelector('.message');
+        messageDiv.innerHTML = data.message;
+
+      });
+
+    });
+
 
   // const popReviews = async (id) => {
   //   const res = await fetch(`api/podcasts/${id}/reviews`)
@@ -29,9 +35,9 @@ window.addEventListener("load", (event)=>{
   //   console.log(json)
   //   // reviews.forEach(review => {
   //   //  const newReview= document.createElement("div")
-      
+
   //   //  const reviewText = document.createElement("p")
-      
+
   //   // })
   // }
   // popReviews(1)
