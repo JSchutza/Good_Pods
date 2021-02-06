@@ -9,7 +9,8 @@ window.addEventListener('DOMContentLoaded', ()=> {
     const featPod= document.createElement('a')
     featPodimg.setAttribute('src', `images/catalog/${pod.id}.jpeg`)
     featPod.setAttribute('href', `/podcasts/${pod.id}`)
-    featPodDiv
+    featPodDiv.appendChild(featPodimg)
+    featPodDiv.appendChild()
   })
 
   
