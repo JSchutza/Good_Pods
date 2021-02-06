@@ -1,6 +1,6 @@
 extends layout.pug
-append head 
-   script(src="/javascripts/podcast.js" type="module" defer) 
+append head
+   script(src="/javascripts/podcast.js" type="module" defer)
 
 block content
     div(class='main-content-container')
@@ -12,15 +12,15 @@ block content
                 form(action=`/podcasts/${podcast.id}` method="post" id='review-form')
                     div(class="stars")
                         input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
-                        label(for="star5") &#9734; 
+                        label(for="star5") &#9734;
                         input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
-                        label(for="star4") &#9734; 
+                        label(for="star4") &#9734;
                         input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
-                        label(for="star3") &#9734; 
+                        label(for="star3") &#9734;
                         input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
-                        label(for="star2") &#9734; 
+                        label(for="star2") &#9734;
                         input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
-                        label(for="star1") &#9734; 
+                        label(for="star1") &#9734;
                     div(class="review")
                         textarea(class="review" name="reviewText" placeholder="Add your review to this podcast" cols="30", rows="10")
                         input(type="hidden" name="_csrf" value=csrfToken)
@@ -37,10 +37,14 @@ block content
                 button(class="shelf_btn" id= "On_My_Radar" type='button' title='On My Radar') 👀
                 button(class="shelf_btn" id="Meh" type='button' title='Meh') 😑
                 button(class="shelf_btn" id="Thumbs_Down" type='button' title='Thumbs Down') 👎
+
             div(class="reviews")
-                h2(class='idgrabber' id=podcast.id) What Other People are Saying About #{podcast.name}
+                h2(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
+                    em
+                        b #{podcast.name}
+
                 div(id="ReviewDiv")
-                    
+
         div(class='right-bar')
             h2 Other Podcasts in this Genre
             each podcast in otherPodcasts.Podcasts

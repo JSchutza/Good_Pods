@@ -61,11 +61,20 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     const user_id = req.session.auth.userId;
     const user_info = await User.findByPk(user_id);
 
+    // for the demo user -- dont allow them to delete their account
+    let isDemo;
+    // if they have the demo users email and the same id as the demo user make a boolean to be used in the pug
+    if (user_info.dataValues.email === 'test@test.com' && user_id === 1){
+        isDemo = true;
+    } else {
+        isDemo = false;
+    }
+
 
     const genre_info = await Genre.findAll();
     console.log(genre_info);
 
-    res.render('profile', { csrfToken: req.csrfToken(), name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
+    res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
 }));
 
 

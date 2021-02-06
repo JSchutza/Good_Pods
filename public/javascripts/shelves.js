@@ -11,6 +11,18 @@ const shelfData = async () => {
 }
 
 
+// sends a delete request to the api that deletes a users shelf item
+const removeFromShelf = async (the_shelf, the_podcast) => {
+    const response = await fetch(`http://localhost:8080/api/shelves/${the_shelf}/podcasts/${the_podcast}`, {
+        method: 'DELETE'
+    });
+
+    return await response.json();
+};
+
+
+
+
 // checks if a type has any podcasts in its array of podcasts
 const checkArray = (the_array) => {
     if (the_array.length === 0) {
@@ -25,13 +37,20 @@ const makeDecision = (checked_thing, the_array, type_div) => {
         // if it is undefined then loop through the array and put each items content to html
         const unordered_list = document.createElement('ul');
 
+
         the_array.forEach(eachItem => {
             const item = document.createElement('li');
             const link_item = document.createElement('a');
             const removeButton = document.createElement('button');
             removeButton.innerText = `Remove`;
+            removeButton.setAttribute('class', `${eachItem.PodShelf.shelfId}`);
+            removeButton.setAttribute('id', `${eachItem.PodShelf.podcastId}`);
+
             link_item.href = `/podcasts/${eachItem.id}`;
-            link_item.innerHTML = `<img alt=${eachItem.name} src=/images/catalog/${eachItem.id}.jpeg> <span>${eachItem.name}</span>`;
+            link_item.innerHTML = `<img alt=${eachItem.name} src=/images/catalog/${eachItem.id}.jpeg
+                                        onError="src='/images/logo.png'"> <span>${eachItem.name}</span>`;
+
+
             item.appendChild(link_item);
             item.appendChild(removeButton);
             unordered_list.appendChild(item);
@@ -84,6 +103,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     const thumbs_down_type = result.thumbs_down.type;
     const thumbs_up_type = result.thumbs_up.type;
 
+
+
     currentDiv.innerHTML = current_type;
     mehDiv.innerHTML = meh_type;
     radarDiv.innerHTML = radar_type;
@@ -119,6 +140,27 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     shelfContainer.appendChild(radarDiv);
     shelfContainer.appendChild(thumbsDownDiv);
     shelfContainer.appendChild(thumbsUpDiv);
+
+
+    // select all of the remove buttons
+    const RemoveButtons = document.querySelectorAll('button');
+
+    // add click listeners to each button
+    RemoveButtons.forEach(eachButton => {
+        eachButton.addEventListener('click', async (event) => {
+
+            const the_shelf = eachButton.className;
+            const the_podcast = eachButton.id;
+
+            const data = await removeFromShelf(the_shelf, the_podcast);
+            
+
+
+
+        });
+
+    });
+
 
 
 
