@@ -153,10 +153,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             const the_podcast = eachButton.id;
 
             const data = await removeFromShelf(the_shelf, the_podcast);
-            
-
-
-
+            const messageDiv = document.querySelector('.message');
+            messageDiv.innerHTML = data.message;
         });
 
     });

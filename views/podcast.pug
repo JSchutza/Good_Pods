@@ -50,4 +50,7 @@ block content
             each podcast in otherPodcasts.Podcasts
                 div(class='Genre_Pods')
                     a(href=`/podcasts/${podcast.id}`)= podcast.name
+
+            .message
+
         script(src="/javascripts/index.js" type="module" defer)
