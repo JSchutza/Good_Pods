@@ -102,7 +102,26 @@ router.get('/podcasts/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
         },
         include: [User]
     })
-    res.json(reviews)
+
+
+
+    const result = [];
+    reviews.forEach(review => {
+        let each = {
+            "name": review.User.name,
+            "UserId": review.User.id,
+            "id": review.id,
+            "podcastId": review.podcastId,
+            "rating": review.rating,
+            "reviewText": review.reviewText,
+            "userId": review.userId
+        }
+
+        result.push(each)
+    });
+
+
+    res.json(result)
 }))
 
 // api trying to delete a single review
