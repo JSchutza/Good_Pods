@@ -14,6 +14,7 @@ router.get('/', csrfProtection, (req, res) => {
 // need to also bring in the users info from db?
 router.get('/feed', asyncHandler( async (req, res) => {
   const genres = await Genre.findAll({include: Podcast, order: ["id"]})
+  
   res.render('feed', {genres})
 }));
 

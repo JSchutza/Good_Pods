@@ -46,9 +46,7 @@ router.get('/shelves', asyncHandler(async (req, res) => {
 
 router.post("/shelves", asyncHandler (async (req, res) => {
     const shelfId = req.session.auth.userShelves[req.body.shelfType]
-    console.log(shelfId)
     const podcastId = req.body.podcastId;
-    console.log(podcastId)
     await PodShelf.create({shelfId, podcastId})
     res.json({"this is a response":"just Checking"})
 })
