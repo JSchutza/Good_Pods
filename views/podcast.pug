@@ -22,7 +22,7 @@ block content
                     div(class="review")
                         textarea(class="review" name="reviewText" placeholder="Add your review to this podcast" cols="30", rows="10")
                         input(type="hidden" name="_csrf" value=csrfToken)
-                    div
+                    div(class='userId', id=userId)
                         button(type="submit") Add Your review
         div(class='center-content')
             h1= podcast.name
