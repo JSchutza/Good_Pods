@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 596861a151d6bda9b65ae71ee01797fd31745359
 window.addEventListener('DOMContentLoaded', () => {
   const reviewArea = document.getElementById('ReviewDiv')
   const currentUserId = document.querySelectorAll('.userId').id;
