@@ -52,7 +52,16 @@ router.post("/shelves", asyncHandler (async (req, res) => {
     const shelfId = req.session.auth.userShelves[req.body.shelfType]
     const podcastId = req.body.podcastId;
     await PodShelf.create({shelfId, podcastId})
-    res.json({"this is a response":"just Checking"})
+
+    const addedPodcast = await Podcast.findByPk(podcastId);
+    const the_shelf = await Shelf.findByPk(shelfId);
+
+    const message = {
+        message: `${addedPodcast.name} was added to your ${the_shelf.type} shelf.`,
+    }
+
+
+    res.json(message);
 }));
 
 
