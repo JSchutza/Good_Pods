@@ -86,7 +86,7 @@ router.get('/podcasts/:id(\\d+)', asyncHandler(async (req, res) => {
 }))
 
 // api for reviews by podcast ID
-router.get('/reviews/:id(\\d+)', asyncHandler(async (req, res) => {
+router.get('/podcasts/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
     const id = req.params.id;
     const reviews = await Review.findAll({
         where: {
@@ -94,6 +94,18 @@ router.get('/reviews/:id(\\d+)', asyncHandler(async (req, res) => {
         },
         include: [User]
     })
+    res.json(reviews)
+}))
+
+// api trying to delete a single review
+router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async (req, res) => {
+    const pathArr = req.path.split('/');
+    const id = req.params.reviewId;
+    const review = await Review.findByPk(id, {
+        include: [User]
+    })
+    const updatedReviews = podcasts.podcastId.reviews.filter((_, i) => i !== reviewId);
+    podcast.podcastId.reviews = updatedReviews;
     res.json(reviews)
 }))
 
