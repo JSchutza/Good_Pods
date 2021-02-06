@@ -48,6 +48,7 @@ router.get('/shelves', asyncHandler(async (req, res) => {
 
 
 
+
 router.post("/shelves", asyncHandler (async (req, res) => {
     const shelfId = req.session.auth.userShelves[req.body.shelfType]
     const podcastId = req.body.podcastId;
@@ -86,6 +87,8 @@ router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id(\\d+)', asyncHandle
     res.json(message);
 
 }));
+
+
 
 
 
@@ -144,18 +147,16 @@ router.get('/podcasts/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
         include: [User]
     })
 
-
-
     const result = [];
     reviews.forEach(review => {
         let each = {
             "name": review.User.name,
-            "UserId": review.User.id,
+            "userId": review.User.id,
             "id": review.id,
             "podcastId": review.podcastId,
             "rating": review.rating,
             "reviewText": review.reviewText,
-            "userId": review.userId
+            // "userId": review.userId
         }
 
         result.push(each)
@@ -167,17 +168,15 @@ router.get('/podcasts/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
 
 
 
-// api trying to delete a single review
+// api to delete a single review
 router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async (req, res) => {
-    const pathArr = req.path.split('/');
     const id = req.params.reviewId;
-    const review = await Review.findByPk(id, {
-        include: [User]
-    })
-    const updatedReviews = podcasts.podcastId.reviews.filter(el => el.id !== id);
-    podcast.podcastId.reviews = updatedReviews;
-    res.json(reviews)
-}));
+
+    const review = await Review.findByPk(id);
+    await review.destroy();
+    res.json(review)
+}))
+
 
 
 
