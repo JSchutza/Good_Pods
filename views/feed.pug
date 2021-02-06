@@ -18,8 +18,8 @@ block content
                         div(id=`${podcast.name}` class="podcast_div")
                             a(href=`podcasts/${podcast.id}`)= podcast.name
                             img(src=`/images/catalog/${podcast.id}.jpeg`, alt="logo", onError="src='/images/logo.png'")
-                            p average rating: ***add stuff
-                            p= podcast.description
+                            h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
+                            p(class="PodcastId" id=`${podcast.id}`)= podcast.description
 
         div(class='right-bar') 
             h2 Browse by Genre

@@ -87,5 +87,29 @@ window.addEventListener('DOMContentLoaded', () => {
       deleteReview(e.target.id)
     }
   })
-
+  const getTheAverageRating = async () => {
+    
+    let rating = document.querySelectorAll(".avgRating")[0]
+      const id = rating.id.split("-")[1]
+      const res = await fetch(`/api/podcasts/${id}`)
+      if(res.ok){
+        const resJson = await res.json()
+        console.log(resJson)
+        const averageRating = resJson.averageScore
+        if(!averageRating){
+          rating.innerHTML = 'This podcast has no current ratings'
+        }
+        else
+        {
+        let stars = ''
+        for (let i =0; i< averageRating; i++){
+          stars+='&#9733; '
+        }
+        rating.innerHTML=`Average Rating <span class='Avg_Stars'>${stars}`
+      }
+      }
+      
+    }
+  getTheAverageRating()
 })
+
