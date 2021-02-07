@@ -15,13 +15,9 @@ const deleteUser = async (user_id) => {
 
 
 
+window.addEventListener("DOMContentLoaded", async (event)=>{
 
-
-// dom listener here:
-window.addEventListener("DOMContentLoaded", (event)=>{
-
-    const reviewArea = document.getElementById('ReviewDiv')
-
+    const podcastName = document.getElementById("innerHeader").className
     const shelfButtons = document.querySelectorAll(".shelf_btn")
     shelfButtons.forEach(shelfButton => {
 
@@ -30,13 +26,14 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         let shelfId = shelfButton.id
         shelfId = shelfId.split("_").join(" ")
         const podcastId = shelfButton.parentElement.id
+        console.log(shelfId)
        const res = await fetch("/api/shelves", {
           method: "POST",
           credentials: 'same-origin',
           headers: {
             "Content-Type" : "application/json"
           },
-          body: JSON.stringify({"podcastId": podcastId, "shelfType": shelfId})
+          body: JSON.stringify({"podcastId": podcastId, "ShelfType": shelfId, "podcastName":podcastName})
 
         });
 
@@ -68,8 +65,8 @@ window.addEventListener("DOMContentLoaded", (event)=>{
   deleteLink.addEventListener("click", async(event) => {
     // keep the link from its default behavior
     event.preventDefault();
-
-    const user_id = deleteLink.id;
+    
+    const user_id = event.target.id;
     await deleteUser(user_id);
 
 

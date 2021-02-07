@@ -96,7 +96,6 @@ window.addEventListener('DOMContentLoaded', () => {
       const res = await fetch(`/api/podcasts/${id}`)
       if(res.ok){
         const resJson = await res.json()
-        console.log(resJson)
         const averageRating = resJson.averageScore
         if(!averageRating){
           rating.innerHTML = 'This podcast has no current ratings'
