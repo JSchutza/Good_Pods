@@ -1,5 +1,25 @@
+
+// imports here:
+
+
+
+// functions here:
+const deleteUser = async (user_id) => {
+  const response = await fetch(`/api/users/${user_id}`, {
+    method: 'DELETE'
+  });
+
+
+};
+
+
+
+
+
+
+// dom listener here:
 window.addEventListener("DOMContentLoaded", (event)=>{
-    console.log("hello from javascript!")
+
     const reviewArea = document.getElementById('ReviewDiv')
 
     const shelfButtons = document.querySelectorAll(".shelf_btn")
@@ -43,5 +63,18 @@ window.addEventListener("DOMContentLoaded", (event)=>{
   // popReviews(1)
 
 
+  // event listener for the delete account link
+  const deleteLink = document.querySelector('.delete-account');
+  deleteLink.addEventListener("click", async(event) => {
+    // keep the link from its default behavior
+    event.preventDefault();
 
-})
+    const user_id = deleteLink.id;
+    await deleteUser(user_id);
+
+
+  });
+
+
+
+});

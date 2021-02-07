@@ -5,7 +5,7 @@
 // functions here:
 // gets the current users shelf data for html rendering
 const shelfData = async () => {
-    const the_response = await fetch(`http://localhost:8080/api/shelves`);
+    const the_response = await fetch(`/api/shelves`);
     const data = await the_response.json();
     return data;
 }
@@ -13,7 +13,7 @@ const shelfData = async () => {
 
 // sends a delete request to the api that deletes a users shelf item
 const removeFromShelf = async (the_shelf, the_podcast) => {
-    const response = await fetch(`http://localhost:8080/api/shelves/${the_shelf}/podcasts/${the_podcast}`, {
+    const response = await fetch(`/api/shelves/${the_shelf}/podcasts/${the_podcast}`, {
         method: 'DELETE'
     });
 
