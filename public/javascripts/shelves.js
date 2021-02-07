@@ -35,25 +35,42 @@ const checkArray = (the_array) => {
 const makeDecision = (checked_thing, the_array, type_div) => {
     if (checked_thing === undefined) {
         // if it is undefined then loop through the array and put each items content to html
-        const unordered_list = document.createElement('ul');
-
+        const unordered_list = document.createElement('div');
+        unordered_list.setAttribute('class', 'shelf-contents')
 
         the_array.forEach(eachItem => {
-            const item = document.createElement('li');
-            const link_item = document.createElement('a');
+            const item = document.createElement('div');
+            item.setAttribute('class', 'shelf-item')
+            const podPicDiv = document.createElement('div');
+            podPicDiv.setAttribute('class', 'pod-pic-div')
+            const podPic = document.createElement('a');
+            podPic.setAttribute('class', 'pod-pic')
+            const removeButtonDiv = document.createElement('div');
+            // removeButtonDiv.setAttribute('class', 'remove-button');
             const removeButton = document.createElement('button');
             removeButton.innerText = `Remove`;
-            removeButton.setAttribute('class', `${eachItem.PodShelf.shelfId}`);
+            removeButton.setAttribute('class', `${eachItem.PodShelf.shelfId} remove-button`);
             removeButton.setAttribute('id', `${eachItem.PodShelf.podcastId}`);
-
-            link_item.href = `/podcasts/${eachItem.id}`;
-            link_item.innerHTML = `<img alt=${eachItem.name} src=/images/catalog/${eachItem.id}.jpeg
-                                        onError="src='/images/logo.png'"> <span>${eachItem.name}</span>`;
-
-
-            item.appendChild(link_item);
-            item.appendChild(removeButton);
+            const titleDiv = document.createElement('div');
+            podPicDiv.setAttribute('class', 'pod-name-div')
+            const title = document.createElement('a');
+            title.innerHTML = `<span>${eachItem.name}</span>`
+            title.href = `/podcasts/${eachItem.id}`;
+            title.setAttribute('class', 'pod-name')
+            podPic.href = `/podcasts/${eachItem.id}`;
+            podPic.innerHTML = `<img alt=${eachItem.name} src=/images/catalog/${eachItem.id}.jpeg
+                                        onError="src='/images/logo.png'">`;
+            const sideContent = document.createElement('div')
+            sideContent.setAttribute('class', 'name-and-btn')
+            podPicDiv.appendChild(podPic);
+            titleDiv.appendChild(title);
+            removeButtonDiv.appendChild(removeButton)
+            sideContent.appendChild(titleDiv);
+            sideContent.appendChild(removeButtonDiv);
+            item.appendChild(podPicDiv)
+            item.appendChild(sideContent);
             unordered_list.appendChild(item);
+
         });
 
         type_div.appendChild(unordered_list)
@@ -67,8 +84,6 @@ const makeDecision = (checked_thing, the_array, type_div) => {
 
     }
 }
-
-
 
 
 
@@ -88,10 +103,15 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
     // can I wrap all of this in a function???
     const currentDiv = document.createElement("div");
+    currentDiv.setAttribute('class', 'current-shelf')
     const mehDiv = document.createElement("div");
+    mehDiv.setAttribute('class', 'meh-shelf')
     const radarDiv = document.createElement("div");
+    radarDiv.setAttribute('class', 'radar-shelf')
     const thumbsDownDiv = document.createElement("div");
+    thumbsDownDiv.setAttribute('class', 'thumbs-down-shelf')
     const thumbsUpDiv = document.createElement("div");
+    thumbsUpDiv.setAttribute('class', 'thumbs-up-shelf')
 
     // need to give each of the above divs an class and an id
 
@@ -104,12 +124,21 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     const thumbs_up_type = result.thumbs_up.type;
 
 
-
-    currentDiv.innerHTML = current_type;
-    mehDiv.innerHTML = meh_type;
-    radarDiv.innerHTML = radar_type;
-    thumbsDownDiv.innerHTML = thumbs_down_type;
-    thumbsUpDiv.innerHTML = thumbs_up_type;
+    const currentHead = document.createElement('h2')
+    currentHead.innerHTML = current_type;
+    currentDiv.appendChild(currentHead);
+    const mehHead = document.createElement('h2')
+    mehHead.innerHTML = meh_type;
+    mehDiv.appendChild(mehHead);
+    const radarHead = document.createElement('h2')
+    radarHead.innerHTML = radar_type;
+    radarDiv.appendChild(radarHead);
+    const thumbsDownHead = document.createElement('h2')
+    thumbsDownHead.innerHTML = thumbs_down_type;
+    thumbsDownDiv.appendChild(thumbsDownHead);
+    const thumbsUpHead = document.createElement('h2')
+    thumbsUpHead.innerHTML = thumbs_up_type;
+    thumbsUpDiv.appendChild(thumbsUpHead);
 
 
     // all of the Podcasts arrays here:
@@ -149,9 +178,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     RemoveButtons.forEach(eachButton => {
         eachButton.addEventListener('click', async (event) => {
 
-            const the_shelf = eachButton.className;
+            const the_shelf = eachButton.classList[0];
             const the_podcast = eachButton.id;
-
+            console.log(typeof the_shelf);
             const data = await removeFromShelf(the_shelf, the_podcast);
             const messageDiv = document.querySelector('.message');
             messageDiv.innerHTML = data.message;
