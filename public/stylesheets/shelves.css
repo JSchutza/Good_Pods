@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
 
-.genreName:hover {
 
+.user-stuff h1, h2 {
+    margin-bottom: 20px;
 }
 
-.left-bar h1, h2 {
-    margin-bottom: 20px;
+.user-stuff {
+    margin-left: 20px;
 }
 
 .account {
@@ -14,26 +15,49 @@
     color: #778da9;
 }
 
+#your-shelf {
+    margin: 20px 0 30px 0;
+}
+
+.genres {
+    margin-right: 40px;
+}
+
+.pod-name-div > a {
+    height: 10px;
+}
+
 .shelves {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .shelf-item {
-  grid-column-start: 1;
+  margin: 10px;
   padding: 10px;
+  max-height: 160px;
 }
 
 .shelves > div > h2 {
   font-size: 1.5em;
+  margin-top: 20px;
 }
 
 
 .pod-pic {
     padding: 20px;
+    margin: 10px;
 }
 
+
+.name-and-btn {
+    position: absolute;
+    /* left: 5px; */
+    padding: 10px;
+}
 
 .remove-button {
 font-family: 'Overpass', sans-serif;
@@ -42,6 +66,7 @@ padding: 7px;
 margin: 15px 7px 20px 7px;
 background-color: #778da9;
 font-weight: bold;
+position: absolute;
 }
 
 .shelf-contents {
@@ -59,8 +84,9 @@ font-weight: bold;
     box-shadow: inset 0px 0px 35px 10px rgba(13,27,42,0.56);
     text-shadow: 1px -5px 3px rgba(13,27,42,0.56);
     position: relative;
+    overflow-x: scroll;
+    height: 270px;
 }
-
 
 
 .welcome {
@@ -69,32 +95,14 @@ font-weight: bold;
     font-style: italic;
 }
 
-.right-bar {
-    display: flex;
-    flex-direction: column;
-}
-
-.right-bar > h1 {
+.genres > h1 {
     padding: 15px;
 }
 
-.right-bar > li {
+.genres > li {
     padding: 20px;
+    /* color: #778da9; */
  }
 
- /* .meh-shelf, .current-shelf, .thumbs-up-shelf, .thumbs-down-shelf, .radar-shelf {
-    display: flex;
-    flex-direction: row;
-    padding-top: 15px;
-    padding-bottom: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 3px solid #415a77;
-    border-radius: 25px;
-    background-color: rgba(65, 90, 119, .4);
-    box-shadow: inset 0px 0px 35px 10px rgba(13,27,42,0.56);
-    text-shadow: 1px -5px 3px rgba(13,27,42,0.56);
-    position: relative;
- } */
+
+

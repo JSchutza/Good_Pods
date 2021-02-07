@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns:1fr 2.5fr 1fr;
     grid-template-areas: 'left center right';
+    /* box-sizing: border-box; */
 }
 
 .left-bar {
@@ -9,6 +10,7 @@
     /* border: 1px solid white; */
     margin-left: 10px;
     padding: 10px;
+    /* box-sizing: border-box; */
 }
 
 .right-bar {
@@ -16,6 +18,7 @@
     /* border: 1px solid white; */
     margin-right: 10px;
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .center-content {
@@ -24,6 +27,7 @@
     padding: 10px;
     margin-left: 10px;
     margin-right: 10px;
+    /* box-sizing: border-box; */
 }
 
 h1 {

@@ -8,15 +8,17 @@ block content
 
     .main-content-container
         .left-bar
-            h2(class='welcome') Welcome, #{name}
-            if isDemo
-                p You are not allowed to delete or update the demo users account.
-            else
-                h2 #{email}
-                div(class="account")
-                    a(href="") Update
-                div(class="account")
-                    a(href="/" class="delete-account" id=`${theirId}`) Delete Account
+
+            .user-stuff
+                h2(class='welcome') Welcome, #{name}
+                if isDemo
+                    p You are not allowed to delete or update the demo users account.
+                else
+                    h2 #{email}
+                    div(class="account")
+                        a(href="") Update
+                    div(class="account")
+                        a(href="/" class="delete-account" id=`${theirId}`) Delete Account
 
 
 
@@ -26,10 +28,11 @@ block content
 
 
         .right-bar
-            h1 Genres
-            ul
-            for each_Genre in genre_info
-                li
-                    a(href=`feed#${each_Genre.dataValues.name}` class='genreName') #{each_Genre.dataValues.name}
+            .genres
+                h1 Genres
+                ul
+                for each_Genre in genre_info
+                    li
+                        a(href=`feed#${each_Genre.dataValues.name}` class='genreName') #{each_Genre.dataValues.name}
 
-            .message
+                .message
