@@ -3,75 +3,59 @@
 
 
 
+
+
 // functions here:
-const deleteUser = async (user_id) => {
-  const response = await fetch(`/api/users/${user_id}`, {
-    method: 'DELETE'
-  });
-
-
-};
-
-
-
 
 window.addEventListener("DOMContentLoaded", async (event)=>{
+  const searchButton = document.getElementById('searchButton')
+  searchButton.addEventListener('click', (event)=> {
+    document.getElementById('searchResults').classList.remove('hidden')
+    search()
+  })
 
-    const podcastName = document.getElementById("innerHeader").className
-    const shelfButtons = document.querySelectorAll(".shelf_btn")
-    shelfButtons.forEach(shelfButton => {
-
-      shelfButton.addEventListener("click", async (event) => {
-        let shelfButton = event.target
-        let shelfId = shelfButton.id
-        shelfId = shelfId.split("_").join(" ")
-        const podcastId = shelfButton.parentElement.id
-        console.log(shelfId)
-       const res = await fetch("/api/shelves", {
-          method: "POST",
-          credentials: 'same-origin',
-          headers: {
-            "Content-Type" : "application/json"
-          },
-          body: JSON.stringify({"podcastId": podcastId, "ShelfType": shelfId, "podcastName":podcastName})
-
-        });
-
-        const data = await res.json();
-        const messageDiv = document.querySelector('.message');
-        messageDiv.innerHTML = data.message;
-
-      });
-
-    });
-
-
-  // const popReviews = async (id) => {
-  //   const res = await fetch(`api/podcasts/${id}/reviews`)
-  //   const json = await res.json()
-  //   console.log(json)
-  //   // reviews.forEach(review => {
-  //   //  const newReview= document.createElement("div")
-
-  //   //  const reviewText = document.createElement("p")
-
-  //   // })
-  // }
-  // popReviews(1)
-
-
-  // event listener for the delete account link
-  const deleteLink = document.querySelector('.delete-account');
-  deleteLink.addEventListener("click", async(event) => {
-    // keep the link from its default behavior
-    event.preventDefault();
     
-    const user_id = event.target.id;
-    await deleteUser(user_id);
 
 
-  });
-
-
+  
 
 });
+
+const search= async () => {
+  let searchTerm = document.getElementById('searchInput').value
+  const term = new RegExp(`\w*\s*${searchTerm}\w*\s*\w*\s*\w*\s*\s*\w*\s*\w*`, 'i')
+  const res = await fetch("/api/podcasts")
+  const resJson = await res.json()
+  const searchResults = []
+  if (res.ok){
+    resJson.forEach(pod => {
+      if(term.test(pod.name)){
+        searchResults.push({name: pod.name, id: pod.id })
+      }
+      
+    })
+    const searchResultsDiv = document.getElementById("searchResults")
+    if(searchResults.length=== 0){
+      searchResultsDiv.innerText="There are no podcasts matching that search."
+    }
+    searchResults.forEach(pod => {
+      searchResultsDiv.innerText=''
+      const ele =document.createElement("div")
+      const searchHeader = document.createElement('h1')
+      searchHeader.innerText="Search Results"
+      searchResultsDiv.appendChild(searchHeader)
+      ele.setAttribute("class", "SearchResult___container")
+      const podname = document.createElement('a')
+      const podimg = document.createElement("img")
+      podname.setAttribute('href', `/podcasts/${pod.id}`)
+      podname.innerText= `${pod.name}`
+      podimg.setAttribute('class', `feat__pod__img`)
+      podimg.setAttribute('src', `/images/catalog/${pod.id}.jpeg`)
+      podimg.setAttribute("onError","src='/images/logo.png'")
+      ele.appendChild(podname)
+      ele.appendChild(podimg)
+      searchResultsDiv.appendChild(ele)
+    })
+  }
+
+}
