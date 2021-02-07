@@ -67,6 +67,7 @@ h1, h2 {
 
 .genre_div{
   max-height: 30%;
+  width: 100%;
   padding: 10px;
   margin-top:15px ;
   overflow: auto;
@@ -82,9 +83,13 @@ h1, h2 {
   scroll-padding-right: 100px;
 
 }
-.genre_div::-webkit-scrollbar, .podcast_div::-webkit-scrollbar,
-.podcast_description::-webkit-scrollbar{
-  display:none
+.genre_div::-webkit-scrollbar{
+display:none
+}
+
+
+.podcast_div::-webkit-scrollbar, .podcast_description::-webkit-scrollbar{
+display: none;
 }
 
 
