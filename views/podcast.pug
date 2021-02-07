@@ -9,7 +9,7 @@ block content
     div(class='main-content-container') 
         div(class='left-bar')
             div(class="img_holder")
-                img(src='/images/logo.png')
+                img(src=`/images/catalog/${podcast.id}.jpeg`)
             div(class="pod_review_container")
                 h2 Review this Pod
                 form(action=`/podcasts/${podcast.id}` method="post" id='review-form')
