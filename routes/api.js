@@ -5,7 +5,7 @@ const router = express.Router();
 
 const { Podcast, Genre, Shelf, Review, PodShelf, User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
-
+const { logoutUser } = require("../auth")
 
 
 // api for the pod feed page
@@ -50,15 +50,14 @@ router.get('/shelves', asyncHandler(async (req, res) => {
 
 
 router.post("/shelves", asyncHandler (async (req, res) => {
-    const shelfId = req.session.auth.userShelves[req.body.shelfType]
+    const shelfId = req.session.auth.userShelves[req.body.ShelfType]
     const podcastId = req.body.podcastId;
     await PodShelf.create({shelfId, podcastId})
-
-    const addedPodcast = await Podcast.findByPk(podcastId);
-    const the_shelf = await Shelf.findByPk(shelfId);
+    const addedPodcast = req.body.podcastName
+    const the_shelf = req.body.ShelfType
 
     const message = {
-        message: `${addedPodcast.name} was added to your ${the_shelf.type} shelf.`,
+        message: `${addedPodcast} was added to your ${the_shelf} shelf.`
     }
 
 
@@ -190,6 +189,34 @@ router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler
 //     res.json(shelves)
 // }))
 
+
+
+                    // NEED TO FIX
+router.delete('/users/:user_id(\\d+)', asyncHandler(async (req, res) => {
+    const their_id = req.params.user_id;
+    const user_id = req.session.auth.userId;
+
+
+    console.log(user_id);
+    // only destroy the user if their session id is the same as the passed in parameter in the api
+    // if(user_id === their_id) {
+    await User.destroy({
+        where: { id: user_id}
+    });
+
+
+        // must call logout
+        // logoutUser(req, res);
+
+        // redirect them to the homepage
+        res.json({message: ""});
+    // }
+
+
+
+    // res.end();
+
+}));
 
 
 
