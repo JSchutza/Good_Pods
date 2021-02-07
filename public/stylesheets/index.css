@@ -42,6 +42,26 @@
   box-shadow: inset 0px 0px 35px 10px rgba(13,27,42,0.56);
   scroll-snap-align: center;
 }
+#searchButton{
+  border:  1px solid #e0e1dd;
+  padding: 7px;
+  border-radius: 15px;
+  background-color: #778da9;
+  width: fit-content;
+  box-shadow: inset 0px 0px 35px 10px rgba(13,27,42,0.56);
+  box-sizing: border-box;
+  margin-right: 4px;
+}
+#searchInput{
+  width: 150px;
+  margin: auto 0;
+  
+}
 #searchResults::-webkit-scrollbar{
   display:none
   }
+.SorryCaleb{
+  display: flex;
+  /* flex-direction: column; */
+  align-items: flex-end;
+}

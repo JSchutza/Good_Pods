@@ -27,11 +27,12 @@ html
         li.navBar_ul-name Podemic
 
         if authenticated
-          li
-            input(id="searchInput" type="text" placeholder="search")
-            button(id="searchButton" type='button') Search
+          
           li.navBar__ul-signIn
-            a(href="/me/logout") Sign Out
+            div(class="SorryCaleb")
+              button(id="searchButton" type='button') Search
+              input(id="searchInput" type="text" placeholder="search")
+              a(href="/me/logout") Sign Out
         else
           li.navBar__ul-signIn
             a(href="/me/login") Sign In

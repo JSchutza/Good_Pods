@@ -17,15 +17,18 @@ li{
 a{
     font-weight: bold;
     text-decoration: none;
+    margin: auto;
+    padding-left: 10px;
 }
 .navBar_ul-name{
-    padding-right: 125px;
+    padding-right: 135px;
     font-weight: bold;
     align-self: center;
     font-size: 3rem;
 }
 .navBar{
     display: flex;
+    align-items: center; 
     flex-flow: row nowrap;
     padding: 1%;
     border:3px solid #415a77;
@@ -33,4 +36,10 @@ a{
     background-color: rgba(65, 90, 119, .4);
     box-shadow: inset 0px 0px 35px 10px rgba(13,27,42,0.56);
     text-shadow: 1px -5px 3px rgba(13,27,42,0.56);;
+}
+
+@media (max-width: 838px){
+    .navBar_ul-name{
+        display: none;
+    }
 }
