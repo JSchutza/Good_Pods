@@ -5,7 +5,8 @@ append head
    script(src="/javascripts/podcast.js" type="module" defer)
 
 block content
-    div(class='main-content-container')
+    h1(class=`innerHeader`)= podcast.name
+    div(class='main-content-container') 
         div(class='left-bar')
             div(class="img_holder")
                 img(src='/images/logo.png')
@@ -31,23 +32,24 @@ block content
                     div(class='userId', id=userId)
                         button(type="submit") Add Your review
         div(class='center-content')
-            h1(class=`innerHeader`)= podcast.name
-            div(class="pod_description")
-                h4 Description
-                p #{podcast.description}
-            div(class="pod_description") 
-                h4 Genre 
-                    span #{podcast.Genre.name}
-            h4(class="avgRating" id=`avg_rating-${podcast.id}`)
-            div(class = "shelf_btn_container" id=`${podcast.id}`)
-                h3 Add To My Shelf
+            div(class="pod_description__container")
+                div(class="pod_description")
+                    h4 Description
+                    p #{podcast.description}
+                div(class="pod_description") 
+                    h4 Genre 
+                        span #{podcast.Genre.name}
+                div(class="pod_description")
+                    h4(class="avgRating" id=`avg_rating-${podcast.id}`)
+                div(class = "shelf_btn_container" id=`${podcast.id}`)
+                    h3 Add To My Shelf
 
-                div(class="shelf_btn")
-                    button(class="shelf_btn" id="Current" type='button' title='Current') 🎧
-                    button(class="shelf_btn" id="Thumbs_Up" type='button' title='Thumbs Up') 👍
-                    button(class="shelf_btn" id= "On_My_Radar" type='button' title='On My Radar') 👀
-                    button(class="shelf_btn" id="Meh" type='button' title='Meh') 😑
-                    button(class="shelf_btn" id="Thumbs_Down" type='button' title='Thumbs Down') 👎
+                    div(class="shelf_btn")
+                        button(class="shelf_btn" id="Current" type='button' title='Current') 🎧
+                        button(class="shelf_btn" id="Thumbs_Up" type='button' title='Thumbs Up') 👍
+                        button(class="shelf_btn" id= "On_My_Radar" type='button' title='On My Radar') 👀
+                        button(class="shelf_btn" id="Meh" type='button' title='Meh') 😑
+                        button(class="shelf_btn" id="Thumbs_Down" type='button' title='Thumbs Down') 👎
 
             div(class="reviews")
                 h2(class='idgrabber' id=podcast.id)= `What Other People are Saying About`

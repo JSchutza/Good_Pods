@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
       json.forEach(review => {
 
         let newReview = document.createElement("div")
-        newReview.setAttribute('class', `user-${review.userId}`);
+        newReview.setAttribute('class', `user-${review.userId} review__div`);
         newReview.setAttribute('id', `review-${review.id}`)
 
         let userName = document.createElement('p');
@@ -21,16 +21,19 @@ window.addEventListener('DOMContentLoaded', () => {
         let reviewText = document.createElement("p")
         reviewText.setAttribute('class', `review-text user-${review.userId} pod-${review.podcastId}`);
 
-        let rating = document.createElement('p')
+        let ratingtext = document.createElement('p')
+        ratingtext.innerHTML="Rating: "
+        let rating = document.createElement('span')
         rating.setAttribute('class', `rating user-${review.userId} pod-${review.podcastId}`);
-        rating.innerHTML = 'Rating: ';
+        rating.innerHTML = '';
         for (let i = 0; i < review.rating; i++) {
-          rating.innerHTML += '☆';
+          rating.innerHTML += '&#9733; ';
         }
-        console.log('review.userId: ', review.userId);
+        ratingtext.appendChild(rating)
+        // console.log('review.userId: ', review.userId);
         reviewText.innerHTML = review.reviewText;
         newReview.appendChild(userName);
-        newReview.appendChild(rating);
+        newReview.appendChild(ratingtext);
         newReview.appendChild(reviewText);
 
 
