@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', async ()=> {
   let newFeatures = document.getElementById('newPods')
-  
+
   const featuredPodList = await featuredPods()
   const header = document.createElement("h2")
   console.log(featuredPodList)
@@ -15,12 +15,12 @@ window.addEventListener('DOMContentLoaded', async ()=> {
     featPodimg.setAttribute("onError","src='/images/logo.png'")
     featPod.setAttribute('class', 'feat__pod__link')
     featPodDiv.setAttribute('class', `podcast_div`)
-    featPodDiv.appendChild(featPodimg)
     featPodDiv.appendChild(featPod)
+    featPodDiv.appendChild(featPodimg)
     newFeatures.appendChild(featPodDiv)
   })
 
-  
+
 })
 const featuredPods = async() => {
   const res = await fetch('/api/podcasts')
@@ -34,7 +34,7 @@ const featuredPods = async() => {
       } else{
         i--
       }
-      
+
     }
   }
   return featuredPods

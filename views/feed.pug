@@ -1,11 +1,11 @@
 extends layout.pug
-append head 
+append head
     script(src="/javascripts/feed.js" type="module" defer)
     link(rel='stylesheet' href='/stylesheets/feed.css')
-    
+
 block content
     h1 The Feed
-    div(class='main-content-container') 
+    div(class='main-content-container')
         //div(class='left-bar') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         div(class='center-content')
             div(class="featured__Podcasts ")
@@ -15,17 +15,16 @@ block content
                 h2= genre.name
                 div(id=`${genre.name}` class="genre_div" )
                     each podcast in genre.Podcasts
-                        div(id=`${podcast.name}` class="podcast_div")
-                            a(href=`podcasts/${podcast.id}`)= podcast.name
+                        a(href=`podcasts/${podcast.id}` id=`${podcast.name}` class="podcast_div")
+                            p( class="podcast_name")= podcast.name
                             img(src=`/images/catalog/${podcast.id}.jpeg`, alt="logo", onError="src='/images/logo.png'")
                             p average rating: ***add stuff
-                            p= podcast.description
+                            p(class="podcast_description")= podcast.description
 
-        div(class='right-bar') 
+        div(class='right-bar')
             h2 Browse by Genre
-            
+
                 each genre in genres
                     ul(id="genreList")
                         li(class="Genre__List")
                             a(href=`#${genre.name}`)= genre.name
-
