@@ -184,6 +184,11 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             const data = await removeFromShelf(the_shelf, the_podcast);
             const messageDiv = document.querySelector('.message');
             messageDiv.innerHTML = data.message;
+
+            setTimeout(()=> {
+                window.location.reload();
+            }, 1000);
+
         });
 
     });

@@ -72,7 +72,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
 
 
     const genre_info = await Genre.findAll();
-    console.log(genre_info);
+
 
     res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
 }));

@@ -3,11 +3,12 @@ extends layout.pug
 
 
 block content
-  h1= title
+
 
 
   if authenticated
-    h1 test
+    script(src="/javascripts/redirect.js" type="module" defer)
+
 
   else
     include create-user.pug

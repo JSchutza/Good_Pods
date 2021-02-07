@@ -4,7 +4,6 @@
 
 
 
-
 // functions here:
 
 window.addEventListener("DOMContentLoaded", async (event)=>{
@@ -13,8 +12,6 @@ window.addEventListener("DOMContentLoaded", async (event)=>{
     document.getElementById('searchResults').classList.remove('hidden')
     search()
   })
-
-    
 
 
   
