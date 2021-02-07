@@ -9,11 +9,15 @@ block content
     .main-content-container
         .left-bar
             h1 Welcome #{name}
-            ul
-                li #{email}
-                a(href="") update
+            if isDemo
+                p You are not allowed to delete or update the demo users account.
+            else
+                ul
+                    li #{email}
+                    a(href="") update
 
-            a(href="") Delete Account
+                a(href="") Delete Account
+
 
 
         .center-content
@@ -27,3 +31,5 @@ block content
             for each_Genre in genre_info
                 li
                     a(href=`feed#${each_Genre.dataValues.name}`) #{each_Genre.dataValues.name}
+
+            .message

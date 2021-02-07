@@ -18,6 +18,8 @@ router.get('/podcasts', asyncHandler(async (req, res) => {
 }));
 
 
+
+
 // api for the users shelf
 router.get('/shelves', asyncHandler(async (req, res) => {
     const user_id = req.session.auth.userId;
@@ -44,13 +46,53 @@ router.get('/shelves', asyncHandler(async (req, res) => {
     res.json(result);
 }));
 
+
+
+
 router.post("/shelves", asyncHandler (async (req, res) => {
     const shelfId = req.session.auth.userShelves[req.body.shelfType]
     const podcastId = req.body.podcastId;
     await PodShelf.create({shelfId, podcastId})
-    res.json({"this is a response":"just Checking"})
-})
-)
+
+    const addedPodcast = await Podcast.findByPk(podcastId);
+    const the_shelf = await Shelf.findByPk(shelfId);
+
+    const message = {
+        message: `${addedPodcast.name} was added to your ${the_shelf.type} shelf.`,
+    }
+
+
+    res.json(message);
+}));
+
+
+
+
+router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id(\\d+)', asyncHandler(async (req, res) => {
+    const shelf_id = req.params.shelf_id;
+    const podcast_id = req.params.podcast_id;
+
+    await PodShelf.destroy({
+        where: { shelfId: shelf_id, podcastId: podcast_id }
+    });
+
+    const removedPodcast = await Podcast.findByPk(podcast_id);
+    const the_shelf = await Shelf.findByPk(shelf_id);
+
+    const message = {
+        message: `${removedPodcast.name} was removed from your ${the_shelf.type} shelf.`,
+    }
+
+
+    res.json(message);
+
+}));
+
+
+
+
+
+
 // router.get("/podcasts/:id/reviews", asyncHandler(async (req, res)=> {
 //     const reviews = await Review.findAll({where: {
 //         podcastId: req.params.id
@@ -61,14 +103,14 @@ router.post("/shelves", asyncHandler (async (req, res) => {
 
 
 
-
-
 // api for the genres
 router.get('/genres', asyncHandler(async (req, res) => {
     const genres = await Genre.findAll()
 
     res.json(genres)
-}))
+}));
+
+
 
 // api to grab specific podcast
 router.get('/podcasts/:id(\\d+)', asyncHandler(async (req, res) => {
@@ -91,7 +133,9 @@ router.get('/podcasts/:id(\\d+)', asyncHandler(async (req, res) => {
     final.podcast = podcast
     final.averageScore = average
     res.json(final)
-}))
+}));
+
+
 
 // api for reviews by podcast ID
 router.get('/podcasts/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
@@ -103,18 +147,16 @@ router.get('/podcasts/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
         include: [User]
     })
 
-
-
     const result = [];
     reviews.forEach(review => {
         let each = {
             "name": review.User.name,
-            "UserId": review.User.id,
+            "userId": review.User.id,
             "id": review.id,
             "podcastId": review.podcastId,
             "rating": review.rating,
             "reviewText": review.reviewText,
-            "userId": review.userId
+            // "userId": review.userId
         }
 
         result.push(each)
@@ -122,19 +164,19 @@ router.get('/podcasts/:id(\\d+)/reviews', asyncHandler(async (req, res) => {
 
 
     res.json(result)
+}));
+
+
+
+// api to delete a single review
+router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async (req, res) => {
+    const id = req.params.reviewId;
+
+    const review = await Review.findByPk(id);
+    await review.destroy();
+    res.json(review)
 }))
 
-// api trying to delete a single review
-router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async (req, res) => {
-    const pathArr = req.path.split('/');
-    const id = req.params.reviewId;
-    const review = await Review.findByPk(id, {
-        include: [User]
-    })
-    const updatedReviews = podcasts.podcastId.reviews.filter(el => el.id !== id);
-    podcast.podcastId.reviews = updatedReviews;
-    res.json(reviews)
-}))
 
 
 
@@ -147,19 +189,6 @@ router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler
 //     }});
 //     res.json(shelves)
 // }))
-
-
-
-router.delete('/shelves/:shelfId(\\d+)/:podcastId(\\d+)', asyncHandler(async (req, res) => {
-    const shelf_id = req.params.shelfId;
-    const podcast_id = req.params.podcastId;
-
-    const pod_shelf = await PodShelf.destroy({
-        where: { shelfId: shelf_id, podcastId: podcast_id }
-    });
-
-    res.json(pod_shelf)
-}));
 
 
 
