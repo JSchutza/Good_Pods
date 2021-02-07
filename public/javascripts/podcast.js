@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
       json.forEach(review => {
 
         let newReview = document.createElement("div")
-        newReview.setAttribute('class', `user-${review.userId} review__div`);
+        newReview.setAttribute('class', `user-${review.userId}`);
         newReview.setAttribute('id', `review-${review.id}`)
 
         let userName = document.createElement('p');
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
         reviewText.setAttribute('class', `review-text user-${review.userId} pod-${review.podcastId}`);
 
         let ratingtext = document.createElement('p')
-        ratingtext.innerHTML="Rating: "
+        ratingtext.innerHTML = "Rating: "
         let rating = document.createElement('span')
         rating.setAttribute('class', `rating user-${review.userId} pod-${review.podcastId}`);
         rating.innerHTML = '';
@@ -43,11 +43,6 @@ window.addEventListener('DOMContentLoaded', () => {
         deleteButton.innerText = 'Delete Review'
         newReview.appendChild(deleteButton);
 
-        // if (review.userId === currentUserId) {
-        //   deleteButton.disabled = false;
-        // } else {
-        //   deleteButton.disabled = true;
-        // }
         reviewArea.appendChild(newReview);
       })
     }
@@ -63,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-  //trying to delete a single review
+  //delete a single review
   async function deleteReview(reviewId) {
     const res = await fetch(`/api/podcasts/${podcastId}/reviews/${reviewId}`, {
       method: 'DELETE'
@@ -89,28 +84,29 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
   })
+
+
   const getTheAverageRating = async () => {
-    
+
     let rating = document.querySelectorAll(".avgRating")[0]
-      const id = rating.id.split("-")[1]
-      const res = await fetch(`/api/podcasts/${id}`)
-      if(res.ok){
-        const resJson = await res.json()
-        const averageRating = resJson.averageScore
-        if(!averageRating){
-          rating.innerHTML = 'This podcast has no current ratings'
-        }
-        else
-        {
+    const id = rating.id.split("-")[1]
+    const res = await fetch(`/api/podcasts/${id}`)
+    if (res.ok) {
+      const resJson = await res.json()
+      const averageRating = resJson.averageScore
+      if (!averageRating) {
+        rating.innerHTML = 'This podcast has no current ratings'
+      }
+      else {
         let stars = ''
-        for (let i =0; i< averageRating; i++){
-          stars+='&#9733; '
+        for (let i = 0; i < averageRating; i++) {
+          stars += '&#9733; '
         }
-        rating.innerHTML=`Average Rating <span class='Avg_Stars'>${stars}`
+        rating.innerHTML = `Average Rating <span class='Avg_Stars'>${stars}`
       }
-      }
-      
     }
+
+  }
   getTheAverageRating()
 })
 
