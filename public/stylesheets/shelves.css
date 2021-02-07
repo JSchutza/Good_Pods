@@ -30,11 +30,11 @@
     justify-content: space-around;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 40px;
+    /* padding: 40px; */
 }
 
 .shelf-item {
-  grid-column-start: 1;
+margin: 10px;
   padding: 10px;
 }
 
@@ -46,8 +46,14 @@
 
 .pod-pic {
     padding: 20px;
+    margin: 10px;
 }
 
+
+.name-and-btn {
+    position: absolute;
+    padding: 10px;
+}
 
 .remove-button {
 font-family: 'Overpass', sans-serif;
@@ -56,8 +62,7 @@ padding: 7px;
 margin: 15px 7px 20px 7px;
 background-color: #778da9;
 font-weight: bold;
-/* position: absolute;
-bottom: 20px; */
+position: absolute;
 }
 
 .shelf-contents {
@@ -76,6 +81,7 @@ bottom: 20px; */
     text-shadow: 1px -5px 3px rgba(13,27,42,0.56);
     position: relative;
     overflow-x: scroll;
+    height: 270px;
 }
 
 
