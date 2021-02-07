@@ -1,4 +1,8 @@
 window.addEventListener('DOMContentLoaded', async ()=> {
+
+  let newFeatures = document.getElementById('newPods')
+
+
   const featuredPodList = await featuredPods()
   populateFeatures(featuredPodList)
   getTheAverageRating()
@@ -34,10 +38,27 @@ const populateFeatures = (featuredList) => {
     featPodimg.setAttribute("onError","src='/images/logo.png'")
     featPod.setAttribute('class', 'feat__pod__link')
     featPodDiv.setAttribute('class', `podcast_div`)
-    featPodDiv.appendChild(featPodimg)
     featPodDiv.appendChild(featPod)
+    featPodDiv.appendChild(featPodimg)
     newFeatures.appendChild(featPodDiv)
   })
+
+
+
+})
+const featuredPods = async() => {
+  const res = await fetch('/api/podcasts')
+  const resJson = await res.json()
+  const featuredPods = []
+  if (res.ok) {
+    for (let i =0; i < 5; i++){
+      const ele= resJson[Math.floor(Math.random()* resJson.length)]
+      if (!featuredPods.includes(ele)){
+        featuredPods.push(ele)
+      } else{
+        i--
+      }
+
 
 }
 const getTheAverageRating = async () => {
@@ -56,8 +77,14 @@ const getTheAverageRating = async () => {
     let stars = ''
     for (let i =0; i< averageRating; i++){
       stars+='&#9733; '
+
     }
     rating.innerHTML=`Average Rating <span class='stars'>${stars}`
   }
+
+  return featuredPods
+}
+
   })
 }
+
