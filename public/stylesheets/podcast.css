@@ -116,7 +116,7 @@ border: none;
     box-shadow: inset 0px 0px 35px 10px rgba(13,27,42,0.56);
     text-shadow: 1px -5px 3px rgba(13,27,42,0.56);;
 }
-.innerHeader{
+#innerHeader{
   margin: 20px;
 }
 .pod_description h4{

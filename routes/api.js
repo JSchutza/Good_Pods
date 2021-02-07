@@ -50,15 +50,14 @@ router.get('/shelves', asyncHandler(async (req, res) => {
 
 
 router.post("/shelves", asyncHandler (async (req, res) => {
-    const shelfId = req.session.auth.userShelves[req.body.shelfType]
+    const shelfId = req.session.auth.userShelves[req.body.ShelfType]
     const podcastId = req.body.podcastId;
     await PodShelf.create({shelfId, podcastId})
-
-    const addedPodcast = await Podcast.findByPk(podcastId);
-    const the_shelf = await Shelf.findByPk(shelfId);
+    const addedPodcast = req.body.podcastName
+    const the_shelf = req.body.ShelfType
 
     const message = {
-        message: `${addedPodcast.name} was added to your ${the_shelf.type} shelf.`,
+        message: `${addedPodcast} was added to your ${the_shelf} shelf.`
     }
 
 
