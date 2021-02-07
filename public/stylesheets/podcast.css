@@ -58,6 +58,17 @@ border: none;
   align-self: center;
 }
 
+.delete-button {
+  font-family: 'Overpass', sans-serif;
+  border-radius: 5px;
+  padding: 7px;
+  margin: 15px 7px 20px 7px;
+  background-color:#415a77;
+  font-weight: bold;
+  border: none;
+}
+
+
 .right-bar{
   display: flex;
   flex-direction: column;
@@ -163,9 +174,7 @@ border: none;
   flex-direction: column;
   margin: 10px;
   border-bottom:2px solid #415a77;
-  
-    
-    padding: 30px;
+  padding: 30px;
 }
 .review__div button{
   border: none;
@@ -204,6 +213,12 @@ border: none;
   .left-bar{
     
   }
+}
+
+
+.stars {
+  margin-left: 35px;
+  margin-bottom: 20px;
 }
 /* .stars > label:hover:before,
 .stars > label:hover ~ label:before,
