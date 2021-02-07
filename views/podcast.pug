@@ -22,7 +22,7 @@ block content
                 div(class="pod_description")
                     h4(class="avgRating" id=`avg_rating-${podcast.id}`)
                 div(class = "shelf_btn_container")
-                    h3 Add To My Shelf
+                    h3(class='userId', id=userId) Add To My Shelf
 
                     div(class="shelf_btn"  id=podcast.id)
                         button(class="shelf_btn" id="Current" type='button' title='Current') 🎧
