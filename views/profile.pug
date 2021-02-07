@@ -2,34 +2,34 @@ extends layout.pug
 
 append head
     script(src="/javascripts/shelves.js" type="module" defer)
-
+    link(rel='stylesheet' href='/stylesheets/shelves.css')
 block content
-    h1 Your Profile
+    //- h1 Your Profile
 
     .main-content-container
         .left-bar
-            h1 Welcome #{name}
+            h2(class='welcome') Welcome, #{name}
             if isDemo
                 p You are not allowed to delete or update the demo users account.
             else
-                ul
-                    li #{email}
+                h2 #{email}
+                div(class="account")
                     a(href="") Update
-
-                a(href="/" class="delete-account" id=`${theirId}`) Delete Account
+                div(class="account")
+                    a(href="/" class="delete-account" id=`${theirId}`) Delete Account
 
 
 
         .center-content
             .shelves
-                h1 Your Shelf
+                h1(id='your-shelf') Your Shelves
 
 
         .right-bar
-            h1 Genre
+            h1 Genres
             ul
             for each_Genre in genre_info
                 li
-                    a(href=`feed#${each_Genre.dataValues.name}`) #{each_Genre.dataValues.name}
+                    a(href=`feed#${each_Genre.dataValues.name}` class='genreName') #{each_Genre.dataValues.name}
 
             .message
