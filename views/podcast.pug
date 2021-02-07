@@ -11,27 +11,6 @@ block content
             div(class="img_holder")
                 img(src=`/images/catalog/${podcast.id}.jpeg`)
             +review-form
-            //- div(class="pod_review_container")
-            //-     h2 Review this Pod
-            //-     form(action=`/podcasts/${podcast.id}` method="post" id='review-form')
-            //-         div(class="stars")
-
-            //-             input(id="star5" name="star" type="radio" value="5" class="radio-btn hide")
-            //-             label(for="star5") &#9734;
-            //-             input(id="star4" name="star" type="radio" value="4" class="radio-btn hide")
-            //-             label(for="star4") &#9734;
-            //-             input(id="star3" name="star" type="radio" value="3" class="radio-btn hide")
-            //-             label(for="star3") &#9734;
-            //-             input(id="star2" name="star" type="radio" value="2" class="radio-btn hide")
-            //-             label(for="star2") &#9734;
-            //-             input(id="star1" name="star" type="radio" value="1" class="radio-btn hide")
-            //-             label(for="star1") &#9734;
-
-            //-         div(class="review")
-            //-             textarea(class="review" name="reviewText" placeholder="Add your review to this podcast" cols="30", rows="10")
-            //-             input(type="hidden" name="_csrf" value=csrfToken)
-            //-         div(class='userId', id=userId)
-            //-             button(type="submit") Add Your review
         div(class='center-content')
             div(class="pod_description__container")
                 div(class="pod_description")
