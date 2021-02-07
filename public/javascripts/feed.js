@@ -43,24 +43,8 @@ const populateFeatures = (featuredList) => {
     newFeatures.appendChild(featPodDiv)
   })
 
-
-
-})
-const featuredPods = async() => {
-  const res = await fetch('/api/podcasts')
-  const resJson = await res.json()
-  const featuredPods = []
-  if (res.ok) {
-    for (let i =0; i < 5; i++){
-      const ele= resJson[Math.floor(Math.random()* resJson.length)]
-      if (!featuredPods.includes(ele)){
-        featuredPods.push(ele)
-      } else{
-        i--
-      }
-
-
 }
+
 const getTheAverageRating = async () => {
   
   let ratings = document.querySelectorAll(".avgRating")
@@ -82,9 +66,9 @@ const getTheAverageRating = async () => {
     rating.innerHTML=`Average Rating <span class='stars'>${stars}`
   }
 
-  return featuredPods
+  
 }
 
-  })
-}
+  )}
+
 
