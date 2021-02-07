@@ -5,7 +5,7 @@ const router = express.Router();
 
 const { Podcast, Genre, Shelf, Review, PodShelf, User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
-
+const { logoutUser } = require("../auth")
 
 
 // api for the pod feed page
@@ -190,6 +190,34 @@ router.delete('/podcasts/:podcastId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler
 //     res.json(shelves)
 // }))
 
+
+
+                    // NEED TO FIX
+router.delete('/users/:user_id(\\d+)', asyncHandler(async (req, res) => {
+    const their_id = req.params.user_id;
+    const user_id = req.session.auth.userId;
+
+
+    console.log(user_id);
+    // only destroy the user if their session id is the same as the passed in parameter in the api
+    // if(user_id === their_id) {
+    await User.destroy({
+        where: { id: user_id}
+    });
+
+
+        // must call logout
+        // logoutUser(req, res);
+
+        // redirect them to the homepage
+        res.json({message: ""});
+    // }
+
+
+
+    // res.end();
+
+}));
 
 
 
