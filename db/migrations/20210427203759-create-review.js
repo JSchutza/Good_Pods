@@ -1,21 +1,28 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Shelves', {
+    return queryInterface.createTable('Reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      type: {
-        allowNull: false,
-        type: Sequelize.ENUM('Current', 'Thumbs Up', 'On My Radar', 'Meh', 'Thumbs Down')
-      },
       userId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Users' }
+        references: {model: 'Users'},
+        allowNull: false,
+      },
+      podcastId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      rating: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      reviewText: {
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +35,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Shelves');
+    return queryInterface.dropTable('Reviews');
   }
 };
