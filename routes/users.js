@@ -124,7 +124,7 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     const RealPassword = user.hashedPassword.toString();
     const passwordMatch = await bcrypt.compare(password, RealPassword);
 
-        if (passwordMatch ) {
+        if (passwordMatch) {
             const userShelves = await populateShelves(user)
 
             loginUser(req, res, user, userShelves)
@@ -135,7 +135,11 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
                     res.redirect("/me")
                 }
             })
-    } }
+        } else {
+            errors.push('The email password combination does not match!')
+            res.render('login', { errors, csrfToken: req.csrfToken(), email})
+        }
+    }
     else {
         res.render('login', { errors, csrfToken: req.csrfToken(), email })
     }
