@@ -21,7 +21,7 @@ const search= async () => {
     const searchResultsDiv = document.getElementById("searchResults")
     searchResultsDiv.innerText="Please enter a search term."
   }
-  const term = new RegExp(`\w*\s*${searchTerm}\w*\s*\w*\s*\w*\s*\s*\w*\s*\w*`, 'i')
+  const term = new RegExp(`\w*\s*\w*\s*\w*\s*\w*\s*${searchTerm}\w*\s*\w*\s*\w*\s*\s*\w*\s*\w*`, 'i')
   const res = await fetch("/api/podcasts")
   const resJson = await res.json()
   const searchResults = []
