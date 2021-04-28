@@ -74,8 +74,8 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     const genre_info = await unirest.get(`${baseUrl}/genres?top_level_only=1`)
       .header('X-ListenAPI-Key', apiKey)
         genre_info.toJSON();
-
-    res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
+        const genres = genre_info.body.genres;
+    res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genres });
 }));
 
 
