@@ -24,31 +24,31 @@ const unirest = require("unirest")
 
 // api for the users shelf
 router.get('/shelves', asyncHandler(async (req, res) => {
-    // const user_id = req.session.auth.userId;
+    const user_id = req.session.auth.userId;
     
-    // const users_shelf = await Shelf.findAll({
-    //     where: { userId: user_id }
-    // });
+    const users_shelf = await Shelf.findAll({
+        where: { userId: user_id }
+    });
     
-    // let result = []
+    let result = []
     
     
-    // for (let shelf in users_shelf){
-    //     let currentShelf = {title:shelf.name}
-    //     let newPodsArray = []
-    //     for (let pod in shelf.podcasts){
-    //         let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
-    //         .header('X-ListenAPI-Key', apiKey)
-    //       podcast = await podcast.toJSON();
-    //       podcast = podcast.body
-    //         newPodsArray.push(podcast)
-    //     }
-    //     currentShelf.podcasts=newPodsArray
-    //     result.push
-    // }
+    for (let shelf in users_shelf){
+        let currentShelf = {title:shelf.name}
+        let newPodsArray = []
+        for (let pod in shelf.podcasts){
+            let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
+            .header('X-ListenAPI-Key', apiKey)
+          podcast = await podcast.toJSON();
+          podcast = podcast.body
+            newPodsArray.push(podcast)
+        }
+        currentShelf.podcasts=newPodsArray
+        result.push
+    }
    
-    // console.log(result)
-    // res.render("profile", {shelves:result});
+    console.log(result)
+    res.render("profile", {shelves:result});
 }));
 
 
