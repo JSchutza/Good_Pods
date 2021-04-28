@@ -1,11 +1,4 @@
 
-const unirest = require("unirest");
-const { apiKey } = require("../config");
-
-
-
-
-
 // functions here:
 
 window.addEventListener("DOMContentLoaded", async (event)=>{
@@ -18,23 +11,24 @@ window.addEventListener("DOMContentLoaded", async (event)=>{
 });
 
 const search= async () => {
-  console.log("THIS IS WORKING?????")
+  
   let searchTerm = document.getElementById('searchInput').value
   searchTerm.split(" ").join("%20")
   if (searchTerm===''){
     const searchResultsDiv = document.getElementById("searchResults")
     searchResultsDiv.innerText="Please enter a search term."
   }
-  const response = await unirest.get(`https://listen-api.listennotes.com/api/v2/search?q=${searchTerm}&sort_by_date=0&type=episode&offset=0&len_min=10&len_max=30&genre_ids=68%2C82&published_before=1580172454000&published_after=0&only_in=title%2Cdescription&language=English&safe_mode=0`)
-  .header('X-ListenAPI-Key', apiKey)
-  const resJson = response.toJSON();
+  const response = await fetch(`/search/${searchTerm}`)
+  const resJson = await response.json()
+  console.log(resJson)
+  
 
   // const term = new RegExp(`\w*\s*\w*\s*\w*\s*\w*\s*${searchTerm}\w*\s*\w*\s*\w*\s*\s*\w*\s*\w*`, 'i')
   // const res = await fetch("/api/podcasts")
   // const resJson = await res.json()
-  const searchResults = []
+  let searchResults = []
   if (response.ok){
-    searchResults = resJson.results
+    searchResults = resJson
     const searchResultsDiv = document.getElementById("searchResults")
     if(searchResults.length=== 0){
       searchResultsDiv.innerText="There are no podcasts matching that search."

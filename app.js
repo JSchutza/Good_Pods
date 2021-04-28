@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const the_api = require('./routes/api');
 const podsRouter = require('./routes/pod');
+const search = require('./routes/search')
 
 const { sessionSecret } = require('./config');
 const { restoreUser } = require("./auth")
@@ -47,6 +48,7 @@ app.use('/', indexRouter);
 app.use('/me', usersRouter);
 app.use('/api', the_api);
 app.use('/podcasts', podsRouter);
+app.use("/search", search)
 
 
 
