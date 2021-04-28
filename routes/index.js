@@ -30,9 +30,25 @@ router.get('/', csrfProtection, (req, res) => {
       let genrePods = {genre: genreName, podcasts: podcasts.body.podcasts}
       genres.push(genrePods)
     }
-
+    const featuredRes = await unirest.get('https://listen-api.listennotes.com/api/v2/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0')
+  .header('X-ListenAPI-Key', apiKey)
+  let resJson = await featuredRes.toJSON();
+  console.log(resJson)
+  const featuredPods = []
+  if (featuredRes.ok) {
+    for (let i =0; i < 5; i++){
+      const ele= resJson.body.recommendations[Math.floor(Math.random()* resJson.body.recommendations.length)]
+      if (!featuredPods.includes(ele)){
+        featuredPods.push(ele)
+      } else{
+        i--
+      }
+      
+    }
+  }
   
-    res.render('feed', {genres})
+  
+    res.render('feed', {genres,featuredPods})
     
   }));
 

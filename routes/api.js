@@ -5,7 +5,9 @@ const router = express.Router();
 
 const { Podcast, Genre, Shelf, Review, PodShelf, User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
-const { logoutUser } = require("../auth")
+const { logoutUser } = require("../auth");
+const shelf = require('../db/models/shelf');
+const { apiKey } = require('../config');
 
 
 // api for the pod feed page
@@ -25,8 +27,7 @@ router.get('/shelves', asyncHandler(async (req, res) => {
     const user_id = req.session.auth.userId;
 
     const users_shelf = await Shelf.findAll({
-        where: { userId: user_id },
-        include: { model: Podcast }
+        where: { userId: user_id }
     });
 
     let result = {}
@@ -42,6 +43,16 @@ router.get('/shelves', asyncHandler(async (req, res) => {
     result.radar = radar;
     result.meh = meh;
     result.thumbs_down = thumbs_down;
+    for ( shelf of result) {
+        for(podcast of shelf.podcasts){
+            let pod = await await unirest.get('https://listen-api.listennotes.com/api/v2/podcasts/4d3fe717742d4963a85562e9f84d8c79?next_episode_pub_date=1479154463000&sort=recent_first')
+            .header('X-ListenAPI-Key', apiKey)
+            pod = await pod.toJSON()
+            // let podObj = {name: pod.title, podImage: pod.thumbnail, id: pod.id}
+            let podObj = {name: pod.body.title, podImage: pod.body.thumbnail, id: pod.body.id}
+            podcast.info = podObj
+        }
+    }
 
     res.json(result);
 }));
