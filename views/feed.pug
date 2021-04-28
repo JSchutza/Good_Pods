@@ -9,14 +9,21 @@ block content
         div(class='center-content')
             div(class="featured__Podcasts ")
                 h1 Featured Podcasts
-                div(id="newPods" class="genre_div")    
+                div(id="newPods" class="genre_div")
+                    each podcast in featuredPods
+                        a(href=`podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
+                            p( class="podcast_name")= podcast.title
+                            img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
+
+                            h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
+                            p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description 
             each genre in genres
-                h2(class='genre_name')= genre.name
-                div(id=`${genre.name}` class="genre_div" )
-                    each podcast in genre.Podcasts
-                        a(href=`podcasts/${podcast.id}` id=`${podcast.name}` class="podcast_div")
-                            p( class="podcast_name")= podcast.name
-                            img(src=`/images/catalog/${podcast.id}.jpeg`, alt="logo", onError="src='/images/logo.png'")
+                h2(id=`${genre.genre}` class='genre_name')= genre.genre
+                div( class="genre_div" )
+                    each podcast in genre.podcasts
+                        a(href=`podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
+                            p( class="podcast_name")= podcast.title
+                            img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
 
                             h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
                             p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description
@@ -29,4 +36,4 @@ block content
                 each genre in genres
                     ul(id="genreList")
                         li(class="Genre__List")
-                            a(href=`#${genre.name}`)= genre.name
+                            a(href=`#${genre.genre}`)= genre.genre
