@@ -1,12 +1,15 @@
 const express = require('express');
 const unirest = require("unirest")
 const router = express.Router();
-const { User, Podcast, Genre } = require("../db/models")
+const { User, Podcast, Genre, Shelf } = require("../db/models")
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
 const apiKey = process.env.LISTEN_API_KEY
 const baseUrl = 'https://listen-api.listennotes.com/api/v2'
 // for the home page
+
+
+
 router.get('/', csrfProtection, (req, res) => {
   
   res.render('index', { csrfToken: req.csrfToken() })
@@ -52,7 +55,34 @@ router.get('/', csrfProtection, (req, res) => {
     
   }));
 
-
+  router.get('/me', asyncHandler( async (req, res) => {
+  
+     const user_id = req.session.auth.userId;
+    
+    const users_shelf = await Shelf.findAll({
+        where: { userId: user_id }
+    });
+    
+    let result = []
+    
+    
+    for (let shelf in users_shelf){
+        let currentShelf = {title:shelf.title}
+        let newPodsArray = []
+        for (let pod in shelf.podcasts){
+            let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
+            .header('X-ListenAPI-Key', apiKey)
+          podcast = await podcast.toJSON();
+          podcast = podcast.body
+            newPodsArray.push(podcast)
+        }
+        currentShelf.podcasts=newPodsArray
+        result.push(currentShelf)
+    }
+   
+    console.log(result)
+    res.render("profile", {shelves:result});
+  }));
 
 
 

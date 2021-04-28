@@ -6,55 +6,49 @@ const router = express.Router();
 const { Podcast, Genre, Shelf, Review, PodShelf, User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
 const { logoutUser } = require("../auth");
-const shelf = require('../db/models/shelf');
 const { apiKey } = require('../config');
-
+const unirest = require("unirest")
 
 // api for the pod feed page
-router.get('/podcasts', asyncHandler(async (req, res) => {
-    const all_podcasts = await Podcast.findAll({
-        include: [{ model: Genre }],
-    });
+// I don't know if this code was ever needed but its certainly not needed now
+// router.get('/podcasts', asyncHandler(async (req, res) => {
+//     const all_podcasts = await Podcast.findAll({
+//         include: [{ model: Genre }],
+//     });
 
-    res.json(all_podcasts);
-}));
+//     res.json(all_podcasts);
+// }));
 
 
 
 
 // api for the users shelf
 router.get('/shelves', asyncHandler(async (req, res) => {
-    const user_id = req.session.auth.userId;
-
-    const users_shelf = await Shelf.findAll({
-        where: { userId: user_id }
-    });
-
-    let result = {}
-
-    let current_shelf = users_shelf[0]
-    let thumbs_up = users_shelf[1]
-    let radar = users_shelf[2]
-    let meh = users_shelf[3]
-    let thumbs_down = users_shelf[4]
-
-    result.current_shelf = current_shelf;
-    result.thumbs_up = thumbs_up;
-    result.radar = radar;
-    result.meh = meh;
-    result.thumbs_down = thumbs_down;
-    for ( shelf of result) {
-        for(podcast of shelf.podcasts){
-            let pod = await await unirest.get('https://listen-api.listennotes.com/api/v2/podcasts/4d3fe717742d4963a85562e9f84d8c79?next_episode_pub_date=1479154463000&sort=recent_first')
-            .header('X-ListenAPI-Key', apiKey)
-            pod = await pod.toJSON()
-            // let podObj = {name: pod.title, podImage: pod.thumbnail, id: pod.id}
-            let podObj = {name: pod.body.title, podImage: pod.body.thumbnail, id: pod.body.id}
-            podcast.info = podObj
-        }
-    }
-
-    res.json(result);
+    // const user_id = req.session.auth.userId;
+    
+    // const users_shelf = await Shelf.findAll({
+    //     where: { userId: user_id }
+    // });
+    
+    // let result = []
+    
+    
+    // for (let shelf in users_shelf){
+    //     let currentShelf = {title:shelf.name}
+    //     let newPodsArray = []
+    //     for (let pod in shelf.podcasts){
+    //         let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
+    //         .header('X-ListenAPI-Key', apiKey)
+    //       podcast = await podcast.toJSON();
+    //       podcast = podcast.body
+    //         newPodsArray.push(podcast)
+    //     }
+    //     currentShelf.podcasts=newPodsArray
+    //     result.push
+    // }
+   
+    // console.log(result)
+    // res.render("profile", {shelves:result});
 }));
 
 
@@ -63,7 +57,12 @@ router.get('/shelves', asyncHandler(async (req, res) => {
 router.post("/shelves", asyncHandler (async (req, res) => {
     const shelfId = req.session.auth.userShelves[req.body.ShelfType]
     const podcastId = req.body.podcastId;
-    await PodShelf.create({shelfId, podcastId})
+    let updatedShelf = await Shelf.findByPk(shelfId)
+    let oldpods = updatedShelf.podcasts
+    oldpods.push(podcastId)
+    updatedShelf.update({
+        podcasts: oldpods
+      })
     const addedPodcast = req.body.podcastName
     const the_shelf = req.body.ShelfType
 
@@ -81,16 +80,19 @@ router.post("/shelves", asyncHandler (async (req, res) => {
 router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id(\\d+)', asyncHandler(async (req, res) => {
     const shelf_id = req.params.shelf_id;
     const podcast_id = req.params.podcast_id;
+    let updatedShelf = await Shelf.findByPk(shelf_id)
+    let oldpods = updatedShelf.podcasts
+    oldpods.splice(oldpods.indexOf(podcast_id),1)
+    updatedShelf.update({
+        podcasts: oldpods
+      })
+    // await PodShelf.destroy({
+    //     where: { shelfId: shelf_id, podcastId: podcast_id }
+    // });
 
-    await PodShelf.destroy({
-        where: { shelfId: shelf_id, podcastId: podcast_id }
-    });
-
-    const removedPodcast = await Podcast.findByPk(podcast_id);
-    const the_shelf = await Shelf.findByPk(shelf_id);
-
+    
     const message = {
-        message: `${removedPodcast.name} was removed from your ${the_shelf.type} shelf.`,
+        message: `Podcast was removed from your ${updatedShelf.name} shelf.`,
     }
 
 
@@ -115,8 +117,10 @@ router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id(\\d+)', asyncHandle
 
 // api for the genres
 router.get('/genres', asyncHandler(async (req, res) => {
-    const genres = await Genre.findAll()
-
+    const response = await unirest.get('https://listen-api.listennotes.com/api/v2/genres?top_level_only=1')
+  .header('X-ListenAPI-Key', apiKey)
+    let genres = response.toJSON();
+    genres = genres.body.genres
     res.json(genres)
 }));
 
@@ -125,7 +129,7 @@ router.get('/genres', asyncHandler(async (req, res) => {
 // api to grab specific podcast
 router.get('/podcasts/:id(\\d+)', asyncHandler(async (req, res) => {
     const id = req.params.id;
-    let podcast = await Podcast.findByPk(id)
+    
     const reviews = await Review.findAll({
         where: { podcastId: id }
     })
@@ -140,7 +144,7 @@ router.get('/podcasts/:id(\\d+)', asyncHandler(async (req, res) => {
         total += score
     })
     average = total / reviews.length
-    final.podcast = podcast
+    final.podcastId = id
     final.averageScore = average
     res.json(final)
 }));
