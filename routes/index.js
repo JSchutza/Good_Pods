@@ -24,14 +24,17 @@ router.get('/', csrfProtection, (req, res) => {
    
     for (let i = 0; i< genreobjlist.length; i++){
       let genreId = genreobjlist[i].id
-      let podcasts = await unirest.get(`${baseUrl}/best_podcasts?${genreId}&page=2&region=us&safe_mode=0`).header('X-ListenAPI-Key',apiKey)
-      genres.push(podcasts)
+      let genreName = genreobjlist[i].name
+      let podcasts = await unirest.get(`${baseUrl}/best_podcasts?genre_id=${genreId}&page=2&region=us&safe_mode=0`).header('X-ListenAPI-Key',apiKey)
+      podcasts = await podcasts.toJSON()
+      let genrePods = {genre: genreName, podcasts: podcasts.body.podcasts}
+      genres.push(genrePods)
     }
 
   
     res.render('feed', {genres})
     
-  }
+  }));
 
 
 
