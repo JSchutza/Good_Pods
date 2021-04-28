@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
       },
       podcastId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       rating: {

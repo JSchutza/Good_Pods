@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
       },
       podcasts: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        type: Sequelize.ARRAY(Sequelize.STRING),
         defaultValue: [],
       },
       userId: {
