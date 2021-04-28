@@ -1,4 +1,5 @@
 extends layout.pug
+include shelf
 
 append head
     script(src="/javascripts/shelves.js" type="module" defer)
@@ -26,7 +27,8 @@ block content
         .center-content
             .shelves
                 h1(id='your-shelf') Your Shelves
-
+                each shelf in shelves
+                    +shelf(shelf)
 
         .right-bar
             .genres
@@ -34,6 +36,6 @@ block content
                 ul
                 for each_Genre in genre_info
                     li
-                        a(href=`feed#${each_Genre.dataValues.name}` class='genreName') #{each_Genre.dataValues.name}
+                        a(href=`feed#${each_Genre.name}` class='genreName') #{each_Genre.name}
 
                 .message

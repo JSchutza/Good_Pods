@@ -24,37 +24,31 @@ const unirest = require("unirest")
 
 // api for the users shelf
 router.get('/shelves', asyncHandler(async (req, res) => {
-    const user_id = req.session.auth.userId;
-
-    const users_shelf = await Shelf.findAll({
-        where: { userId: user_id }
-    });
-
-    let result = {}
-
-    let current_shelf = users_shelf[0]
-    let thumbs_up = users_shelf[1]
-    let radar = users_shelf[2]
-    let meh = users_shelf[3]
-    let thumbs_down = users_shelf[4]
-
-    result.current_shelf = current_shelf;
-    result.thumbs_up = thumbs_up;
-    result.radar = radar;
-    result.meh = meh;
-    result.thumbs_down = thumbs_down;
-    for ( shelf of result) {
-        for(podcast of shelf.podcasts){
-            let pod = await await unirest.get('https://listen-api.listennotes.com/api/v2/podcasts/4d3fe717742d4963a85562e9f84d8c79?next_episode_pub_date=1479154463000&sort=recent_first')
-            .header('X-ListenAPI-Key', apiKey)
-            pod = await pod.toJSON()
-            // let podObj = {name: pod.title, podImage: pod.thumbnail, id: pod.id}
-            let podObj = {name: pod.body.title, podImage: pod.body.thumbnail, id: pod.body.id}
-            podcast.info = podObj
-        }
-    }
-
-    res.json(result);
+    // const user_id = req.session.auth.userId;
+    
+    // const users_shelf = await Shelf.findAll({
+    //     where: { userId: user_id }
+    // });
+    
+    // let result = []
+    
+    
+    // for (let shelf in users_shelf){
+    //     let currentShelf = {title:shelf.name}
+    //     let newPodsArray = []
+    //     for (let pod in shelf.podcasts){
+    //         let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
+    //         .header('X-ListenAPI-Key', apiKey)
+    //       podcast = await podcast.toJSON();
+    //       podcast = podcast.body
+    //         newPodsArray.push(podcast)
+    //     }
+    //     currentShelf.podcasts=newPodsArray
+    //     result.push
+    // }
+   
+    // console.log(result)
+    // res.render("profile", {shelves:result});
 }));
 
 

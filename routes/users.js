@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const unirest = require('unirest');
+const apiKey = process.env.LISTEN_API_KEY
+const baseUrl = 'https://listen-api.listennotes.com/api/v2'
 const { User, Shelf } = require('../db/models');
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves, populateShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
@@ -73,8 +76,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     let genresList = await unirest.get(`${baseUrl}/genres?top_level_only=1`).header('X-ListenAPI-Key',apiKey)
     genresList = await genresList.toJSON()
     const genre_info = await genresList.body.genres
-     
-
+    
 
     res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
 }));
