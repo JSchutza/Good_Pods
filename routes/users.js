@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../db/models');
-const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves, populateShelves } = require("../lib/util")
-const { loginUser, logoutUser } = require("../auth")
+const unirest = require('unirest');
 const apiKey = process.env.LISTEN_API_KEY
 const baseUrl = 'https://listen-api.listennotes.com/api/v2'
-const unirest = require("unirest")
+const { User, Shelf } = require('../db/models');
+const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves, populateShelves } = require("../lib/util")
+const { loginUser, logoutUser } = require("../auth")
+
 
 const loginValidators = [
     check('email')

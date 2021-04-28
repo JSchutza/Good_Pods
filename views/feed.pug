@@ -9,13 +9,20 @@ block content
         div(class='center-content')
             div(class="featured__Podcasts ")
                 h1 Featured Podcasts
-                div(id="newPods" class="genre_div")    
+                div(id="newPods" class="genre_div")
+                    each podcast in featuredPods
+                        a(href=`podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
+                            p( class="podcast_name")= podcast.title
+                            img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
+
+                            h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
+                            p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description 
             each genre in genres
                 h2(id=`${genre.genre}` class='genre_name')= genre.genre
                 div( class="genre_div" )
                     each podcast in genre.podcasts
-                        a(href=`podcasts/${podcast.id}` id=`${podcast.name}` class="podcast_div")
-                            p( class="podcast_name")= podcast.name
+                        a(href=`podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
+                            p( class="podcast_name")= podcast.title
                             img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
 
                             h4(class="avgRating" id=`avg_rating-${podcast.id}`) 

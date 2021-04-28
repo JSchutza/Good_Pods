@@ -5,11 +5,11 @@ append head
    script(src="/javascripts/podcast.js" type="module" defer)
 
 block content
-    h1(id ="innerHeader" class=`${podcast.name}`)= podcast.name
+    h1(id ="innerHeader" class=`${podcast.title}`)= podcast.title
     div(class='main-content-container') 
         div(class='left-bar')
             div(class="img_holder")
-                img(src=`/images/catalog/${podcast.id}.jpeg`)
+                img(src=`${podcast.image}`)
             +review-form
         div(class='center-content')
             div(class="pod_description__container")
@@ -17,8 +17,7 @@ block content
                     h4 Description
                     p #{podcast.description}
                 div(class="pod_description") 
-                    h4 Genre 
-                        span #{podcast.Genre.name}
+                    
                 div(class="pod_description")
                     h4(class="avgRating" id=`avg_rating-${podcast.id}`)
                 div(class = "shelf_btn_container")
@@ -35,15 +34,15 @@ block content
                 h2(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
                     aside 
                         em
-                            b #{podcast.name}
+                            b #{podcast.title}
 
                 div(id="ReviewDiv")
 
         div(class='right-bar')
-            h2 Other Podcasts in this Genre
-            each podcast in otherPodcasts.Podcasts
+            h2 Other Podcasts like this Podcast
+            each podcast in otherPodcasts
                 div(class='Genre_Pods')
-                    a(href=`/podcasts/${podcast.id}`)= podcast.name
+                    a(href=`/podcasts/${podcast.id}`)= podcast.title
 
             .message
 
