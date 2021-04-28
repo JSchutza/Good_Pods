@@ -8,10 +8,6 @@ const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, cre
 const { loginUser, logoutUser } = require("../auth")
 
 
-
-
-
-
 const loginValidators = [
     check('email')
         .exists({ checkFalsy: true })
@@ -73,22 +69,15 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
         isDemo = false;
     }
 
-    let genresList = await unirest.get(`${baseUrl}/genres?top_level_only=1`).header('X-ListenAPI-Key',apiKey)
-    genresList = await genresList.toJSON()
-    const genre_info = await genresList.body.genres
-    
 
-    res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genre_info });
+    // const genre_info = await Genre.findAll();
+
+    const genre_info = await unirest.get(`${baseUrl}/genres?top_level_only=1`)
+      .header('X-ListenAPI-Key', apiKey)
+        genre_info.toJSON();
+        const genres = genre_info.body.genres;
+    res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genres });
 }));
-
-
-
-
-
-
-
-
-
 
 
 
@@ -166,8 +155,6 @@ router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
     });
 
 }))
-
-
 
 
 router.post('/logout', (req, res) => {
