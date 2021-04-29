@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const unirest = require('unirest');
 const apiKey = process.env.LISTEN_API_KEY
-const baseUrl = 'https://listen-api.listennotes.com/api/v2'
+const baseUrl = 'https://listen-api-test.listennotes.com/api/v2'
 const { User, Shelf } = require('../db/models');
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves, populateShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
@@ -84,7 +84,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
         let newPodsArray = []
         for (let j= 0; j< shelf.podcasts.length; j++){
             let pod = shelf.podcasts[j]
-            let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
+            let podcast = await unirest.get(`${baseUrl}/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
             .header('X-ListenAPI-Key', apiKey)
           podcast = await podcast.toJSON();
           podcast = podcast.body

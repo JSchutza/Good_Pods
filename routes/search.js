@@ -7,10 +7,11 @@ const { asyncHandler, csrf } = require("../lib/util")
 const { logoutUser } = require("../auth");
 const { apiKey } = require('../config');
 const unirest = require("unirest");
+const baseUrl = 'https://listen-api-test.listennotes.com/api/v2';
 
 router.get("/:searchterm", asyncHandler(async (req, res) => {
     let searchParam = req.params.searchterm;
-    let url = `https://listen-api.listennotes.com/api/v2/search?q=${searchParam}&sort_by_date=0&type=podcast&offset=0&len_min=10&len_max=30&published_before=1580172454000&published_after=0&only_in=title%2Cdescription&language=English&safe_mode=0`
+    let url = `${baseUrl}/search?q=${searchParam}&sort_by_date=0&type=podcast&offset=0&len_min=10&len_max=30&published_before=1580172454000&published_after=0&only_in=title%2Cdescription&language=English&safe_mode=0`
 
     const response = await unirest.get(url)
     .header('X-ListenAPI-Key', apiKey)
