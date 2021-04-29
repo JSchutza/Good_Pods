@@ -1,0 +1,16 @@
+extends layout.pug 
+
+block content 
+   div(class='episodes-page')
+      div(class='pod-header')
+         h1=`${podcast.title} Episodes`
+         img(src=podcast.image alt=podcast.title)
+      each episode in episodes
+         div(class='episode')
+            h2=episode.title
+            img(src=episode.thumbnail alt=episode.title) 
+            div(class='episode-description')
+              p=episode.description
+            a(href=episode.link) Episode Link 
+            //- a(href=episode.autio) Listen 
+
