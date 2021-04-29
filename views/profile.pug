@@ -28,6 +28,7 @@ block content
             .shelves
                 h1(id='your-shelf') Your Shelves
                 each shelf in shelves
+                    h2=shelf.title
                     +shelf(shelf)
 
         .right-bar

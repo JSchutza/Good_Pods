@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
         newReview.appendChild(ratingtext);
         newReview.appendChild(reviewText);
 
-
+        console.log(review)
         let deleteButton = document.createElement('button');
         deleteButton.setAttribute('class', `delete-button`);
         deleteButton.setAttribute('id', `${review.id}`)
@@ -74,6 +74,7 @@ window.addEventListener('DOMContentLoaded', () => {
   reviewArea.addEventListener('click', e => {
     if (e.target.className === 'delete-button') {
       const currentUserId = document.querySelector('.userId').id;
+      
       const review = document.getElementById(`review-${e.target.id}`);
       if (review.className === `user-${currentUserId}`) {
         deleteReview(e.target.id)

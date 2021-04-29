@@ -1,16 +1,12 @@
 
 
 
-// window.addEventListener('DOMContentLoaded', async ()=> {
+window.addEventListener('DOMContentLoaded', async ()=> {
 
 
-//   let newFeatures = document.getElementById('newPods')
-
-
-//   const featuredPodList = await featuredPods()
-//   populateFeatures(featuredPodList)
-//   getTheAverageRating()
-// })
+  
+  getTheAverageRating()
+})
 // const featuredPods = async() => {
 //   const response = await unirest.get('https://listen-api.listennotes.com/api/v2/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0')
 //   .header('X-ListenAPI-Key', apiKey)
@@ -50,30 +46,30 @@
 
 // }
 
-// const getTheAverageRating = async () => {
+const getTheAverageRating = async () => {
   
-//   let ratings = document.querySelectorAll(".avgRating")
-//   ratings.forEach( async rating => {
-//     const id = rating.id.split("-")[1]
-//     const res = await fetch(`api/podcasts/${id}`)
-//     const resJson = await res.json()
-//     const averageRating = resJson.averageScore
-//     if(!averageRating){
-//       rating.innerHTML = 'This podcast has no current ratings'
-//     }
-//     else
-//     {
-//     let stars = ''
-//     for (let i =0; i< averageRating; i++){
-//       stars+='&#9733; '
+  let ratings = document.querySelectorAll(".avgRating")
+  ratings.forEach( async rating => {
+    const id = rating.id.split("-")[1]
+    const res = await fetch(`api/podcasts/${id}`)
+    const resJson = await res.json()
+    const averageRating = resJson.averageScore
+    if(!averageRating){
+      rating.innerHTML = 'This podcast has no current ratings'
+    }
+    else
+    {
+    let stars = ''
+    for (let i =0; i< averageRating; i++){
+      stars+='&#9733; '
 
-//     }
-//     rating.innerHTML=`Average Rating <span class='stars'>${stars}`
-//   }
+    }
+    rating.innerHTML=`Average Rating <span class='stars'>${stars}`
+  }
 
   
-// }
+}
 
-//   )}
+  )}
 
 

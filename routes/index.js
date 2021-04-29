@@ -36,7 +36,7 @@ router.get('/', csrfProtection, (req, res) => {
     const featuredRes = await unirest.get('https://listen-api.listennotes.com/api/v2/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0')
   .header('X-ListenAPI-Key', apiKey)
   let resJson = await featuredRes.toJSON();
-  console.log(resJson)
+  
   const featuredPods = []
   if (featuredRes.ok) {
     for (let i =0; i < 5; i++){
@@ -55,34 +55,34 @@ router.get('/', csrfProtection, (req, res) => {
     
   }));
 
-  router.get('/me', asyncHandler( async (req, res) => {
+  // router.get('/me', asyncHandler( async (req, res) => {
   
-     const user_id = req.session.auth.userId;
+  //    const user_id = req.session.auth.userId;
     
-    const users_shelf = await Shelf.findAll({
-        where: { userId: user_id }
-    });
+  //   const users_shelf = await Shelf.findAll({
+  //       where: { userId: user_id }
+  //   });
     
-    let result = []
+  //   let result = []
     
     
-    for (let shelf in users_shelf){
-        let currentShelf = {title:shelf.title}
-        let newPodsArray = []
-        for (let pod in shelf.podcasts){
-            let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
-            .header('X-ListenAPI-Key', apiKey)
-          podcast = await podcast.toJSON();
-          podcast = podcast.body
-            newPodsArray.push(podcast)
-        }
-        currentShelf.podcasts=newPodsArray
-        result.push(currentShelf)
-    }
+  //   for (let shelf in users_shelf){
+  //       let currentShelf = {title:shelf.title}
+  //       let newPodsArray = []
+  //       for (let pod in shelf.podcasts){
+  //           let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
+  //           .header('X-ListenAPI-Key', apiKey)
+  //         podcast = await podcast.toJSON();
+  //         podcast = podcast.body
+  //           newPodsArray.push(podcast)
+  //       }
+  //       currentShelf.podcasts=newPodsArray
+  //       result.push(currentShelf)
+  //   }
    
-    console.log(result)
-    res.render("profile", {shelves:result});
-  }));
+  //   console.log(result)
+  //   res.render("profile", {shelves:result});
+  // }));
 
 
 
