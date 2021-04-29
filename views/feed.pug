@@ -17,16 +17,7 @@ block content
 
                             h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
                             p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description 
-            each genre in genres
-                h2(id=`${genre.genre}` class='genre_name')= genre.genre
-                div( class="genre_div" )
-                    each podcast in genre.podcasts
-                        a(href=`podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
-                            p( class="podcast_name")= podcast.title
-                            img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
-
-                            h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
-                            p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description
+            
 
 
 
@@ -36,4 +27,4 @@ block content
                 each genre in genres
                     ul(id="genreList")
                         li(class="Genre__List")
-                            a(href=`#${genre.genre}`)= genre.genre
+                            a(href=`/genres/${genre.id}`)= genre.name

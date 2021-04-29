@@ -68,7 +68,31 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     } else {
         isDemo = false;
     }
-
+    
+    
+    const users_shelf = await Shelf.findAll({
+        where: { userId: user_id }
+    });
+    
+    let result = []
+    
+    
+    for (let i=0; i < users_shelf.length; i++){
+        let shelf = users_shelf[i]
+        
+        let currentShelf = {title: shelf.name}
+        let newPodsArray = []
+        for (let j= 0; j< shelf.podcasts.length; j++){
+            let pod = shelf.podcasts[j]
+            let podcast = await unirest.get(`https://listen-api.listennotes.com/api/v2/podcasts/${pod}?next_episode_pub_date=1479154463000&sort=recent_first`)
+            .header('X-ListenAPI-Key', apiKey)
+          podcast = await podcast.toJSON();
+          podcast = podcast.body
+            newPodsArray.push(podcast)
+        }
+        currentShelf.podcasts=newPodsArray
+        result.push(currentShelf)
+    }
 
     // const genre_info = await Genre.findAll();
 
@@ -76,7 +100,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
       .header('X-ListenAPI-Key', apiKey)
         genre_info.toJSON();
         const genres = genre_info.body.genres;
-    res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genres });
+    res.render('profile', { csrfToken: req.csrfToken(), isDemo: isDemo, theirId: user_info.dataValues.id, name: user_info.dataValues.name, email: user_info.dataValues.email, genre_info: genres, shelves: result });
 }));
 
 
