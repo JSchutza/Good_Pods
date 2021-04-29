@@ -5,7 +5,7 @@ const { User, Podcast, Genre, Shelf } = require("../db/models")
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler, createShelves } = require("../lib/util")
 const { loginUser, logoutUser } = require("../auth")
 const apiKey = process.env.LISTEN_API_KEY
-const baseUrl = 'https://listen-api.listennotes.com/api/v2'
+const baseUrl = 'https://listen-api-test.listennotes.com/api/v2'
 // for the home page
 
 
@@ -32,7 +32,7 @@ router.get('/', csrfProtection, (req, res) => {
     //   let genrePods = {genre: genreName, podcasts: podcasts.body.podcasts}
     //   genres.push(genrePods)
     // }
-    const featuredRes = await unirest.get('https://listen-api.listennotes.com/api/v2/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0')
+    const featuredRes = await unirest.get(`${baseUrl}/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0`)
   .header('X-ListenAPI-Key', apiKey)
   let resJson = await featuredRes.toJSON();
   

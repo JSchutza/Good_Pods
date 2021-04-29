@@ -5,6 +5,7 @@ const { Shelf, Review,  User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
 const { logoutUser } = require("../auth");
 const { apiKey } = require('../config');
+const baseUrl = 'https://listen-api-test.listennotes.com/api/v2';
 const unirest = require("unirest")
 
 // api for the pod feed page
@@ -100,7 +101,7 @@ router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id(\\d+)', asyncHandle
 
 // api for the genres
 router.get('/genres', asyncHandler(async (req, res) => {
-    const response = await unirest.get('https://listen-api.listennotes.com/api/v2/genres?top_level_only=1')
+    const response = await unirest.get(`${baseUrl}/genres?top_level_only=1`)
   .header('X-ListenAPI-Key', apiKey)
     let genres = response.toJSON();
     genres = genres.body.genres
