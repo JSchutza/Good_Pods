@@ -1,5 +1,5 @@
 # PODEMIC
-![logo](https://github.com/posidest/Podemic/blob/main/public/Images/logo.png?raw=true)
+![logo](https://github.com/posidest/Podemic/blob/main/public/images/logo.png?raw=true)
   Podcast app to keep up to date with all the podcasts user's have listened to and liked (or hated). Goodreads clone with a twist
   ## Table of contents
 * [Motivation](#motivation)
