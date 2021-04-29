@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// bring in the podcasts model here:
-
 
 const { Shelf, Review,  User } = require("../db/models")
 const { asyncHandler } = require("../lib/util")
@@ -90,12 +88,9 @@ router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id(\\d+)', asyncHandle
     //     where: { shelfId: shelf_id, podcastId: podcast_id }
     // });
 
-    
     const message = {
         message: `Podcast was removed from your ${updatedShelf.name} shelf.`,
     }
-
-
     res.json(message);
 
 }));
@@ -129,9 +124,9 @@ router.get('/podcasts/:id', asyncHandler(async (req, res) => {
         total += score
     })
     average = total / reviews.length
-    // final.podcast = podcast
+    
     final.averageScore = average
-    console.log("is this working")
+    
     res.json(final)
 }));
 
@@ -231,7 +226,7 @@ router.delete('/users/:user_id(\\d+)', asyncHandler(async (req, res) => {
     const user_id = req.session.auth.userId;
 
 
-    console.log(user_id);
+    
     // only destroy the user if their session id is the same as the passed in parameter in the api
     // if(user_id === their_id) {
     await User.destroy({
