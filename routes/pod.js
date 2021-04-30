@@ -11,17 +11,6 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
       .header('X-ListenAPI-Key', apiKey)
     podcast = await podcast.toJSON();
     podcast = podcast.body
-    
-<<<<<<< HEAD
-    // let otherPodcasts = await unirest.get(`${baseUrl}/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0`)
-    // .header('X-ListenAPI-Key', apiKey)
-    // otherPodcasts =await otherPodcasts.toJSON()
-    // otherPodcasts = otherPodcasts.body.recommendations
-    const userId = req.session.auth.userId;
-    
-    // res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken() });
-    res.render('podcast', { podcast, userId, csrfToken: req.csrfToken() });
-=======
     let otherPodcasts = await unirest.get(`${baseUrl}/podcasts/${podcast.id}/recommendations?safe_mode=0`)
     .header('X-ListenAPI-Key', apiKey)
     otherPodcasts =await otherPodcasts.toJSON()
