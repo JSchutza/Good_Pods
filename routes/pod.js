@@ -256,7 +256,6 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
         shelves.push(currentShelf)
       }
     res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken(), shelves });
->>>>>>> main
 }))
 
 
