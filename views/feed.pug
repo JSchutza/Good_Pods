@@ -11,7 +11,7 @@ block content
                 h1 Featured Podcasts
                 div(id="newPods" class="genre_div")
                     each podcast in featuredPods
-                        a(href=`podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
+                        a(href=`/podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
                             p( class="podcast_name")= podcast.title
                             img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
 
