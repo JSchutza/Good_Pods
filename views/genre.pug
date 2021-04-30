@@ -5,15 +5,13 @@ append head
 
 block content
     h1(id ="innerHeader" class=`${genre.title}`)= genre.title
-    div(class='main-content-container') 
-        
+    h2(class="genre-podcasts__header") Most Popular Podcasts in this Genre
+    div(class='main-content-container')       
         div(class='center-content')
             div( class="genre_div" )
-                h2(class="genre-podcasts__header") Most Popular Podcasts in this Genre
                 each podcast in genre.podcasts
                     a(href=`../podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
-                        p( class="podcast_name")= podcast.title
                         img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
-
+                        h4( class="podcast_name")= podcast.title
                         h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
-                        p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description
+                        //- p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description

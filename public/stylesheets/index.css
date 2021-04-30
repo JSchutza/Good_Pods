@@ -29,6 +29,7 @@ button {
 .logo {
   height: 50px;
   width: 50px;
+  margin-top: 5px;
 }
 
 .nav-bar {
@@ -73,6 +74,7 @@ label {
   flex-direction: column;
   align-items: center;
   position: relative;
+  margin: 5%;
 }
 
 .Podshelf__container {
@@ -97,4 +99,23 @@ label {
   position: absolute;
   left: 40px;
   top: 20px;
+}
+
+.genre_div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.genre_div img {
+  width: 500px;
+  height: 500px;
+  margin: 40px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
 }
