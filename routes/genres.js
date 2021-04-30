@@ -15,15 +15,12 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
       let podcastList = result.body.podcasts
     
       let genre = {title:result.body.name, podcasts: podcastList}
+      console.log(genre, 'genre from genre route')
     res.render('genre', { genre, csrfToken: req.csrfToken() });
 }))
 
 //genre pug mixin hits this route which then hits /podcasts/:id
 router.get('/podcasts/:id', csrfProtection, asyncHandler(async (req, res) => {
-    let podcast = await unirest.get(`${baseUrl}/podcasts/${req.params.id}?next_episode_pub_date=1479154463000&sort=recent_first`)
-      .header('X-ListenAPI-Key', apiKey)
-    podcast = await podcast.toJSON();
-    podcast = podcast.body
     res.redirect(`/podcasts/${podcast.id}`);
 }))
 

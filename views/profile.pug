@@ -10,16 +10,16 @@ block content
     .main-content-container
         .left-bar
 
-            //- .user-stuff
-            //-     h2(class='welcome') Welcome, #{name}
-            //-     if isDemo
-            //-         p You are not allowed to delete or update the demo users account.
-            //-     else
-            //-         h2 #{email}
-            //-         div(class="account")
-            //-             a(href="") Update
-            //-         div(class="account")
-            //-             a(href="" class="delete-account" id=`${theirId}`) Delete Account
+            .user-stuff
+                h2(class='welcome') Welcome, #{name}
+                if isDemo
+                    p You are not allowed to delete or update the demo users account.
+                else
+                    h2 #{email}
+                    div(class="account")
+                        a(href="") Update
+                    div(class="account")
+                        a(href="" class="delete-account" id=`${theirId}`) Delete Account
 
 
 

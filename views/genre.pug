@@ -12,6 +12,6 @@ block content
                 each podcast in genre.podcasts
                     a(href=`../podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
                         img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
-                        h4( class="podcast_name")= podcast.title
+                        h4(class="podcast_name")= podcast.title
                         h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
                         //- p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description
