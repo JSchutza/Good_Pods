@@ -101,6 +101,14 @@ border: none;
   color: #FFD700;
   opacity: 1;
 }
+.rating{
+  color:#FFD700;
+}
+.reviews h2 {
+  font-size: x-large;
+  padding: 10px;
+  margin: 10px;
+}
 .left-bar{
   display: flex;
   flex-direction: column;
@@ -188,14 +196,7 @@ border: none;
   font-size: large;
   font-weight: bold;
 }
-.rating{
-  color:#FFD700;
-}
-.reviews h2 {
-  font-size: x-large;
-  padding: 10px;
-  margin: 10px;
-}
+
 
 @media (max-width:800px) {
   .main-content-container{

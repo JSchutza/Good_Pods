@@ -34,7 +34,7 @@ input {
   background-color: #e0e1dd;
 }
 
-label {
+label+.star-label {
   display: none;
 }
 
