@@ -77,10 +77,25 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
     let result = []
     
     
+        let thumbsupIcon = '&#128077;'
+        let thumbsdownIcon = "&#128078;"
+        let currentIcon = "&#127911;"
+        let onMyRadarIcon ="&#128064;"
+        let mehIcon = "&#128529;"
     for (let i=0; i < users_shelf.length; i++){
         let shelf = users_shelf[i]
-        
-        let currentShelf = {title: shelf.name}
+        let shelfname = shelf.name.split("+")
+        let name = shelfname[0]
+        let icon = shelfname[1]
+        if(shelfname.length===1){
+            if(name === "Current") icon = currentIcon
+            else if (name === "Thumbs Up") icon = thumbsupIcon
+            else if (name === "Thumbs Down") icon = thumbsdownIcon
+            else if (name === "On My Radar") icon = onMyRadarIcon
+            else if (name === "Meh") icon = mehIcon
+        }
+
+        let currentShelf = {title: name, icon}
         let newPodsArray = []
         for (let j= 0; j< shelf.podcasts.length; j++){
             let pod = shelf.podcasts[j]

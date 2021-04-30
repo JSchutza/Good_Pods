@@ -93,10 +93,23 @@
 
 
 
-
 // // DOM window listener here:
 // window.addEventListener("DOMContentLoaded", async (event) => {
+//     const addShelfbutton = document.getElementById("newShelfBtn");
+//     const rbs = document.querySelectorAll('input[name="shelf-icon"]');
+//     let selectedIcon;
+//     const postNewShelf = () => {
+//         for (const rb of rbs) {
+//             if (rb.checked) {
+//                 selectedIcon = rb.value;
+//                 break;
+//             }
+//         }
 
+//     }
+//     addShelfbutton.addEventListener("click", async (event)=> {
+         
+//     })
 
 //     const result = await shelfData();
 //     // console.log(result);
@@ -196,4 +209,4 @@
 
 
 
-// });
+ });
