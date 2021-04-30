@@ -12,18 +12,18 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
     podcast = await podcast.toJSON();
     podcast = podcast.body
     
-    let otherPodcasts = await unirest.get(`${baseUrl}/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0`)
-    .header('X-ListenAPI-Key', apiKey)
-    otherPodcasts =await otherPodcasts.toJSON()
-    otherPodcasts = otherPodcasts.body.recommendations
+    // let otherPodcasts = await unirest.get(`${baseUrl}/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0`)
+    // .header('X-ListenAPI-Key', apiKey)
+    // otherPodcasts =await otherPodcasts.toJSON()
+    // otherPodcasts = otherPodcasts.body.recommendations
     const userId = req.session.auth.userId;
     
-    res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken() });
+    // res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken() });
+    res.render('podcast', { podcast, userId, csrfToken: req.csrfToken() });
 }))
 
 
-router.post('/:id', csrfProtection, asyncHandler(async (req, res) => {
-    
+router.post('/:id', csrfProtection, asyncHandler(async (req, res) => {  
     const { star, reviewText } = req.body;
     const userId = req.session.auth.userId;
     const podcastId = req.params.id;

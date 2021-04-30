@@ -32,24 +32,34 @@ router.get('/', csrfProtection, (req, res) => {
     //   let genrePods = {genre: genreName, podcasts: podcasts.body.podcasts}
     //   genres.push(genrePods)
     // }
+
     const featuredRes = await unirest.get(`${baseUrl}/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0`)
   .header('X-ListenAPI-Key', apiKey)
-  let resJson = await featuredRes.toJSON();
-  
-  const featuredPods = []
-  if (featuredRes.ok) {
-    for (let i =0; i < 5; i++){
-      const ele= resJson.body.recommendations[Math.floor(Math.random()* resJson.body.recommendations.length)]
-      if (!featuredPods.includes(ele)){
-        featuredPods.push(ele)
-      } else{
-        i--
-      }
+    if (featuredRes.ok) {
+      let resJson = await featuredRes.toJSON();
+      // await console.log(resJson, 'resJson from recommendd pods in feed')
+      let recommended= resJson.body;
+      await console.log(recommended, 'recommended pods from feed')
+      // let featuredPods = []
       
+      // for (let i =0; i < 5; i++){
+        //   // const ele= recommended[Math.floor(Math.random()*recommended.length)]
+        //   const ele = await recommended[i]
+        //   await console.log(ele, 'recommendation from feed route')
+        //   if (!featuredPods.includes(ele)){
+          //     await featuredPods.push(ele)
+          //   }
+          // }
+
+      //featuredPods was undefined...for now i am sending all the featured pods as recommended
+
+      // await console.log(featuredPods, 'featuredPods')
+        res.render('feed', {genres, recommended})
+    
+        //  res.render('feed', {genres, recommended})
+    } else {
+      return {errors: 'feed not working'}
     }
-  }
-  
-    res.render('feed', {genres,featuredPods})
     
   }));
 
