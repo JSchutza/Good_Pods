@@ -183,11 +183,11 @@ router.post("/demo", csrfProtection, asyncHandler(async(req,res)=>{
 
 router.post('/logout', (req, res) => {
     logoutUser(req, res);
-    // if (error) {
-        // next(error)
-    // } else {
+    //  if (error) {
+    //      next(error)
+    //  } else {
         res.redirect("/")
-    // }
+    //  }
 })
 
 
@@ -195,7 +195,7 @@ router.post('/logout', (req, res) => {
 router.get('/logout', (req, res) => {
     logoutUser(req, res);
     // if (error) {
-        // next(error)
+    //     next(error)
     // } else {
         res.redirect("/")
     // }

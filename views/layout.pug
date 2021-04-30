@@ -3,39 +3,25 @@ html
   head
   block head
     title="PODEMIC"
-    link(rel='stylesheet' href='/stylesheets/reset.css')
     link(rel='stylesheet' href='/stylesheets/index.css')
     script(src="/javascripts/index.js" type="module" defer)
-    script(type='text/javascript' src='good_pod/Good_Pods/config/index.js')
+    script(type='text/javascript' src='Podemic/config/index.js')
 
 
 
   block navbar
-    .navBar
+    div(class='nav-bar')
       if authenticated
-        .navBar__logo
-          a(href="/me")
-            img(src="/images/logo.png")
+        a(href="/me")
+          img(src="/images/logo-placeholder.svg" class='logo')
+        a(href="/me/logout") Log Out
+        button(id="searchButton" type='button' class='search') Search
+        input(id="searchInput" type="text" placeholder="search" class='search')
+        a(href="/feed") Pod Feed
       else
-        .navBar__logo
-          a(href="/")
-            img(src="/images/logo.png")
-
-      ul.navBar__ul
-        li.navBar__ul-podFeed
-          a(href="/feed") Pod Feed
-        li.navBar_ul-name Podemic
-
-        if authenticated
-          
-          li.navBar__ul-signIn
-            div(class="SorryCaleb")
-              button(id="searchButton" type='button') Search
-              input(id="searchInput" type="text" placeholder="search")
-              a(href="/me/logout") Sign Out
-        else
-          li.navBar__ul-signIn
-            a(href="/me/login") Sign In
+        a(href="/")
+          img(src="/images/logo-placeholder.svg" class='logo')
+          a(href="/me/login") Sign In
 
 
 

@@ -16,7 +16,7 @@ block content
                 div(class="pod_description")
                     h4 Description
                     p #{podcast.description}
-                div(class="pod_description") 
+                    a(href=`/podcasts/${podcast.id}/episodes`) Episodes
                     
                 div(class="pod_description")
                     h4(class="avgRating" id=`avg_rating-${podcast.id}`)
