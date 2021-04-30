@@ -262,9 +262,29 @@ router.get('/', csrfProtection, (req, res) => {
           }
         ]
       
+      // for (let i =0; i < 5; i++){
+        //   // const ele= recommended[Math.floor(Math.random()*recommended.length)]
+        //   const ele = await recommended[i]
+        //   await console.log(ele, 'recommendation from feed route')
+        //   if (!featuredPods.includes(ele)){
+          //     await featuredPods.push(ele)
+          //   }
+          // }
+
+      //featuredPods was undefined...for now i am sending all the featured pods as recommended
+
+      // await console.log(featuredPods, 'featuredPods')
+        res.render('feed', {genres, recommended})
+    
+        //  res.render('feed', {genres, recommended})
+    } else {
+      return {errors: 'feed not working'}
     }
+<<<<<<< HEAD
+=======
   }
     res.render('feed', {genres,featuredPods})
+>>>>>>> main
     
   }));
 

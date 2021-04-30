@@ -12,6 +12,16 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
     podcast = await podcast.toJSON();
     podcast = podcast.body
     
+<<<<<<< HEAD
+    // let otherPodcasts = await unirest.get(`${baseUrl}/podcasts/25212ac3c53240a880dd5032e547047b/recommendations?safe_mode=0`)
+    // .header('X-ListenAPI-Key', apiKey)
+    // otherPodcasts =await otherPodcasts.toJSON()
+    // otherPodcasts = otherPodcasts.body.recommendations
+    const userId = req.session.auth.userId;
+    
+    // res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken() });
+    res.render('podcast', { podcast, userId, csrfToken: req.csrfToken() });
+=======
     let otherPodcasts = await unirest.get(`${baseUrl}/podcasts/${podcast.id}/recommendations?safe_mode=0`)
     .header('X-ListenAPI-Key', apiKey)
     otherPodcasts =await otherPodcasts.toJSON()
@@ -257,11 +267,11 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
         shelves.push(currentShelf)
       }
     res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken(), shelves });
+>>>>>>> main
 }))
 
 
-router.post('/:id', csrfProtection, asyncHandler(async (req, res) => {
-    
+router.post('/:id', csrfProtection, asyncHandler(async (req, res) => {  
     const { star, reviewText } = req.body;
     const userId = req.session.auth.userId;
     
@@ -273,18 +283,19 @@ router.post('/:id', csrfProtection, asyncHandler(async (req, res) => {
 }))
 
 
-// router.get('/:id/episodes', csrfProtection, asyncHandler(async (req, res) => {
-//   let episodes = await unirest.get(`${baseUrl}/episodes/${req.params.id}?show_transcript=1`)
-//   .header('X-ListenAPI-Key', apiKey)
-//   let podcast = await unirest.get(`${baseUrl}/podcasts/${req.params.id}?next_episode_pub_date=1479154463000&sort=recent_first`)
-//       .header('X-ListenAPI-Key', apiKey)
-//     podcast = await podcast.toJSON();
-//     podcast = podcast.body
-//     episodes = await episodes.toJSON()
-//     episodes = episodes.body
-//     console.log(episodes, 'episodes from api request')
-//   res.render('episodes', {episodes, podcast})
-// })
+router.get('/:id/episodes', csrfProtection, asyncHandler(async (req, res) => {
+  let podData = await unirest.get(`${baseUrl}/podcasts/${req.params.id}?next_episode_pub_date=1479154463000&sort=recent_first`)
+      .header('X-ListenAPI-Key', apiKey)
+   if(podData.ok) {
+    podData = await podData.toJSON();
+    const podcast = podData.body;
+    const episodes = podcast.episodes
+    res.render('episodes', {podcast, episodes})
+  }
+  else {
+    return 'episodes failed to load'
+  }
+}))
 
 
 

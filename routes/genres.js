@@ -15,7 +15,13 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
       let podcastList = result.body.podcasts
     
       let genre = {title:result.body.name, podcasts: podcastList}
+      console.log(genre, 'genre from genre route')
     res.render('genre', { genre, csrfToken: req.csrfToken() });
+}))
+
+//genre pug mixin hits this route which then hits /podcasts/:id
+router.get('/podcasts/:id', csrfProtection, asyncHandler(async (req, res) => {
+    res.redirect(`/podcasts/${podcast.id}`);
 }))
 
 module.exports = router;

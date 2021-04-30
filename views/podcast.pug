@@ -7,16 +7,14 @@ append head
 block content
     h1(id ="innerHeader" class=`${podcast.title}`)= podcast.title
     div(class='main-content-container') 
-        div(class='left-bar')
-            div(class="img_holder")
-                img(src=`${podcast.image}`)
-            +review-form
+        div(class="img_holder")
+            img(src=`${podcast.image}`)
         div(class='center-content')
             div(class="pod_description__container")
                 div(class="pod_description")
                     h4 Description
                     p #{podcast.description}
-                div(class="pod_description") 
+                    a(href=`/podcasts/${podcast.id}/episodes`) Episodes
                     
                 div(class="pod_description")
                     h4(class="avgRating" id=`avg_rating-${podcast.id}`)
@@ -31,6 +29,7 @@ block content
                             button(class="shelf_btn" id="Meh" type='button' title='Meh') 😑
                             button(class="shelf_btn" id="Thumbs_Down" type='button' title='Thumbs Down') 👎
 
+            +review-form
             div(class="reviews")
                 h2(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
                     aside 
@@ -39,11 +38,11 @@ block content
 
                 div(id="ReviewDiv")
 
-        div(class='right-bar')
-            h2 Other Podcasts like this Podcast
-            each podcast in otherPodcasts
-                div(class='Genre_Pods')
-                    a(href=`/podcasts/${podcast.id}`)= podcast.title
+        //- div(class='right-bar')
+        //-     h2 Other Podcasts like this Podcast
+        //-     each podcast in otherPodcasts
+        //-         div(class='Genre_Pods')
+        //-             a(href=`/podcasts/${podcast.id}`)= podcast.title
 
             .message
 
