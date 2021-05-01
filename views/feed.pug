@@ -6,17 +6,16 @@ block content
     div(class='main-content-container')
         //div(class='left-bar') Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         div(class='center-content')
-            div(class="featured__Podcasts ")
-                h1 Featured Podcasts
-                div(id="newPods" class="genre_div")
-                    each podcast in featuredPods
-                        a(href=`/podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
-                            p( class="podcast_name")= podcast.title
-                            img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
+            h1 Featured Podcasts
+            div(id="newPods" class="genre_div")
+                each podcast in featuredPods
+                    a(href=`/podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
+                        img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
+                        h4( class="podcast_name")= podcast.title
 
-                            h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
-                            p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description 
-            
+                        h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
+                        //- p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description 
+        
 
 
 

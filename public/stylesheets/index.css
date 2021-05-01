@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
+body {
+  margin: 0;
+}
+
 a,
 p,
 input,
@@ -26,18 +30,18 @@ button {
   font-size: 14px;
 }
 
-.logo {
+/* .logo {
   height: 50px;
   width: 50px;
   margin-top: 5px;
-}
+} */
 
 .nav-bar {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start;
   width: 100%;
-  height: 80px;
+  height: 60px;
 }
 
 .nav-bar a {
@@ -47,6 +51,10 @@ button {
 .nav-bar a:hover {
   color: rgba(0, 0, 0, 0.3);
   /* font-weight: bold; */
+}
+
+.nav-bar:hover {
+  background-color: #f05644;
 }
 
 .form-container {
@@ -74,7 +82,7 @@ label {
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin: 5%;
+  margin: 8%;
 }
 
 .Podshelf__container {
@@ -84,11 +92,11 @@ label {
   padding-top: 20px;
 }
 
-.left-bar {
+/* .left-bar {
   position: absolute;
   left: 20px;
   top: 20px;
-}
+} */
 
 /* .search input {
   height: 40px;
@@ -105,12 +113,23 @@ label {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
+  /* width: 500px;
+  height: 500px; */
 }
+
+/* .center_content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 500px;
+} */
 
 .genre_div img {
   width: 500px;
   height: 500px;
-  margin: 40px;
+  margin: 50px;
 }
 
 h1,
@@ -132,9 +151,9 @@ h4 {
   align-items: center;
 }
 
-.pod_description {
+/* .pod_description {
   width: 800px;
-}
+} */
 
 .pod_review_container {
   display: flex;
@@ -185,4 +204,23 @@ h4 {
   position: absolute;
   left: 0;
   color: #ffd700;
+}
+
+.logo-div {
+  background-image: url("../images/pod2point0Logo.png");
+  background-size: contain;
+  height: 50px;
+  width: 50px;
+  margin: 5px 10px 0 0;
+}
+
+.logo-div:hover {
+  background-image: url("../images/pod2point1Logo.png");
+}
+
+#genreList li {
+  list-style-type: none;
+}
+
+#genreList ul {
 }
