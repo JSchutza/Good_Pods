@@ -9,17 +9,10 @@ block content
             div(class="featured__Podcasts ")
                 h1 Featured Podcasts
                 div(id="newPods" class="genre_div")
-<<<<<<< HEAD
-                    each podcast in recommended
-                        a(href=`../podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
-                            p(class="podcast_name")=podcast.title
-                            img(src=podcast.image, alt=`${podcast.title}-logo`, onError="src='/images/logo.png'")
-=======
                     each podcast in featuredPods
                         a(href=`/podcasts/${podcast.id}` id=`${podcast.title}` class="podcast_div")
                             p( class="podcast_name")= podcast.title
                             img(src=`${podcast.image}`, alt="logo", onError="src='/images/logo.png'")
->>>>>>> main
 
                             h4(class="avgRating" id=`avg_rating-${podcast.id}`) 
                             p(class="podcast_description PodcastId" id=`${podcast.id}`)= podcast.description 

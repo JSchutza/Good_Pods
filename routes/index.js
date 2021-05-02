@@ -274,17 +274,10 @@ router.get('/', csrfProtection, (req, res) => {
       //featuredPods was undefined...for now i am sending all the featured pods as recommended
 
       // await console.log(featuredPods, 'featuredPods')
-        res.render('feed', {genres, recommended})
+        res.render('feed', {genres, featuredPods})
     
         //  res.render('feed', {genres, recommended})
-    } else {
-      return {errors: 'feed not working'}
-    }
-<<<<<<< HEAD
-=======
-  }
-    res.render('feed', {genres,featuredPods})
->>>>>>> main
+      }}
     
   }));
 

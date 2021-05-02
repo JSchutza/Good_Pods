@@ -4,11 +4,6 @@ include shelf
 append head
     script(src="/javascripts/shelves.js" type="module" defer)
     script(src="/javascripts/delete_account.js" type="module" defer)
-<<<<<<< HEAD
-=======
-    link(rel='stylesheet' href='/stylesheets/shelves.css')
-    
->>>>>>> main
 block content
     //- h1 Your Profile
 
@@ -25,7 +20,7 @@ block content
                         a(href="") Update
                     div(class="account")
                         a(href="" class="delete-account" id=`${theirId}`) Delete Account
-                    form(class = "login-Form form" action=`/shelves/${theirId}` method="post")
+                    form(class = "addshelf-Form form" action=`/shelves` method="post")
                         h3 Add a New Shelf
                         div(class="input")
                             label New Shelf Name
@@ -41,7 +36,7 @@ block content
                                     label(for="&#9749;") &#9749;
                                 div(class="input radio")
                                     input(type='radio' name="shelficon" id='&#127829;', value='&#128512;')
-                                    label(for="&#127829	;") &#127829;
+                                    label(for="&#127829;") &#127829;
                                 div(class="input radio")
                                     input(type='radio' name="shelficon" id='&#127909;', value='&#128512;')
                                     label(for="&#127909;") &#127909;
@@ -74,7 +69,7 @@ block content
                                     label(for="&#128178;") &#128178;
                             input(type="hidden" name="_csrf" value=csrfToken)
                         div(class="submit-button")
-                            button(type="button" id="newShelfBtn" class='submit-btn btn') Add new Shelf
+                            button(type="submit" id="newShelfBtn" class='submit-btn btn') Add new Shelf
 
 
 

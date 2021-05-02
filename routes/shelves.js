@@ -10,8 +10,9 @@ const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler } = 
 router.post('/', csrfProtection, asyncHandler(async (req, res) => {
     const {shelficon, shelfname } = req.body;
     const userId = req.session.auth.userId;
-    let name = `${shelficon}+${shelfname}`;
+    let name = `${shelfname}+${shelficon}`;
     await Shelf.create({userId, name})
-    res.json({"message":"added new shelf"})
+    res.redirect("/me")
 }))
+
 module.exports = router;

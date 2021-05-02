@@ -23,11 +23,11 @@ block content
 
                     div(class="shelf_btn"  id=podcast.id)
                         each shelf in shelves
-                            button(class="shelf_btn" id=`${shelf.name}` type='button' title=`${shelf.name}`)
-                            button(class="shelf_btn" id="Thumbs_Up" type='button' title='Thumbs Up') 👍
-                            button(class="shelf_btn" id= "On_My_Radar" type='button' title='On My Radar') 👀
-                            button(class="shelf_btn" id="Meh" type='button' title='Meh') 😑
-                            button(class="shelf_btn" id="Thumbs_Down" type='button' title='Thumbs Down') 👎
+                            button(class="shelf_btn" id=`${shelf.name}` type='button' title=`${shelf.name}`)=shelf.name
+                            //- button(class="shelf_btn" id="Thumbs_Up" type='button' title='Thumbs Up') 👍
+                            //- button(class="shelf_btn" id= "On_My_Radar" type='button' title='On My Radar') 👀
+                            //- button(class="shelf_btn" id="Meh" type='button' title='Meh') 😑
+                            //- button(class="shelf_btn" id="Thumbs_Down" type='button' title='Thumbs Down') 👎
 
             +review-form
             div(class="reviews")
