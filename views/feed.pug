@@ -23,6 +23,6 @@ block content
             h2 Browse by Genre
 
                 each genre in genres
-                    ul(id="genreList")
+                    ul(class="genreList")
                         li(class="Genre__List")
                             a(href=`/genres/${genre.id}`)= genre.name

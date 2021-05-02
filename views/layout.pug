@@ -6,6 +6,7 @@ html
     link(rel='stylesheet' href='/stylesheets/index.css')
     script(src="/javascripts/index.js" type="module" defer)
     script(type='text/javascript' src='Podemic/config/index.js')
+    script(src="https://kit.fontawesome.com/4b23a743f4.js" crossorigin="anonymous")
 
 
 
@@ -14,16 +15,19 @@ html
       if authenticated
         div(class='logo-div')
           a(href="/me")
-            //- img(src="/images/pod2point0Logo.png" class='logo')
+            //- img(src="/images/pod2point0Logo.png" class='logo')    
         a(href="/me/logout") Log Out
-        button(id="searchButton" type='button' class='search') Search
-        input(id="searchInput" type="text" placeholder="search" class='search')
+        div(class='search')
+          button(id="searchButton" type='button')
+            i(class="fas fa-search")
+          input(id="searchInput" type="text" placeholder="search")
         a(href="/feed" class='nav-btn') Pod Feed
+        a(href="/me" class='text-logo') Podemic
       else
         div(class='logo-div')
           a(href="/")
-        img(src="/images/pod2point0Logo.png" class='logo')
-        a(href="/me/login" class='nav-btn') Sign In
+        a(href="/me/login" class='nav-btn') Log In
+        a(href="/" class='text-logo') Podemic
 
 
 

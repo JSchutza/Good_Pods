@@ -69,19 +69,18 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
         isDemo = false;
     }
     
-    
     const users_shelf = await Shelf.findAll({
         where: { userId: user_id }
     });
     
     let result = []
-    
-    
+
         let thumbsupIcon = '&#128077;'
         let thumbsdownIcon = "&#128078;"
         let currentIcon = "&#127911;"
         let onMyRadarIcon ="&#128064;"
         let mehIcon = "&#128529;"
+
     for (let i=0; i < users_shelf.length; i++){
         let shelf = users_shelf[i]
         let shelfname = shelf.name.split("+")
@@ -94,8 +93,8 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
             else if (name === "On My Radar") icon = onMyRadarIcon
             else if (name === "Meh") icon = mehIcon
         }
-
         let currentShelf = {title: name, icon}
+
         let newPodsArray = []
         for (let j= 0; j< shelf.podcasts.length; j++){
             let pod = shelf.podcasts[j]
@@ -108,7 +107,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
         currentShelf.podcasts=newPodsArray
         result.push(currentShelf)
     }
-
+    console.log(result, 'shelves from get /me')
     // const genre_info = await Genre.findAll();
 
     const genre_info = await unirest.get(`${baseUrl}/genres?top_level_only=1`)
@@ -120,7 +119,7 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
 
 
 
-router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) => {
+router.post('/sign-up', signUpValidator, csrfProtection, asyncHandler(async (req, res) => {
     const validatorErrors = validationResult(req);
     const { email, name, password, confirmPassword } = req.body;
     if (validatorErrors.isEmpty()) {
@@ -141,6 +140,10 @@ router.post('/', signUpValidator, csrfProtection, asyncHandler(async (req, res) 
         res.render('index', { email, name, errors, csrfToken: req.csrfToken() })
     }
 }))
+
+router.get('/sign-up', csrfProtection, (req, res) => {
+    res.render("create-user", {csrfToken: req.csrfToken()})
+})
 
 
 router.get("/login", csrfProtection, (req, res) => {

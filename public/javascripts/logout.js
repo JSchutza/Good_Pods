@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", event => {
 
-    window.location = '/';
+    window.location = '/me/login';
 
 });
