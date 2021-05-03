@@ -11,6 +11,7 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
       .header('X-ListenAPI-Key', apiKey)
     podcast = await podcast.toJSON();
     podcast = podcast.body
+    episodes = podcast.episodes
     let otherPodcasts = await unirest.get(`${baseUrl}/podcasts/${podcast.id}/recommendations?safe_mode=0`)
     .header('X-ListenAPI-Key', apiKey)
     otherPodcasts =await otherPodcasts.toJSON()
@@ -255,7 +256,7 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
         let currentShelf = {title: name, icon}
         shelves.push(currentShelf)
       }
-    res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken(), shelves });
+    res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken(), shelves, episodes });
 }))
 
 
@@ -286,8 +287,15 @@ router.get('/:id/episodes', csrfProtection, asyncHandler(async (req, res) => {
 }))
 
 
-
-
+// router.get('/:id/episodes/episode_id', csrfProtection, asyncHandler(async (req, res) => {
+//   let episodeData = await unirest.get(`${baseUrl}/episodes/${episode_id}?show_transcript=1`)
+//   .header('X-ListenAPI-Key', apiKey)
+//   if (episodeData.ok) {
+//     episodeData = await episodeData.toJSON();
+//     const episode = episodeData.body;
+//     res.render('episode', {episode})
+//   }
+// }))
 
 
 

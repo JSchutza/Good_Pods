@@ -4,6 +4,9 @@ html
   block head
     title="PODEMIC"
     link(rel='stylesheet' href='/stylesheets/index.css')
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     script(src="/javascripts/index.js" type="module" defer)
     script(type='text/javascript' src='Podemic/config/index.js')
     script(src="https://kit.fontawesome.com/4b23a743f4.js" crossorigin="anonymous")
@@ -13,21 +16,21 @@ html
   block navbar
     div(class='nav-bar')
       if authenticated
-        div(class='logo-div')
-          a(href="/me")
+        a(href="/me" class='logo-div' title='My Shelves')
+          //- div(class='logo-div')
             //- img(src="/images/pod2point0Logo.png" class='logo')    
-        a(href="/me/logout") Log Out
+        a(href="/me/logout" class='nav-btn') Log Out
         div(class='search')
           button(id="searchButton" type='button')
             i(class="fas fa-search")
           input(id="searchInput" type="text" placeholder="search")
-        a(href="/feed" class='nav-btn') Pod Feed
-        a(href="/me" class='text-logo') Podemic
+        //- a(href="/feed" class='nav-btn') Pod Feed
+        a(href="/feed" class='text-logo' title='Pod Feed') Podemic
       else
-        div(class='logo-div')
-          a(href="/")
+        a(href="/" class='logo-div' title='Home')
+          //- div(class='logo-div')
         a(href="/me/login" class='nav-btn') Log In
-        a(href="/" class='text-logo') Podemic
+        a(href="/feed" class='text-logo' title='Pod Feed') Podemic
 
 
 

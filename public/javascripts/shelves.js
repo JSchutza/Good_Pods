@@ -22,6 +22,11 @@ const removeFromShelf = async (the_shelf, the_podcast) => {
 
 
 
+//    const unicodeToChar = function(text) {
+//   return text.replace(/\\u[\dA-F]{4}/gi, function(match) {
+//       return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+//   });
+// }
 
 // // checks if a type has any podcasts in its array of podcasts
 // const checkArray = (the_array) => {
