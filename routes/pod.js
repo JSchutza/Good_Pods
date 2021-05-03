@@ -247,15 +247,16 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
             if(name === "Current") icon = currentIcon
             else if (name === "Thumbs Up") icon = thumbsupIcon
             else if (name === "Thumbs Down") icon = thumbsdownIcon
-            else if (name === "On My Radar") icon = onMyRadarIcon
+            else if (name === 'On My Radar') icon = onMyRadarIcon
             else if (name === "Meh") icon = mehIcon
             
             
         }
 
-        let currentShelf = {title: name, icon}
+        let currentShelf = {id: shelf.id, title: name, icon}
         shelves.push(currentShelf)
       }
+     
     res.render('podcast', { podcast, otherPodcasts, userId, csrfToken: req.csrfToken(), shelves });
 }))
 

@@ -36,21 +36,21 @@ router.get('/', csrfProtection, (req, res) => {
   .header('X-ListenAPI-Key', apiKey)
   let resJson = await featuredRes.toJSON();
  
-  let featuredPods = []
-  if (featuredRes.ok) {
-    if (resJson.body.recommendations){
-      for (let i =0; i < 5; i++){
-        const ele= resJson.body.recommendations[Math.floor(Math.random()* resJson.body.recommendations.length)]
-        if (!featuredPods.includes(ele)){
-          featuredPods.push(ele)
-        } else{
-          i--
-        }
+  // let featuredPods = []
+  // if (featuredRes.ok) {
+  //   if (resJson.body.recommendations){
+  //     for (let i =0; i < 5; i++){
+  //       const ele= resJson.body.recommendations[Math.floor(Math.random()* resJson.body.recommendations.length)]
+  //       if (!featuredPods.includes(ele)){
+  //         featuredPods.push(ele)
+  //       } else{
+  //         i--
+  //       }
         
-      }
+  //     }
 
-    }
-    else{
+  //   }
+  //   else{
       featuredPods = [
           {
             "id": "19545a5b82bf42d3ba40d973c35e9851",
@@ -277,7 +277,7 @@ router.get('/', csrfProtection, (req, res) => {
         res.render('feed', {genres, featuredPods})
     
         //  res.render('feed', {genres, recommended})
-      }}
+      // }}
     
   }));
 
