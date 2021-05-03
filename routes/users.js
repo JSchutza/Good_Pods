@@ -93,8 +93,8 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
             else if (name === "On My Radar") icon = onMyRadarIcon
             else if (name === "Meh") icon = mehIcon
         }
-        let currentShelf = {title: name, icon}
 
+        let currentShelf = {id: shelf.id, title: name, icon}
         let newPodsArray = []
         for (let j= 0; j< shelf.podcasts.length; j++){
             let pod = shelf.podcasts[j]

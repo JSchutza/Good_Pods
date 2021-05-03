@@ -107,6 +107,9 @@ label {
   display: none;
   margin-right: 20px;
 }
+fieldset label {
+  display: inline;
+}
 
 .btn {
   /* display: absolute; */

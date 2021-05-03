@@ -13,7 +13,8 @@ const the_api = require('./routes/api');
 const episodeRouter = require('./routes/episode')
 const podsRouter = require('./routes/pod');
 const search = require('./routes/search');
-const genres = require('./routes/genres')
+const genres = require('./routes/genres');
+const shelves = require('./routes/shelves');
 
 const { sessionSecret } = require('./config');
 const { restoreUser } = require("./auth")
@@ -53,6 +54,8 @@ app.use('/podcasts', podsRouter);
 app.use("/search", search);
 app.use("/genres", genres);
 app.use('episode', episodeRouter);
+app.use("/shelves", shelves);
+
 
 
 

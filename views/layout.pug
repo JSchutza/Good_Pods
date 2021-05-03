@@ -1,3 +1,4 @@
+include footer
 doctype html
 html
   head
@@ -9,7 +10,8 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     script(src="/javascripts/index.js" type="module" defer)
     script(type='text/javascript' src='Podemic/config/index.js')
-    script(src="https://kit.fontawesome.com/4b23a743f4.js" crossorigin="anonymous")
+    script(src="https://kit.fontawesome.com/6463feb8bd.js" crossorigin="anonymous")
+
 
 
 
@@ -38,3 +40,5 @@ html
   body
     div(id="searchResults" class ="hidden searchres")
   block content
+  +footer
+  
