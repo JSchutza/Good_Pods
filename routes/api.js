@@ -54,19 +54,21 @@ const unirest = require("unirest")
 
 
 router.post("/shelves", asyncHandler (async (req, res) => {
-    const shelfId = req.session.auth.userShelves[req.body.ShelfType]
+    const shelfId = req.body.ShelfId
+    const shelfTitle = req.body.shelfTitle
     const podcastId = req.body.podcastId;
     let updatedShelf = await Shelf.findByPk(shelfId)
+    
     let oldpods = updatedShelf.podcasts
     oldpods.push(podcastId)
     updatedShelf.update({
         podcasts: oldpods
       })
     const addedPodcast = req.body.podcastName
-    const the_shelf = req.body.ShelfType
+    
 
     const message = {
-        message: `${addedPodcast} was added to your ${the_shelf} shelf.`
+        message: `${addedPodcast} was added to your ${shelfTitle} shelf.`
     }
 
 

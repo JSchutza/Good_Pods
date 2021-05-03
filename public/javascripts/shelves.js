@@ -1,3 +1,11 @@
+window.addEventListener('DOMContentLoaded', () => {
+    const shelfButtons = document.querySelectorAll(".shelf-icon")
+    shelfButtons.forEach(shelfButton => {
+      let span = shelfButton.childNodes[0]
+      let spanInnerText = shelfButton.childNodes[0].id
+      span.innerHTML = spanInnerText
+    })
+})
 // imports here:
 
 
@@ -209,4 +217,4 @@
 
 
 
- });
+//  });
