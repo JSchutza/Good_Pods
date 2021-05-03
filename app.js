@@ -10,6 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const the_api = require('./routes/api');
+const episodeRouter = require('./routes/episode')
 const podsRouter = require('./routes/pod');
 const search = require('./routes/search');
 const genres = require('./routes/genres');
@@ -52,6 +53,7 @@ app.use('/api', the_api);
 app.use('/podcasts', podsRouter);
 app.use("/search", search);
 app.use("/genres", genres);
+app.use('episode', episodeRouter);
 app.use("/shelves", shelves);
 
 

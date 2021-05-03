@@ -6,20 +6,21 @@ block content
       each error in errors
         ul
           li(class="error")= error
-  div(class= "form-container")
-    h1 Login
-    form(class = "login-Form form" action="/me/login" method="post")
-      div(class="input")
-        label Email
-        input(type="email" name="email", placeholder='Email')
-      div(class="input")
-        label Password
-        input(type="password" name="password", placeholder='Password')
-        input(type="hidden" name="_csrf" value=csrfToken)
-      div(class="submit-button")
-        button(type="submit" class='submit-btn btn') Log In
+  .main-content-container        
+    div(class= "form-container")
+      h1 Login
+      form(class = "login-Form form" action="/me/login" method="post")
+        div(class="input")
+          label Email
+          input(type="email" name="email", placeholder='Email')
+        div(class="input")
+          label Password
+          input(type="password" name="password", placeholder='Password')
+          input(type="hidden" name="_csrf" value=csrfToken)
+        div(class="submit-button")
+          button(type="submit" class='submit-btn btn') Log In
 
-    form(class="login-demo-form" action="/me/demo" method="post")
-      input(type="hidden" name="_csrf" value=csrfToken)
-      div(class="demo-button")
-        button(type="submit" class="demo-btn btn") Demo
+      form(class="login-demo-form" action="/me/demo" method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        div(class="demo-button")
+          button(type="submit" class="demo-btn btn") Demo

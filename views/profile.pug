@@ -6,21 +6,31 @@ append head
     script(src="/javascripts/delete_account.js" type="module" defer)
 block content
     //- h1 Your Profile
+    if !authenticated
+        script(src="/javascripts/logout.js" type="module" defer)
+    else    
+        .main-content-container
+            .left-bar
 
-    .main-content-container
-        .left-bar
+                //- .user-stuff
+                //-     h2(class='welcome') Welcome, #{name}
+                //-     if isDemo
+                //-         p You are not allowed to delete or update the demo users account.
+                //-     else
+                //-         h2 #{email}
+                //-         div(class="account")
+                //-             a(href="") Update
+                //-         div(class="account")
+                //-             a(href="" class="delete-account" id=`${theirId}`) Delete Account
 
-            .user-stuff
-                h2(class='welcome') Welcome, #{name}
-                if isDemo
-                    p You are not allowed to delete or update the demo users account.
-                else
-                    h2 #{email}
-                    div(class="account")
-                        a(href="") Update
-                    div(class="account")
-                        a(href="" class="delete-account" id=`${theirId}`) Delete Account
-                    form(class = "addshelf-Form form" action=`/shelves` method="post")
+
+
+            .center-content
+                .shelves
+                    h1(id='your-shelf') Your Shelves
+                    each shelf in shelves
+                        +shelf(shelf)
+                    form(class = "login-Form form" action=`/shelves/${theirId}` method="post")
                         h3 Add a New Shelf
                         div(class="input")
                             label New Shelf Name
@@ -71,20 +81,13 @@ block content
                         div(class="submit-button")
                             button(type="submit" id="newShelfBtn" class='submit-btn btn') Add new Shelf
 
+            .right-bar
+                .genreList
+                    h1 Genres
+                    ul
+                    for each_Genre in genre_info
+                        li
+                            a(href=`/genres/${each_Genre.id}` class='genreName') #{each_Genre.name}
 
+                    .message
 
-        .center-content
-            .shelves
-                h1(id='your-shelf') Your Shelves
-                each shelf in shelves
-                    +shelf(shelf)
-
-        .right-bar
-            .genres
-                h1 Genres
-                ul
-                for each_Genre in genre_info
-                    li
-                        a(href=`/genres/${each_Genre.id}` class='genreName') #{each_Genre.name}
-
-                .message

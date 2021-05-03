@@ -6,11 +6,7 @@ mixin shelf(shelf)
             each podcast in shelf.podcasts
                 a(class="pod-pic" href=`/podcasts/${podcast.id}`)
                     div(class="shelf-item")
-                        div(class="pod-name-div")
-                            img(src=`${podcast.image}`)
-                        div(class='name-and-btn')
-                            div
-                                span=podcast.title
-                            div
-                                button(class=`${shelf.id} remove-button` id=`${podcast.id}`) Remove
+                        img(src=`${podcast.image}`)
+                        h5=podcast.title
+                button(class=`${shelf.id} remove-button` id=`${podcast.id}` type='button') Remove
 

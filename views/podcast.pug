@@ -9,24 +9,32 @@ block content
     div(class='main-content-container') 
         div(class="img_holder")
             img(src=`${podcast.image}`)
-        div(class='center-content')
-            div(class="pod_description__container")
-                div(class="pod_description")
-                    h4 Description
-                    p #{podcast.description}
-                    a(href=`/podcasts/${podcast.id}/episodes`) Episodes
-                    
-                div(class="pod_description")
-                    h4(class="avgRating" id=`avg_rating-${podcast.id}`)
-                div(class = "shelf_btn_container")
-                    h3(class='userId', id=userId) Add To My Shelf
 
-                    div(class="shelf_btn__container"  id=podcast.id)
+        div(class="pod_description")
+            //- h4 Description
+            p #{podcast.description}
+            h4(class="avgRating" id=`avg_rating-${podcast.id}`)
+        div(class="pod_episodes")
+            //- a(href=`/podcasts/${podcast.id}/episodes`) Episodes
+            each episode in episodes
+                    a(href=`/episodes/${episode.id}`)
+                        h5=episode.title
+                        button(type='button' class='hide-description description-btn')
+                            Show Description
+                        div(class='description-div hidden' )
+                            p=episode.description
+                        //- a(href=episode.link) Episode Link
+                        a(href=episode.audio) Listen
+            div(class = "shelf_btn_container")
+                h3(class='userId', id=userId) Add To My Shelf
+
+                 div(class="shelf_btn__container"  id=podcast.id)
                         each shelf in shelves
                             button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
                                 span(id=`${shelf.icon}`)
                                 
-            +review-form
+          +review-form
+
             div(class="reviews")
                 h2(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
                     aside 

@@ -19,17 +19,22 @@ window.addEventListener('DOMContentLoaded', () => {
 // }
 
 
-// // sends a delete request to the api that deletes a users shelf item
-// const removeFromShelf = async (the_shelf, the_podcast) => {
-//     const response = await fetch(`/api/shelves/${the_shelf}/podcasts/${the_podcast}`, {
-//         method: 'DELETE'
-//     });
+// sends a delete request to the api that deletes a users shelf item
+const removeFromShelf = async (the_shelf, the_podcast) => {
+    const response = await fetch(`/api/shelves/${the_shelf}/podcasts/${the_podcast}`, {
+        method: 'DELETE'
+    });
 
-//     return await response.json();
-// };
+    return await response.json();
+};
 
 
 
+//    const unicodeToChar = function(text) {
+//   return text.replace(/\\u[\dA-F]{4}/gi, function(match) {
+//       return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+//   });
+// }
 
 // // checks if a type has any podcasts in its array of podcasts
 // const checkArray = (the_array) => {
@@ -102,7 +107,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 // // DOM window listener here:
-// window.addEventListener("DOMContentLoaded", async (event) => {
+window.addEventListener("DOMContentLoaded", async (event) => {
 //     const addShelfbutton = document.getElementById("newShelfBtn");
 //     const rbs = document.querySelectorAll('input[name="shelf-icon"]');
 //     let selectedIcon;
@@ -193,28 +198,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 //     // select all of the remove buttons
-//     const RemoveButtons = document.querySelectorAll('button');
+    const RemoveButtons = document.querySelectorAll('remove-button');
 
-//     // add click listeners to each button
-//     RemoveButtons.forEach(eachButton => {
-//         eachButton.addEventListener('click', async (event) => {
+    // add click listeners to each button
+    RemoveButtons.forEach(eachButton => {
+        eachButton.addEventListener('click', async (event) => {
 
-//             const the_shelf = eachButton.classList[0];
-//             const the_podcast = eachButton.id;
-//             console.log(typeof the_shelf);
-//             const data = await removeFromShelf(the_shelf, the_podcast);
-//             const messageDiv = document.querySelector('.message');
-//             messageDiv.innerHTML = data.message;
+            const the_shelf = eachButton.classList[0];
+            const the_podcast = eachButton.id;
+            console.log(typeof the_shelf);
+            const data = await removeFromShelf(the_shelf, the_podcast);
+            const messageDiv = document.querySelector('.message');
+            messageDiv.innerHTML = data.message;
 
-//             setTimeout(()=> {
-//                 window.location.reload();
-//             }, 1000);
+            setTimeout(()=> {
+                window.location.reload();
+            }, 1000);
 
-//         });
-
-//     });
-
-
+        });
 
 
 //  });

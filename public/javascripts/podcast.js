@@ -142,4 +142,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
 })
-
+const descriptionDivs = document.querySelectorAll('.description-div')
+const descriptionButtons = document.querySelectorAll('.description-btn')
+descriptionButtons.forEach((btn, i) => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault()
+    descriptionDivs[i].classList.remove('hidden')
+  })
+})

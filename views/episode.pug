@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content 
+   .main-content-container
+      div(class='episode-page')
+         h1=episode.title
+         img(src=episode.thumbnail alt=episode.title) 
+         div(class='episode-description')
+            p=episode.description
+         a(href=episode.link) Episode Link 
+         a(href=episode.autio) Listen 
+

@@ -261,7 +261,7 @@ router.get('/', csrfProtection, (req, res) => {
             "listennotes_edit_url": "https://www.listennotes.com/e/729faf98658342fc82917b768d69aff3/#edit"
           }
         ]
-      
+      }
       // for (let i =0; i < 5; i++){
         //   // const ele= recommended[Math.floor(Math.random()*recommended.length)]
         //   const ele = await recommended[i]
@@ -273,12 +273,14 @@ router.get('/', csrfProtection, (req, res) => {
 
       //featuredPods was undefined...for now i am sending all the featured pods as recommended
 
+
       // await console.log(featuredPods, 'featuredPods')
         res.render('feed', {genres, featuredPods})
     
         //  res.render('feed', {genres, recommended})
       // }}
     
+
   }));
 
   // router.get('/me', asyncHandler( async (req, res) => {

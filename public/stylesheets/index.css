@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Megrim&family=Nunito:wght@300;400&family=Poppins:wght@300&display=swap");
+
+/* GENERAL */
+
+body {
+  margin: 0;
+}
 
 a,
 p,
@@ -18,6 +25,11 @@ a {
   text-decoration: none;
   color: black;
   font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+
+p {
+  color: #232323;
 }
 
 button {
@@ -26,22 +38,27 @@ button {
   font-size: 14px;
 }
 
-.logo {
-  height: 50px;
-  width: 50px;
-  margin-top: 5px;
+button:hover {
+  color: rgba(0, 0, 0, 0.3);
 }
 
-.nav-bar {
+.main-content-container,
+.splash-content-container {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-start;
-  width: 100%;
-  height: 80px;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 3% 8% 8% 8%;
+  /* /* height: fit-content; */
 }
 
-.nav-bar a {
-  padding: 20px;
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
+  /* font-weight: lighter; */
+  font-family: "Roboto", sans-serif;
 }
 
 .nav-bar a:hover {
@@ -49,11 +66,37 @@ button {
   /* font-weight: bold; */
 }
 
+.genreList li {
+  list-style-type: none;
+}
+
+.genreList ul {
+}
+
+/* AUTH FORMS (create-user.pug, login.pug) */
+
+.input {
+  padding: 10px;
+}
+
+label {
+  display: none;
+  margin-right: 20px;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 10px 20px 40px 20px;
+  background-color: #232323;
+  width: fit-content;
+  border-radius: 2px;
+}
+
+.form-container h1,
+.form-container a {
+  color: #f05644;
 }
 
 .input {
@@ -69,16 +112,109 @@ fieldset label {
 }
 
 .btn {
-  display: absolute;
+  /* display: absolute; */
+  background-color: #464b50;
+  padding: 6px 9px 6px 9px;
+  color: white;
+  border-radius: 2px;
+  /* font-weight: bold; */
 }
 
-.main-content-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  margin: 5%;
+.btn:hover {
+  color: #f05644;
+  font-weight: bold;
 }
+
+.demo-btn {
+  position: absolute;
+  bottom: 40px;
+}
+/* NAVBAR (layout.pug) */
+
+.nav-bar {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+  height: 80px;
+  margin-top: 40px;
+  transition: background-color 0.5s, delay 0.5s, duration 0.5s;
+}
+
+.nav-bar a,
+button {
+  /* padding: 20px; */
+  margin: 30px 20px 0 20px;
+}
+
+.text-logo {
+  font-weight: 900;
+  font-family: "Megrim", cursive;
+  font-size: 20px;
+  color: #464b50;
+  position: absolute;
+  left: 20px;
+  /* top: 10px; */
+}
+
+.logo-div {
+  background-image: url("../images/pod2point0Logo.png");
+  background-size: contain;
+  height: 50px;
+  width: 50px;
+  margin: 15px 40px 0 20px;
+}
+
+.nav-bar:hover {
+  background-color: #f05644;
+}
+
+.nav-bar:hover .logo-div {
+  background-image: url("../images/pod2point1Logo.png");
+}
+
+.nav-bar:hover .nav-btn {
+  color: white;
+}
+
+.nav-bar:hover .nav-btn:hover {
+  color: black;
+}
+
+.nav-bar:hover .text-logo {
+  color: white;
+}
+
+.nav-bar:hover .text-logo:hover {
+  color: black;
+}
+
+#searchInput {
+  position: absolute;
+  left: 160px;
+  top: 30px;
+}
+
+#searchButton {
+  position: absolute;
+  left: 325px;
+  top: 2px;
+}
+
+.fa-search {
+  color: #464b50;
+}
+
+.nav-bar:hover .fa-search {
+  color: white;
+}
+
+.nav-bar:hover .fa-search:hover {
+  color: black;
+}
+
+/* FEED / GENRE BEST OF (feed.pug, genre.pug, profile.pug)*/
 
 .Podshelf__container {
   display: flex;
@@ -87,42 +223,30 @@ fieldset label {
   padding-top: 20px;
 }
 
-.left-bar {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-}
-
-/* .search input {
-  height: 40px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-} */
-
-.search {
-  position: absolute;
-  left: 40px;
-  top: 20px;
-}
-
 .genre_div {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  /* width: 500px;
+  height: 500px; */
 }
 
 .genre_div img {
   width: 500px;
   height: 500px;
-  margin: 40px;
+  margin: 50px;
+  border-radius: 2px;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  text-align: center;
-  font-weight: lighter;
+.podcast_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* INDIVIDUAL PODCAST PAGE (podcast.pug) */
 
 .img_holder img {
   height: 800px;
@@ -133,10 +257,6 @@ h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.pod_description {
-  width: 800px;
 }
 
 .pod_review_container {
@@ -188,4 +308,42 @@ h4 {
   position: absolute;
   left: 0;
   color: #ffd700;
+}
+
+.splash {
+  background: url("../images/pod2BigOrangeLogo.png") center no-repeat;
+  border-radius: 2px;
+  height: 800px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  transition: background-color 2s, transform 4s, background-image 2s, delay 2s,
+    duration 4s;
+}
+
+.splash:hover {
+  background-color: #232323;
+  background-image: url("../images/pod2BigWhite.png");
+  transform: rotate(360deg);
+}
+
+.splash:hover .get-started {
+  color: #f05644;
+  font-weight: bold;
+}
+
+.get-started {
+  font-weight: bold;
+}
+
+.splash:hover .get-started:hover {
+  color: white;
+}
+
+.hidden {
+  display: none;
 }
