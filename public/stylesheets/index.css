@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  position: relative;
 }
 
 a,
@@ -72,6 +73,44 @@ h4 {
 }
 
 .genreList ul {
+}
+footer{
+  position: absolute;
+  bottom: -450px;
+  width: 100%;
+  padding: 0;
+  opacity: 0;
+}
+footer:hover{
+  opacity: 1;
+  background-color: #232323;
+  color:white;
+}
+.footer__container{
+  display:flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+}
+.footer__container div{
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 25px;
+  color:white
+}
+
+.footer__container div a{
+  font-size: 25px;
+  color:white
+
+}
+.footer__container div a i{
+  padding-left: 10px;
+}
+.footer__container img{
+  opacity: .1;
+  background-color: #232323;
 }
 
 /* AUTH FORMS (create-user.pug, login.pug) */

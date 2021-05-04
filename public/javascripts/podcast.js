@@ -120,7 +120,7 @@ window.addEventListener('DOMContentLoaded', () => {
     shelfButtons.forEach(shelfButton => {
 
       shelfButton.addEventListener("click", async (event) => {
-        let shelfButton = event.target
+        
         let shelfId = shelfButton.id
         let shelfTitle = shelfButton.title
         const podcastId = shelfButton.parentElement.id;
@@ -135,7 +135,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         const data = await res.json();
-        const messageDiv = document.querySelector('.message');
+        const messageDiv = document.getElementsByClassName("message")[0];
         messageDiv.innerHTML = data.message;
 
       });

@@ -30,7 +30,7 @@ block content
                     h1(id='your-shelf') Your Shelves
                     each shelf in shelves
                         +shelf(shelf)
-                    form(class = "login-Form form" action=`/shelves/${theirId}` method="post")
+                    form(class = "login-Form form" action=`/api/shelves/new` method="post")
                         h3 Add a New Shelf
                         div(class="input")
                             label New Shelf Name
@@ -42,45 +42,45 @@ block content
                                     input(type='radio' name="shelficon" id='&#128512;', value='&#128512;')
                                     label(for="&#128512;") &#128512;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#9749;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#9749;', value='&#9749;')
                                     label(for="&#9749;") &#9749;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#127829;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#127829;', value='&#127829')
                                     label(for="&#127829;") &#127829;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#127909;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#127909;', value='&#127909')
                                     label(for="&#127909;") &#127909;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#127918;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#127918;', value='&#127918;')
                                     label(for="&#127918;") &#127918;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#127925;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#127925;', value='&#127925;')
                                     label(for="&#127925;") &#127925;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#127942;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#127942;', value='&#127942;')
                                     label(for="&#127942;") &#127942;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#128164;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#128164;', value='&#128164;')
                                     label(for="&#128164;") &#128164;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#128178;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#128178;', value='&#128178;')
                                     label(for="&#128178;") &#128178;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#128293;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#128293;', value='&#128293;')
                                     label(for="&#128293;") &#128293;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#128478;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#128478;', value='&#128478;')
                                     label(for="&#128478;") &#128478;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#128164;', value='&#128512;')
-                                    label(for="&#128164;") &#128514;
+                                    input(type='radio' name="shelficon" id='&#128164;', value='&#128514')
+                                    label(for="&#128514;") &#128514;
                                 div(class="input radio")
-                                    input(type='radio' name="shelficon" id='&#128525;', value='&#128512;')
+                                    input(type='radio' name="shelficon" id='&#128178;', value='&#128178;')
                                     label(for="&#128178;") &#128178;
                             input(type="hidden" name="_csrf" value=csrfToken)
                         div(class="submit-button")
                             button(type="submit" id="newShelfBtn" class='submit-btn btn') Add new Shelf
-
+                .message
             .right-bar
                 .genreList
                     h1 Genres
@@ -89,5 +89,5 @@ block content
                         li
                             a(href=`/genres/${each_Genre.id}` class='genreName') #{each_Genre.name}
 
-                    .message
+                    
 

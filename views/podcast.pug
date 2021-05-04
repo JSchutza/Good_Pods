@@ -21,6 +21,7 @@ block content
                     each shelf in shelves
                         button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
                             span(id=`${shelf.icon}`)
+                div(class="message") 
                             
         div(class="portions")
             div(class="pod_episodes")
@@ -46,6 +47,7 @@ block content
                 aside 
                     em
                         b #{podcast.title}
+
 
 
         //- div(class='right-bar')

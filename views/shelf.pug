@@ -1,12 +1,14 @@
 mixin shelf(shelf)
     div(class="Podshelf__container")
-        div()
-        h2=shelf.title
+        div(class='shelf-icon')
+            span(id=`${shelf.icon}`)
+            h2=shelf.title
+            button(class=`delete-shelf` title=`${shelf.title}` id=`${shelf.id}` disabled=shelf.basic) Delete Shelf
         div(class="shelf-contents")
             each podcast in shelf.podcasts
+                button(class=`${shelf.id} remove-button` id=`${podcast.id}` type='button') Remove
                 a(class="pod-pic" href=`/podcasts/${podcast.id}`)
                     div(class="shelf-item")
                         img(src=`${podcast.image}`)
                         h5=podcast.title
-                button(class=`${shelf.id} remove-button` id=`${podcast.id}` type='button') Remove
 

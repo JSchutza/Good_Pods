@@ -15,7 +15,7 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
       let podcastList = result.body.podcasts
     
       let genre = {title:result.body.name, podcasts: podcastList}
-      console.log(genre, 'genre from genre route')
+      
     res.render('genre', { genre, csrfToken: req.csrfToken() });
 }))
 
