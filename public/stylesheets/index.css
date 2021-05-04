@@ -48,8 +48,9 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  /* position: relative; */
   margin: 3% 8% 8% 8%;
+  height: 2000px;
   /* /* height: fit-content; */
 }
 
@@ -127,10 +128,13 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 20px 40px 20px;
+  padding: 10px 20px 100px 20px;
   background-color: #232323;
   width: fit-content;
+  height: fit-content;
   border-radius: 2px;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .form-container h1,
@@ -146,6 +150,7 @@ label {
   display: none;
   margin-right: 20px;
 }
+
 fieldset label {
   display: inline;
 }
@@ -156,6 +161,8 @@ fieldset label {
   padding: 6px 9px 6px 9px;
   color: white;
   border-radius: 2px;
+  margin-top: 20px;
+
   /* font-weight: bold; */
 }
 
@@ -166,9 +173,23 @@ fieldset label {
 
 .demo-btn {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
+  right: 30px;
 }
+
+.submit-btn {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+
 /* NAVBAR (layout.pug) */
+
+.logout {
+  position: absolute;
+  top: 30px;
+  right: 120px;
+}
 
 .nav-bar {
   display: flex;
@@ -181,11 +202,11 @@ fieldset label {
   transition: background-color 0.5s, delay 0.5s, duration 0.5s;
 }
 
-.nav-bar a,
-button {
-  /* padding: 20px; */
-  margin: 30px 20px 0 20px;
-}
+/* .nav-bar a,
+button { */
+/* padding: 20px; */
+/* margin: 30px 20px 0 20px;
+} */
 
 .text-logo {
   font-weight: 900;
@@ -193,7 +214,8 @@ button {
   font-size: 20px;
   color: #464b50;
   position: absolute;
-  left: 20px;
+  left: 40px;
+  top: 30px;
   /* top: 10px; */
 }
 
@@ -202,11 +224,16 @@ button {
   background-size: contain;
   height: 50px;
   width: 50px;
-  margin: 15px 40px 0 20px;
+  margin: 15px 40px 40px 20px;
+  /* position: absolute; */
 }
 
 .nav-bar:hover {
   background-color: #f05644;
+}
+
+.login {
+  margin: 30px 20px 0 0;
 }
 
 .nav-bar:hover .logo-div {
@@ -237,8 +264,8 @@ button {
 
 #searchButton {
   position: absolute;
-  left: 325px;
-  top: 2px;
+  left: 330px;
+  top: 32px;
 }
 
 .fa-search {
@@ -260,6 +287,11 @@ button {
   flex-direction: row;
   flex-wrap: wrap;
   padding-top: 20px;
+}
+
+.player {
+  background-color: white;
+  color: #464b50;
 }
 
 .genre_div {
@@ -296,6 +328,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 40px;
 }
 
 .pod_review_container {
@@ -313,11 +346,21 @@ button {
   width: 500px;
 }
 
+.description-div {
+  width: 300px;
+}
+
 .stars {
   width: 150px;
   text-align: center;
   display: flex;
   flex-direction: row-reverse;
+}
+
+.portions {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .stars > label {
@@ -349,6 +392,7 @@ button {
   color: #ffd700;
 }
 
+/* SPLASH */
 .splash {
   background: url("../images/pod2BigOrangeLogo.png") center no-repeat;
   border-radius: 2px;
@@ -358,8 +402,8 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 0;
+  /* position: absolute; */
+  /* top: 0; */
   transition: background-color 2s, transform 4s, background-image 2s, delay 2s,
     duration 4s;
 }

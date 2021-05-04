@@ -21,7 +21,7 @@ html
         a(href="/me" class='logo-div' title='My Shelves')
           //- div(class='logo-div')
             //- img(src="/images/pod2point0Logo.png" class='logo')    
-        a(href="/me/logout" class='nav-btn') Log Out
+        a(href="/me/logout" class='nav-btn logout') Log Out
         div(class='search')
           button(id="searchButton" type='button')
             i(class="fas fa-search")
@@ -31,7 +31,7 @@ html
       else
         a(href="/" class='logo-div' title='Home')
           //- div(class='logo-div')
-        a(href="/me/login" class='nav-btn') Log In
+        a(href="/me/login" class='nav-btn login') Log In
         a(href="/feed" class='text-logo' title='Pod Feed') Podemic
 
 
@@ -39,6 +39,5 @@ html
 
   body
     div(id="searchResults" class ="hidden searchres")
-  block content
-  +footer
-  
+    block content
+    +footer
