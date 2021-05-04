@@ -7,12 +7,18 @@ const { Shelf } = require('../db/models');
 const { csrf, csrfProtection, bcrypt, check, validationResult, asyncHandler } = require("../lib/util")
 
 
-router.post('/', csrfProtection, asyncHandler(async (req, res) => {
-    const {shelficon, shelfname } = req.body;
-    const userId = req.session.auth.userId;
-    let name = `${shelfname}+${shelficon}`;
-    await Shelf.create({userId, name})
-    res.redirect("/me")
-}))
+// router.post('/', csrfProtection, asyncHandler(async (req, res) => {
+//     const {shelficon, shelfname } = req.body;
+//     const userId = req.session.auth.userId;
+//     let name = `${shelfname}+${shelficon}`;
+//     await Shelf.create({userId, name})
+//     res.redirect("/me")
+// }))
+
+// router.delete("/:id", asyncHandler( async (req, res) => {
+//     const shelfId = req.params.id
+//     let oldShelf = await Shelf.destroy({ where: { id: shelfId } });
+//     res.redirect("/me")
+// }))
 
 module.exports = router;

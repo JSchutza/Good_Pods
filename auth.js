@@ -1,7 +1,7 @@
 const {User} = require("./db/models")
 
 const loginUser = (req, res, user, userShelves) => {
-  console.log(userShelves)
+  
   req.session.auth = {userId: user.id, username: user.name, userShelves: userShelves}
 }
 
