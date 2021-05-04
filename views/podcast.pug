@@ -14,34 +14,39 @@ block content
             //- h4 Description
             p #{podcast.description}
             h4(class="avgRating" id=`avg_rating-${podcast.id}`)
-        div(class="pod_episodes")
-            //- a(href=`/podcasts/${podcast.id}/episodes`) Episodes
-            each episode in episodes
-                    a(href=`/episodes/${episode.id}`)
-                        h5=episode.title
-                        button(type='button' class='hide-description description-btn')
-                            Show Description
-                        div(class='description-div hidden' )
-                            p=episode.description
-                        //- a(href=episode.link) Episode Link
-                        a(href=episode.audio) Listen
             div(class = "shelf_btn_container")
                 h3(class='userId', id=userId) Add To My Shelf
 
-                 div(class="shelf_btn__container"  id=podcast.id)
-                        each shelf in shelves
-                            button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
-                                span(id=`${shelf.icon}`)
-                                
-          +review-form
+                div(class="shelf_btn__container"  id=podcast.id)
+                    each shelf in shelves
+                        button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
+                            span(id=`${shelf.icon}`)
+                            
+        div(class="portions")
+            div(class="pod_episodes")
+                //- a(href=`/podcasts/${podcast.id}/episodes`) Episodes
+                each episode in episodes
+                    h5=episode.title
+                    button(type='button' class='description-btn')
+                        Show Description
+                    button(type='button' class='hide-description-btn hidden')
+                        Hide Description    
+                    div(class='description-div hidden' )
+                        p=episode.description
+                    //- a(href=episode.link) Episode Link
+                    button(class='player-btn' type='button') Listen
+                    button(class='hide-player-btn hidden' type='button') Hide Player
+                    embed(src=episode.audio align="top" border="0" width="100%" height="60" autostart="false" loop="true" class='player hidden')
+                    //- audio controls
+                    //-     source(src=episode.audio)
+                            //- a(href=episode.audio target='_new') Listen
 
-            div(class="reviews")
-                h2(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
-                    aside 
-                        em
-                            b #{podcast.title}
+            +review-form
+            h3(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
+                aside 
+                    em
+                        b #{podcast.title}
 
-                div(id="ReviewDiv")
 
         //- div(class='right-bar')
         //-     h2 Other Podcasts like this Podcast
