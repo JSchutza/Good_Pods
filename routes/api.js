@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const { Shelf, Review,  User } = require("../db/models")
-const { asyncHandler } = require("../lib/util")
+const { csrfProtection, asyncHandler } = require("../lib/util")
 const { logoutUser } = require("../auth");
 const { apiKey } = require('../config');
 const baseUrl = 'https://listen-api-test.listennotes.com/api/v2';
 const unirest = require("unirest")
+
+
 
 // api for the pod feed page
 // I don't know if this code was ever needed but its certainly not needed now
@@ -50,13 +52,36 @@ const unirest = require("unirest")
 //     res.render("profile", {shelves:result});
 // }));
 
+router.post('/shelves/new', csrfProtection, asyncHandler(async (req, res) => {
+    const {shelficon, shelfname } = req.body;
+    const userId = req.session.auth.userId;
+    let name = `${shelfname}+${shelficon}`;
+    await Shelf.create({userId, name})
+    const message = {
+        message: `added ${shelfname} ${shelficon}`
+    }
 
+
+    res.json(message);
+}))
+
+router.post("/shelves/:id", asyncHandler( async (req, res) => {
+    const shelfId = req.params.id
+    let oldShelf = await Shelf.destroy({ where: { id: shelfId } });
+    const message = {
+        message: `Shelf was deleted`
+    }
+
+
+    res.json(message);
+}))
 
 
 router.post("/shelves", asyncHandler (async (req, res) => {
     const shelfId = req.body.ShelfId
     const shelfTitle = req.body.shelfTitle
     const podcastId = req.body.podcastId;
+    
     let updatedShelf = await Shelf.findByPk(shelfId)
     
     let oldpods = updatedShelf.podcasts
@@ -78,7 +103,7 @@ router.post("/shelves", asyncHandler (async (req, res) => {
 
 
 
-router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id(\\d+)', asyncHandler(async (req, res) => {
+router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id', asyncHandler(async (req, res) => {
     const shelf_id = req.params.shelf_id;
     const podcast_id = req.params.podcast_id;
     let updatedShelf = await Shelf.findByPk(shelf_id)

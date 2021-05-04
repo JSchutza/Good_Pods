@@ -32,8 +32,8 @@ block content
                         each shelf in shelves
                             button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
                                 span(id=`${shelf.icon}`)
-                                
-          +review-form
+                div(class="message")     
+            +review-form
 
             div(class="reviews")
                 h2(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
