@@ -139,14 +139,50 @@ window.addEventListener('DOMContentLoaded', () => {
         messageDiv.innerHTML = data.message;
 
       });
-
     });
-})
-const descriptionDivs = document.querySelectorAll('.description-div')
-const descriptionButtons = document.querySelectorAll('.description-btn')
-descriptionButtons.forEach((btn, i) => {
+});
+
+  const hideDescriptionBtns = document.querySelectorAll('.hide-description-btn')
+  const descriptionDivs = document.querySelectorAll('.description-div')
+  const descriptionButtons = document.querySelectorAll('.description-btn')
+
+  descriptionButtons.forEach((btn, i) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      descriptionDivs[i].classList.remove('hidden')
+      btn.classList.add('hidden')
+      hideDescriptionBtns[i].classList.remove('hidden')
+    })
+  })
+
+  hideDescriptionButtons.forEach((btn, i) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      descriptionDivs[i].classList.add('hidden')
+      btn.classList.add('hidden')
+      descriptionButtons[i].classList.remove('hidden')
+    })
+  })
+
+const hidePlayerBtns = document.querySelectorAll('.hide-player-btn')
+const playerBtns = document.querySelectorAll('.player-btn')
+const players = document.querySelectorAll('.player')
+
+
+playerBtns.forEach((btn, i) => {
   btn.addEventListener('click', (e) => {
     e.preventDefault()
-    descriptionDivs[i].classList.remove('hidden')
+    players[i].classList.remove('hidden')
+    btn.classList.add('hidden')
+    hidePlayerBtns[i].classList.remove('hidden')
   })
-})
+  })
+
+  hidePlayerBtns.forEach((btn, i) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      players[i].classList.add('hidden')
+      playerBtns[i].classList.remove('hidden')
+      btn.classList.add('hidden')
+    })
+  })
