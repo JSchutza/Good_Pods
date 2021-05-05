@@ -36,12 +36,16 @@ window.addEventListener('DOMContentLoaded', () => {
         newReview.appendChild(ratingtext);
         newReview.appendChild(reviewText);
 
-        console.log(review)
-        let deleteButton = document.createElement('button');
-        deleteButton.setAttribute('class', `delete-button`);
-        deleteButton.setAttribute('id', `${review.id}`)
-        deleteButton.innerText = 'Delete Review'
-        newReview.appendChild(deleteButton);
+        const currentUserId = document.querySelector('.userId').id;
+        if(Number(currentUserId) === Number(review.userId)){
+
+          let deleteButton = document.createElement('button');
+          deleteButton.setAttribute('class', `delete-button`);
+          deleteButton.setAttribute('id', `${review.id}`)
+          deleteButton.innerText = 'Delete Review'
+          newReview.appendChild(deleteButton);
+
+        }
 
         reviewArea.appendChild(newReview);
       })
@@ -112,14 +116,13 @@ window.addEventListener('DOMContentLoaded', () => {
   getTheAverageRating()
   const podcastName = document.getElementById("innerHeader").className
   
-    const shelfButtons = document.querySelectorAll(".shelf_btn")
-    shelfButtons.forEach(shelfButton => {
+    const shelfButtons = document.getElementsByClassName("shelf_btn")
+    
+    for(let i = 0; i < shelfButtons.length; i++) {
+      let shelfButton = shelfButtons[i]
       let span = shelfButton.childNodes[0]
       let spanInnerText = shelfButton.childNodes[0].id
       span.innerHTML = spanInnerText
-    })
-    shelfButtons.forEach(shelfButton => {
-
       shelfButton.addEventListener("click", async (event) => {
         
         let shelfId = shelfButton.id
@@ -140,13 +143,14 @@ window.addEventListener('DOMContentLoaded', () => {
         messageDiv.innerHTML = data.message;
 
       });
+
     });
     
     const hideDescriptionBtns = document.querySelectorAll('.hideDescription')
     const descriptionDivs = document.querySelectorAll('.descriptionDiv')
     const descriptionBtns = document.querySelectorAll('.descriptionBtn')
 
-    descriptionButtons.forEach((btn, i) => {
+    descriptionBtns.forEach((btn, i) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault()
         descriptionDivs[i].classList.remove('hidden')
@@ -155,14 +159,14 @@ window.addEventListener('DOMContentLoaded', () => {
       })
     })
     
-    // hideDescriptionButtons.forEach((btn, i) => {
-    //   btn.addEventListener('click', (e) => {
-    //     e.preventDefault()
-    //     descriptionDivs[i].classList.add('hidden')
-    //     btn.classList.add('hidden')
-    //     descriptionButtons[i].classList.remove('hidden')
-    //   })
-    // })
+    hideDescriptionBtns.forEach((btn, i) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        descriptionDivs[i].classList.add('hidden')
+        btn.classList.add('hidden')
+        descriptionBtns[i].classList.remove('hidden')
+      })
+    })
     
     const hidePlayerBtns = document.querySelectorAll('.hidePlayer')
     const playerBtns = document.querySelectorAll('.playerBtn')
@@ -176,6 +180,7 @@ window.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('hidden')
         hidePlayerBtns[i].classList.remove('hidden')
       })
+
     })
 
     hidePlayerBtns.forEach((btn, i) => {

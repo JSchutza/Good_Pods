@@ -30,7 +30,9 @@ block content
                     h1(id='your-shelf') Your Shelves
                     each shelf in shelves
                         +shelf(shelf)
+
                     form(class = "new-shelf-form Form" action=`/api/shelves/new` method="post")
+
                         h3 Add a New Shelf
                         div(class="input")
                             label New Shelf Name
@@ -75,9 +77,10 @@ block content
                                     input(type='radio' name="shelficon" id='&#128164;', value='&#128514')
                                     label(for="&#128514;") &#128514;
                             input(type="hidden" name="_csrf" value=csrfToken)
-                        div(class="new-shelf-button")    
-                            button(type="submit" id="newShelfBtn") Add new Shelf
-                .message
+
+                        div(class="submit-button")
+                            button(type="submit" class='submit-shelf-btn btn') Add new Shelf
+                        div(class="add-shelf-message")
             .right-bar
                 hr
                 .genreList
