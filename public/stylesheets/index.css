@@ -48,10 +48,10 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* position: relative; */
   margin: 3% 8% 8% 8%;
-  height: 2000px;
-  /* /* height: fit-content; */
+  height: fit-content;
+  height: fit-content;
+  text-align: center;
 }
 
 h1,
@@ -74,42 +74,41 @@ h4 {
 
 .genreList ul {
 }
-footer{
+footer {
   position: absolute;
   bottom: -450px;
   width: 100%;
   padding: 0;
   opacity: 0;
 }
-footer:hover{
+footer:hover {
   opacity: 1;
   background-color: #232323;
-  color:white;
+  color: white;
 }
-.footer__container{
-  display:flex;
+.footer__container {
+  display: flex;
   flex-direction: column;
   font-family: "Poppins", sans-serif;
 }
-.footer__container div{
+.footer__container div {
   padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 25px;
-  color:white
+  color: white;
 }
 
-.footer__container div a{
+.footer__container div a {
   font-size: 25px;
-  color:white
-
+  color: white;
 }
-.footer__container div a i{
+.footer__container div a i {
   padding-left: 10px;
 }
-.footer__container img{
-  opacity: .1;
+.footer__container img {
+  opacity: 0.1;
   background-color: #232323;
 }
 
@@ -187,7 +186,7 @@ fieldset label {
 
 .logout {
   position: absolute;
-  top: 30px;
+  top: 100px;
   right: 120px;
 }
 
@@ -289,11 +288,6 @@ button { */
   padding-top: 20px;
 }
 
-.player {
-  background-color: white;
-  color: #464b50;
-}
-
 .genre_div {
   display: flex;
   flex-direction: row-reverse;
@@ -307,7 +301,7 @@ button { */
 .genre_div img {
   width: 500px;
   height: 500px;
-  margin: 50px;
+  margin: 70px 50px 20px 50px;
   border-radius: 2px;
 }
 
@@ -331,10 +325,16 @@ button { */
   margin: 40px;
 }
 
-.pod_review_container {
+.pod_review_container form {
   display: flex;
   flex-direction: column;
+  padding: 20px;
   align-items: center;
+}
+
+.pod_description {
+  width: 800px;
+  padding: 20px;
 }
 
 .shelf_btn button {
@@ -346,8 +346,31 @@ button { */
   width: 500px;
 }
 
-.description-div {
+.descriptionDiv p {
   width: 300px;
+  font-size: 13px;
+}
+
+.episode-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.otherPods {
+  margin: 40px 20px 20px 20px;
+  padding: 20px;
+}
+
+.pod_episodes {
+  display: flex;
+  flex-direction: column;
+  /* padding: 20px; */
+  height: 600px;
+  width: 350px;
+  overflow-y: scroll;
 }
 
 .stars {
@@ -430,3 +453,35 @@ button { */
 .hidden {
   display: none;
 }
+
+/* SEARCH */
+
+#searchResults {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 3% 8% 8% 8%;
+}
+
+.SearchResult___container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SearchResult___container img {
+  height: 500px;
+  width: 500px;
+  margin: 50px;
+  border-radius: 2px;
+}
+
+/* .resultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3% 8% 8% 8%;
+} */
