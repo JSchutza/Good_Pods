@@ -2,7 +2,7 @@
   // imports here:
   
   const removeFromShelf = async (the_shelf, the_podcast) => {
-    console.log("this is remove from shelf")
+    
       const response = await fetch(`/api/shelves/${the_shelf}/podcasts/${the_podcast}`, {
           method: 'DELETE'
       });
@@ -208,9 +208,9 @@ const shelfButtons = document.querySelectorAll(".shelf-icon")
         const delButton = event.target
         const shelfTitle = delButton.title
         const shelfId = delButton.id
-        console.log("this is delete Shelf", delButton, shelfId, shelfTitle)
+        
         const types = ['Current', 'Thumbs Up', 'On My Radar', 'Meh', 'Thumbs Down'];
-        const messageDiv = document.querySelector('.message');
+        const messageDiv = document.querySelector('.add-shelf-message');
         //check if its a default shelf
         if(types.includes(shelfTitle)){
             messageDiv.innerHTML = "<span>You can't delete a default shelf</span>";
@@ -220,17 +220,22 @@ const shelfButtons = document.querySelectorAll(".shelf-icon")
           })
           if (data.ok){
             messageDiv.innerHTML = data.message
+            setTimeout(()=> {
+              window.location.reload();
+          }, 1000);
           }
         }
       })
     }
 //     // select all of the remove buttons
-    const RemoveButtons = document.querySelectorAll('remove-button');
-console.log(RemoveButtons)
+    const RemoveButtons = document.getElementsByClassName('remove-button');
+
     // add click listeners to each button
-    RemoveButtons.forEach(eachButton => {
+    for(let i = 0; i<RemoveButtons.length; i++){
+      let eachButton = RemoveButtons[i]
         eachButton.addEventListener('click', async (event) => {
           event.preventDefault()
+          
             const the_shelf = eachButton.classList[0];
             const the_podcast = eachButton.id;
             
@@ -243,7 +248,7 @@ console.log(RemoveButtons)
             }, 1000);
 
         });
-      })
+      }
     })
 
 

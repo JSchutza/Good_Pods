@@ -30,7 +30,7 @@ block content
                     h1(id='your-shelf') Your Shelves
                     each shelf in shelves
                         +shelf(shelf)
-                    form(class = "login-Form form" action=`/api/shelves/new` method="post")
+                    form(class = "add-shelf-form form" action=`/api/shelves/new` method="post")
                         h3 Add a New Shelf
                         div(class="input")
                             label New Shelf Name
@@ -79,8 +79,8 @@ block content
                                     label(for="&#128178;") &#128178;
                             input(type="hidden" name="_csrf" value=csrfToken)
                         div(class="submit-button")
-                            button(type="submit" id="newShelfBtn" class='submit-btn btn') Add new Shelf
-                .message
+                            button(type="submit" class='submit-shelf-btn btn') Add new Shelf
+                        div(class="add-shelf-message")
             .right-bar
                 .genreList
                     h1 Genres

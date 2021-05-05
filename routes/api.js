@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { Client } = require('podcast-api');
 
 const { Shelf, Review,  User } = require("../db/models")
 const { csrfProtection, asyncHandler } = require("../lib/util")
@@ -62,7 +63,7 @@ router.post('/shelves/new', csrfProtection, asyncHandler(async (req, res) => {
     }
 
 
-    res.json(message);
+    res.redirect('/me');
 }))
 
 router.post("/shelves/:id", asyncHandler( async (req, res) => {
@@ -73,7 +74,7 @@ router.post("/shelves/:id", asyncHandler( async (req, res) => {
     }
 
 
-    res.json(message);
+    res.redirect('/me');
 }))
 
 
@@ -128,10 +129,21 @@ router.delete('/shelves/:shelf_id(\\d+)/podcasts/:podcast_id', asyncHandler(asyn
 
 // api for the genres
 router.get('/genres', asyncHandler(async (req, res) => {
-    const response = await unirest.get(`${baseUrl}/genres?top_level_only=1`)
-  .header('X-ListenAPI-Key', apiKey)
-    let genres = response.toJSON();
-    genres = genres.body.genres
+    
+
+// If apiKey is null, then we will connect to a mock server
+// that returns fake data for testing purposes.
+let genres = []
+const client = Client({ apiKey: null });
+client.fetchPodcastGenres({
+  top_level_only: 1,
+}).then((response) => {
+  // Get response json data here
+  genres.push(response.data.genres);
+}).catch((error) => {
+  console.log(error)
+});
+    
     res.json(genres)
 }));
 
