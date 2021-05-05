@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", async (event)=>{
   const searchButton = document.getElementById('searchButton')
   searchButton.addEventListener('click', (event)=> {
     document.getElementById('searchResults').classList.remove('hidden')
+    document.getElementById('results-header').classList.remove('hidden')
     search()
   })
 });
@@ -39,9 +40,9 @@ const search= async () => {
         console.log(pod)
       searchResultsDiv.innerText=''
       let ele =document.createElement("div")
-      let searchHeader = document.createElement('h1')
-      searchHeader.innerText="Search Results"
-      searchResultsDiv.appendChild(searchHeader)
+      // let searchHeader = document.createElement('h1')
+      // searchHeader.innerText="Search Results"
+      // searchResultsDiv.appendChild(searchHeader)
       ele.setAttribute("class", "SearchResult___container")
       let podname = document.createElement('a')
       let podimg = document.createElement("img")
@@ -50,8 +51,8 @@ const search= async () => {
       podimg.setAttribute('class', `feat__pod__img`)
       podimg.setAttribute('src', `${pod.thumbnail}`)
       podimg.setAttribute("onError","src='/images/logo.png'")
-      ele.appendChild(podname)
       ele.appendChild(podimg)
+      ele.appendChild(podname)
       arrayOfChildren.push(ele)
       
     }

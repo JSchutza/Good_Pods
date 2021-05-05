@@ -53,7 +53,7 @@ app.use('/api', the_api);
 app.use('/podcasts', podsRouter);
 app.use("/search", search);
 app.use("/genres", genres);
-app.use('episode', episodeRouter);
+app.use('/episode', episodeRouter);
 
 
 

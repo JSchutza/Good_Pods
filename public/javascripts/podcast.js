@@ -112,6 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
   }
+
   getTheAverageRating()
   const podcastName = document.getElementById("innerHeader").className
   
@@ -142,50 +143,52 @@ window.addEventListener('DOMContentLoaded', () => {
         messageDiv.innerHTML = data.message;
 
       });
-    };
-});
 
-  const hideDescriptionBtns = document.querySelectorAll('.hide-description-btn')
-  const descriptionDivs = document.querySelectorAll('.description-div')
-  const descriptionButtons = document.querySelectorAll('.description-btn')
+    });
+    
+    const hideDescriptionBtns = document.querySelectorAll('.hideDescription')
+    const descriptionDivs = document.querySelectorAll('.descriptionDiv')
+    const descriptionBtns = document.querySelectorAll('.descriptionBtn')
 
-  descriptionButtons.forEach((btn, i) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault()
-      descriptionDivs[i].classList.remove('hidden')
-      btn.classList.add('hidden')
-      hideDescriptionBtns[i].classList.remove('hidden')
+    descriptionBtns.forEach((btn, i) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        descriptionDivs[i].classList.remove('hidden')
+        // btn.classList.add('hidden')
+        // hideDescriptionBtns[i].classList.remove('hidden')
+      })
     })
-  })
-
-  hideDescriptionBtns.forEach((btn, i) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault()
-      descriptionDivs[i].classList.add('hidden')
-      btn.classList.add('hidden')
-      descriptionButtons[i].classList.remove('hidden')
+    
+    hideDescriptionBtns.forEach((btn, i) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        descriptionDivs[i].classList.add('hidden')
+        btn.classList.add('hidden')
+        descriptionBtns[i].classList.remove('hidden')
+      })
     })
-  })
+    
+    const hidePlayerBtns = document.querySelectorAll('.hidePlayer')
+    const playerBtns = document.querySelectorAll('.playerBtn')
+    const players = document.querySelectorAll('.player')
 
-const hidePlayerBtns = document.querySelectorAll('.hide-player-btn')
-const playerBtns = document.querySelectorAll('.player-btn')
-const players = document.querySelectorAll('.player')
 
+    playerBtns.forEach((btn, i) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        players[i].classList.remove('hidden')
+        btn.classList.add('hidden')
+        hidePlayerBtns[i].classList.remove('hidden')
+      })
 
-playerBtns.forEach((btn, i) => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault()
-    players[i].classList.remove('hidden')
-    btn.classList.add('hidden')
-    hidePlayerBtns[i].classList.remove('hidden')
-  })
-  })
-
-  hidePlayerBtns.forEach((btn, i) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault()
-      players[i].classList.add('hidden')
-      playerBtns[i].classList.remove('hidden')
-      btn.classList.add('hidden')
     })
-  })
+
+    hidePlayerBtns.forEach((btn, i) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        players[i].classList.add('hidden')
+        playerBtns[i].classList.remove('hidden')
+        btn.classList.add('hidden')
+      })
+    })
+  });

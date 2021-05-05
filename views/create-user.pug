@@ -1,11 +1,7 @@
 extends layout.pug 
 
 block content
-    if(errors)
-        div(class="error_div")
-            each error in errors
-                ul
-                    li(class="error")= error
+
     .main-content-container
         div(class='form-container')
             h1 Sign Up
@@ -29,3 +25,8 @@ block content
                 input(type="hidden" name="_csrf" value=csrfToken)
                 div(class="demo-button")
                     button(type="submit" class="demo-btn btn") Demo
+        if(errors)
+            div(class="error_div")
+                each error in errors
+                    ul
+                        li(class="error")= error

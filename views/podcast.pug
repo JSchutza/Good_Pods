@@ -1,12 +1,11 @@
 extends layout.pug
 include review-form
 append head
-
    script(src="/javascripts/podcast.js" type="module" defer)
 
 block content
-    h1(id ="innerHeader" class=`${podcast.title}`)= podcast.title
     div(class='main-content-container') 
+        h1(id ="innerHeader" class=`${podcast.title}`)= podcast.title
         div(class="img_holder")
             img(src=`${podcast.image}`)
 
@@ -17,27 +16,31 @@ block content
             div(class = "shelf_btn_container")
                 h3(class='userId', id=userId) Add To My Shelf
 
-                div(class="shelf_btn__container"  id=podcast.id)
-                    each shelf in shelves
-                        button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
-                            span(id=`${shelf.icon}`)
-                div(class="message") 
-                            
+            div(class="shelf_btn__container"  id=podcast.id)
+                each shelf in shelves
+                    button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
+                        span(id=`${shelf.icon}`)
+            div(class="message") 
+    div(class='middle-ground')
+        hr
+    .main-content-container                    
         div(class="portions")
             div(class="pod_episodes")
-                //- a(href=`/podcasts/${podcast.id}/episodes`) Episodes
+                h2 Episodes
                 each episode in episodes
-                    h5=episode.title
-                    button(type='button' class='description-btn')
-                        Show Description
-                    button(type='button' class='hide-description-btn hidden')
-                        Hide Description    
-                    div(class='description-div hidden' )
-                        p=episode.description
-                    //- a(href=episode.link) Episode Link
-                    button(class='player-btn' type='button') Listen
-                    button(class='hide-player-btn hidden' type='button') Hide Player
-                    embed(src=episode.audio align="top" border="0" width="100%" height="60" autostart="false" loop="true" class='player hidden')
+                    div(class='episode-div')
+                        h5=episode.title
+                        //- button(type='button' class='descriptionBtn')
+                        //-     Show Description
+                        //- button(type='button' class='hideDescription hidden')
+                        //-     Hide Description    
+                        div(class='descriptionDiv')
+                            p=episode.description
+                        //- a(href=episode.link) Episode Link
+                        //- button(class='playerBtn' type='button') Listen
+                        //- button(class='hidePlayer hidden' type='button') Hide Player
+                        div(class='player')
+                            embed(src=episode.audio align="baseline" border="0" width="300" height="55" autostart="false" loop="true" background-color='white')
                     //- audio controls
                     //-     source(src=episode.audio)
                             //- a(href=episode.audio target='_new') Listen
@@ -51,12 +54,14 @@ block content
                 div(id="ReviewDiv")
 
 
-
-        //- div(class='right-bar')
-        //-     h2 Other Podcasts like this Podcast
-        //-     each podcast in otherPodcasts
-        //-         div(class='Genre_Pods')
-        //-             a(href=`/podcasts/${podcast.id}`)= podcast.title
+    .middle-ground 
+        hr
+    .main-content-container
+        div(class='otherPods')
+            h2 Other Podcasts like this Podcast
+            each podcast in otherPodcasts
+                div(class='Genre_Pods')
+                    a(href=`/podcasts/${podcast.id}`)= podcast.title
 
             .message
 
