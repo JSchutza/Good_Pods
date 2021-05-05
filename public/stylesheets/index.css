@@ -37,6 +37,8 @@ button {
   background-color: transparent;
   border: none;
   font-size: 14px;
+  font-weight: bold;
+  color: #464b50;
 }
 
 button:hover {
@@ -68,12 +70,28 @@ h4 {
   /* font-weight: bold; */
 }
 
-.genreList li {
-  list-style-type: none;
+.genreList h2 {
+  margin-top: 60px;
 }
 
-.genreList ul {
+.genreList li {
+  list-style-type: none;
+  padding: 10px;
 }
+
+.genreList li:hover {
+  font-weight: bold;
+}
+
+.right-bar {
+  width: 100%;
+}
+
+.right-bar hr,
+.middle-ground hr {
+  border-top: 0.2px solid rgba(0, 0, 0, 0.1);
+}
+
 footer {
   position: absolute;
   bottom: -450px;
@@ -134,6 +152,20 @@ label {
   border-radius: 2px;
   position: relative;
   box-sizing: border-box;
+}
+
+.error_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px;
+}
+
+.error_div li {
+  list-style-type: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  color: #f05644;
 }
 
 .form-container h1,
@@ -201,12 +233,6 @@ fieldset label {
   transition: background-color 0.5s, delay 0.5s, duration 0.5s;
 }
 
-/* .nav-bar a,
-button { */
-/* padding: 20px; */
-/* margin: 30px 20px 0 20px;
-} */
-
 .text-logo {
   font-weight: 900;
   font-family: "Megrim", cursive;
@@ -233,6 +259,8 @@ button { */
 
 .login {
   margin: 30px 20px 0 0;
+  position: absolute;
+  top: 50px;
 }
 
 .nav-bar:hover .logo-div {
@@ -253,6 +281,10 @@ button { */
 
 .nav-bar:hover .text-logo:hover {
   color: black;
+}
+
+.nav-btn {
+  margin: 30px 30px 0 0;
 }
 
 #searchInput {
@@ -279,14 +311,7 @@ button { */
   color: black;
 }
 
-/* FEED / GENRE BEST OF (feed.pug, genre.pug, profile.pug)*/
-
-.Podshelf__container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-top: 20px;
-}
+/* FEED / GENRE BEST OF (feed.pug, genre.pug)*/
 
 .genre_div {
   display: flex;
@@ -294,8 +319,7 @@ button { */
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  /* width: 500px;
-  height: 500px; */
+  margin-bottom: 60px;
 }
 
 .genre_div img {
@@ -325,7 +349,14 @@ button { */
   margin: 40px;
 }
 
-.pod_review_container form {
+.shelf_btn__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.shelf__btn_container .pod_review_container form {
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -346,6 +377,16 @@ button { */
   width: 500px;
 }
 
+#review-form {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+#review-form textarea {
+  margin: 20px;
+}
 .descriptionDiv p {
   width: 300px;
   font-size: 13px;
@@ -360,8 +401,15 @@ button { */
 }
 
 .otherPods {
-  margin: 40px 20px 20px 20px;
-  padding: 20px;
+  margin: 20px;
+}
+
+.Genre_Pods {
+  padding: 10px;
+}
+
+.Genre_Pods:hover {
+  font-weight: bold;
 }
 
 .pod_episodes {
@@ -369,8 +417,12 @@ button { */
   flex-direction: column;
   /* padding: 20px; */
   height: 600px;
-  width: 350px;
+  width: 340px;
+  padding: 0 20px 0 20px;
   overflow-y: scroll;
+  align-items: center;
+  margin-right: 20px;
+  /* justify-content: center; */
 }
 
 .stars {
@@ -425,8 +477,6 @@ button { */
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* position: absolute; */
-  /* top: 0; */
   transition: background-color 2s, transform 4s, background-image 2s, delay 2s,
     duration 4s;
 }
@@ -463,7 +513,6 @@ button { */
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin: 3% 8% 8% 8%;
 }
 
 .SearchResult___container {
@@ -479,9 +528,74 @@ button { */
   border-radius: 2px;
 }
 
-/* .resultsContainer {
+#results-header {
+  margin-top: 80px;
+}
+/* PROFILE PAGE */
+
+.shelf-contents {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.shelf-contents img {
+  height: 250px;
+  width: 250px;
+  margin: 30px 50px 50px 50px;
+}
+
+.Podshelf__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 60px 0;
+}
+
+.shelf-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shelf-icon h2 {
+  padding: 0 20px 0 20px;
+  color: #232323;
+}
+
+.shelves input {
+  margin: 10px;
+}
+
+.input fieldset {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.new-shelf-button {
+  padding: 20px;
+}
+
+.new-shelf-form {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3% 8% 8% 8%;
-} */
+  border: 0.5px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  margin: 40px 40px 60px 40px;
+  padding: 20px 0 20px 0;
+}

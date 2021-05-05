@@ -275,7 +275,7 @@ router.get('/', csrfProtection, (req, res) => {
 
 
       // await console.log(featuredPods, 'featuredPods')
-        res.render('feed', {genres, featuredPods})
+        res.render('feed', {genre_info: genres, featuredPods})
     
         //  res.render('feed', {genres, recommended})
       // }}

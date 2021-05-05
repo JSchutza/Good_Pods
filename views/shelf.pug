@@ -3,7 +3,8 @@ mixin shelf(shelf)
         div(class='shelf-icon')
             span(id=`${shelf.icon}`)
             h2=shelf.title
-            button(class=`delete-shelf` title=`${shelf.title}` id=`${shelf.id}` disabled=shelf.basic) Delete Shelf
+            button(class=`delete-shelf` title=`${shelf.title}` id=`${shelf.id}` disabled=shelf.basic)
+                i(class='far fa-trash-alt')
         div(class="shelf-contents")
             each podcast in shelf.podcasts
                 button(class=`${shelf.id} remove-button` id=`${podcast.id}` type='button') Remove

@@ -147,24 +147,29 @@ router.get('/', csrfProtection, asyncHandler(async(req, res) => {
 
 
 router.post('/sign-up', signUpValidator, csrfProtection, asyncHandler(async (req, res) => {
-    const validatorErrors = validationResult(req);
     const { email, name, password, confirmPassword } = req.body;
+    const validatorErrors = validationResult(req);
+    const errors = validatorErrors.array().map((error) => error.msg);
     if (validatorErrors.isEmpty()) {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await User.create({ email, name, hashedPassword });
-        const userShelves = await createShelves(user)
-        loginUser(req, res, user, userShelves)
-        return req.session.save((err) => {
-            if (err) {
-                next(err)
-            } else {
-                res.redirect('/me');
-            }
-        })
+        if(password === confirmPassword) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const user = await User.create({ email, name, hashedPassword });
+            const userShelves = await createShelves(user)
+            loginUser(req, res, user, userShelves)
+            return req.session.save((err) => {
+                if (err) {
+                    next(err)
+                } else {
+                    res.redirect('/me');
+                }
+            })
+        } else {
+            errors.push('Passwords must match.')
+            res.render('create-user', {errors, csrfToken: req.csrfToken(), email, name})
+        }
     }
     else {
-        const errors = validatorErrors.array().map((error) => error.msg)
-        res.render('index', { email, name, errors, csrfToken: req.csrfToken() })
+        res.render('create-user', { email, name, errors, csrfToken: req.csrfToken() })
     }
 }))
 
@@ -183,28 +188,36 @@ router.post("/login", csrfProtection, loginValidators, asyncHandler(async (req, 
     const errors = validatorErrors.array().map((error) => error.msg);
     if (validatorErrors.isEmpty()){
     const user = await User.findOne({ where: { email } });
-    const RealPassword = user.hashedPassword.toString();
-    const passwordMatch = await bcrypt.compare(password, RealPassword);
-
-        if (passwordMatch) {
-            const userShelves = await populateShelves(user)
-
-            loginUser(req, res, user, userShelves)
-            return req.session.save((err) => {
-                if (err) {
-                    next(err);
-                } else {
-                    res.redirect("/me")
-                }
-            })
-        } else {
-            errors.push('The email password combination does not match!')
-            res.render('login', { errors, csrfToken: req.csrfToken(), email})
-        }
+    if(!user) {
+        errors.push('The email does not exist in our system!')
+        res.render('login', {errors, csrfToken: req.csrfToken()})
+    } else {
+        const RealPassword = user.hashedPassword.toString();
+        const passwordMatch = await bcrypt.compare(password, RealPassword);
+    
+            if (passwordMatch) {
+                const userShelves = await populateShelves(user)
+    
+                loginUser(req, res, user, userShelves)
+                return req.session.save((err) => {
+                    if (err) {
+                        next(err);
+                    } else {
+                        res.redirect("/me")
+                    }
+                })
+            } else {
+                errors.push('The email password combination does not match!')
+                res.render('login', { errors, csrfToken: req.csrfToken(), email})
+            }
     }
-    else {
+}
+
+else {
         res.render('login', { errors, csrfToken: req.csrfToken(), email })
     }
+            
+    
 }))
 
 

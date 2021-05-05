@@ -21,7 +21,9 @@ block content
                     button(class="shelf_btn" id=`${shelf.id}` type='button' title=`${shelf.title}`)
                         span(id=`${shelf.icon}`)
             div(class="message") 
-                        
+    div(class='middle-ground')
+        hr
+    .main-content-container                    
         div(class="portions")
             div(class="pod_episodes")
                 h2 Episodes
@@ -50,7 +52,9 @@ block content
                         b #{podcast.title}
 
 
-
+    .middle-ground 
+        hr
+    .main-content-container
         div(class='otherPods')
             h2 Other Podcasts like this Podcast
             each podcast in otherPodcasts
