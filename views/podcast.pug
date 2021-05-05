@@ -43,10 +43,12 @@ block content
                             //- a(href=episode.audio target='_new') Listen
 
             +review-form
-            h3(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
-                aside 
-                    em
-                        b #{podcast.title}
+            div
+                h3(class='idgrabber' id=podcast.id)= `What Other People are Saying About`
+                    aside 
+                        em
+                            b #{podcast.title}
+                div(id="ReviewDiv")
 
 
 
