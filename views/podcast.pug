@@ -30,16 +30,16 @@ block content
                 each episode in episodes
                     div(class='episode-div')
                         h5=episode.title
-                        button(type='button' class='descriptionBtn')
-                            Show Description
-                        button(type='button' class='hideDescription hidden')
-                            Hide Description    
-                        div(class='descriptionDiv hidden')
+                        //- button(type='button' class='descriptionBtn')
+                        //-     Show Description
+                        //- button(type='button' class='hideDescription hidden')
+                        //-     Hide Description    
+                        div(class='descriptionDiv')
                             p=episode.description
                         //- a(href=episode.link) Episode Link
-                        button(class='playerBtn' type='button') Listen
-                        button(class='hidePlayer hidden' type='button') Hide Player
-                        div(class='player hidden')
+                        //- button(class='playerBtn' type='button') Listen
+                        //- button(class='hidePlayer hidden' type='button') Hide Player
+                        div(class='player')
                             embed(src=episode.audio align="baseline" border="0" width="300" height="55" autostart="false" loop="true" background-color='white')
 
             +review-form
